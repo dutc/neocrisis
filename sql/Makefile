@@ -22,7 +22,7 @@ test-queries:
 
 .PHONY: shell
 shell:
-	PSQLRC=$(curdir)psqlrc psql -d nc
+	PSQLRC=$(curdir)/utils/psqlrc psql -d nc
 
 .PHONY: run-db
 run-db:
