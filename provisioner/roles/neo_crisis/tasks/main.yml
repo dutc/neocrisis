@@ -1,0 +1,23 @@
+---
+- name: Clone neocrisis repo into /var/www/
+  git:
+    repo: https://github.com/dutc/neocrisis.git
+    dest: "{{ proj_folder }}"
+
+- name: Install requirements
+  pip:
+    requirements: "{{ proj_folder }}/requirements.txt"
+    executable: pip3
+
+# - name: Create engine systemd service
+#   copy:
+#       src: neo_crisis_engine.service
+#       dest: /etc/systemd/system/
+#
+# - name: Create systemd timer for neo_crisis_engine.service
+#   copy:
+#       src: neo_crisis_engine.timer
+#       dest: /etc/systemd/system/
+#
+# - name: Make sure a Neo Crisis Engine service is running
+#   systemd: state=started name=neo_crisis_engine

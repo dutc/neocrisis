@@ -1,0 +1,6 @@
+---
+- name: Good old apt-get update
+  apt: update_cache=yes
+
+- name: Install nmap port scanner
+  apt: name=nmap

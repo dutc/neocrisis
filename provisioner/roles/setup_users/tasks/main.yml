@@ -1,0 +1,92 @@
+---
+- name: Add the sys user 'pynyc'
+  user:
+    name: "{{ app_user }}"
+    system: yes
+    create_home: no
+    state: present
+
+- name: Add vmenezes user
+  user:
+    name: vmenezes
+    shell: /bin/bash
+    state: present
+
+- name: Add vmenezes SSH keys
+  authorized_key:
+    user=vmenezes
+    key=https://github.com/vmenezes.keys
+    state=present
+
+- name: Add vmenezes to sudoers
+  copy:
+      dest: "/etc/sudoers.d/vmenezes"
+      content: "vmenezes  ALL=(ALL)  NOPASSWD: ALL"
+
+- name: Add james user
+  user:
+    name: james
+    shell: /bin/bash
+    state: present
+
+- name: Add james SSH keys
+  authorized_key:
+    user=james
+    key=https://github.com/dutc.keys
+    state=present
+
+- name: Add james to sudoers
+  copy:
+      dest: "/etc/sudoers.d/james"
+      content: "james  ALL=(ALL)  NOPASSWD: ALL"
+
+- name: Add eric user
+  user:
+    name: eric
+    shell: /bin/bash
+    state: present
+
+- name: Add eric SSH keys
+  authorized_key:
+    user=eric
+    key=https://github.com/EFulmer.keys
+    state=present
+
+- name: Add eric to sudoers
+  copy:
+      dest: "/etc/sudoers.d/eric"
+      content: "eric  ALL=(ALL)  NOPASSWD: ALL"
+
+- name: Add aj user
+  user:
+    name: aj
+    shell: /bin/bash
+    state: present
+
+- name: Add aj SSH keys
+  authorized_key:
+    user=aj
+    key=https://github.com/ak9999.keys
+    state=present
+
+- name: Add aj to sudoers
+  copy:
+      dest: "/etc/sudoers.d/aj"
+      content: "aj  ALL=(ALL)  NOPASSWD: ALL"
+
+- name: Add piper user
+  user:
+    name: piper
+    shell: /bin/bash
+    state: present
+
+- name: Add piper SSH keys
+  authorized_key:
+    user=piper
+    key=https://github.com/pathunstrom.keys
+    state=present
+
+- name: Add piper to sudoers
+  copy:
+      dest: "/etc/sudoers.d/piper"
+      content: "piper  ALL=(ALL)  NOPASSWD: ALL"
