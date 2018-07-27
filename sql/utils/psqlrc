@@ -1,0 +1,7 @@
+\i ~/.psqlrc
+
+set search_path = game, public;
+
+\dt game.*
+\dm game.*
+\dv game.*
