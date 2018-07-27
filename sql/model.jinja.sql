@@ -1,6 +1,7 @@
 \echo 'NEO-Crisis'
 \echo 'http://github.com/dutc/neocrisis'
 \echo 'James Powell <james@dontusethiscode.com>'
+\echo 'NOTE: This is a jinja-fied SQL file! Use jinja2-cli to process.'
 \set VERBOSITY terse
 \set ON_ERROR_STOP true
 
