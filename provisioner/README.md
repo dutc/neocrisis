@@ -27,6 +27,16 @@ The `/vagrant` folder is synced with the host machine so you can edit files on y
 
 The `/var/www/neocrisis/` is the "production" code pulled from Github during deployment and served by the web server.
 
+## Helpful commands
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart neocrisis_gunicorn
+sudo nginx -t
+sudo systemctl restart nginx
+sudo /var/www/neocrisis/venv/bin/python
+```
+
 ### To be continued...
 
-NGINX or some other stable way to run the Flask app coming soon
+Add tags to roles and triggers to restart NGINX, Systemd and neocrisis_gunicorn properly
