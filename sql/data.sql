@@ -14,8 +14,9 @@ raise notice 'populating game data';
 do $data$ begin
     set search_path = game, public;
 
-    insert into rocks (name, mass, params) values (
+    insert into rocks (name, fired, mass, params) values (
         'ceres'
+        , date_trunc('day', now())
         , 9
         , row(0, 0, 0, 0, c() * 10, 0)
     );
@@ -71,7 +72,10 @@ do $data$ begin
         , row(.1 * 5 + pi(), pi(), c())
     );
 
-    insert into slugs (name, params) values ( '600 @ tycho (hit)' , row(.1 * 5 + pi(), pi(), c()));
+    insert into slugs (name, params) values (
+        '700 @ ceres (miss - late)'
+        , row(0, 0, .1 * c())
+    );
 
 end $data$;
 

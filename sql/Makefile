@@ -12,7 +12,7 @@ test: | test-cli test-model test-bitemporal test-data test-queries
 test-cli:
 	@which psql jinja2 python bash zsh >/dev/null || exit 1
 test-model:
-	psql -d nc <<( $(curdir)/model.sh )
+	psql -d nc < $(curdir)/model.sql
 test-bitemporal:
 	psql -d nc <<( $(curdir)/bitemporal/bitemporal.sh )
 test-data:
