@@ -4,6 +4,13 @@
     repo: https://github.com/vmenezes/neocrisis.git
     dest: "{{ proj_folder }}"
 
+- name: "Set www-data as the group of {{ proj_folder }}"
+  file:
+    path: "{{ proj_folder }}/"
+    recurse: yes
+    group: www-data
+    owner: "{{ app_user }}"
+
 - name: Install requirements inside virtualenv
   pip:
     requirements: "{{ proj_folder }}/requirements.txt"
@@ -33,3 +40,13 @@
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
+
+- name: Restart Neo Crisis Gunicorn service
+  service:
+    name: neocrisis_gunicorn
+    state: restarted
+
+- name: Restart NGINX
+  service:
+    name: nginx
+    state: restarted
