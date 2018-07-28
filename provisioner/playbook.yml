@@ -15,4 +15,5 @@
     - setup_users
     - py3_basic
     - postgres
+    - nginx
     - neo_crisis
