@@ -4,10 +4,11 @@
     repo: https://github.com/dutc/neocrisis.git
     dest: "{{ proj_folder }}"
 
-- name: Install requirements
+- name: Install requirements inside virtualenv
   pip:
     requirements: "{{ proj_folder }}/requirements.txt"
-    executable: pip3
+    virtualenv: "{{ proj_folder }}/venv"
+    virtualenv_python: python3.6
 
 # - name: Create engine systemd service
 #   copy:
