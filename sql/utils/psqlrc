@@ -1,6 +1,6 @@
 \i ~/.psqlrc
 
-set search_path = game, public;
+set search_path = api, game, public;
 
 \dt game.*
 \dm game.*
