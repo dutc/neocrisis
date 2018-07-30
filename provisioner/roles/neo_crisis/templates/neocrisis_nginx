@@ -3,6 +3,6 @@ server {
     location / {
         include proxy_params;
         # proxy_pass http://unix:/tmp/neocrisis.sock;
-        proxy_pass http://unix:{{ proj_folder }}/neocrisis.sock;
+        proxy_pass http://unix:{{ proj_folder }}/api/neocrisis.sock;
     }
 }
