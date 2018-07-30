@@ -26,7 +26,7 @@
 - name: Add james user
   user:
     name: james
-    shell: /bin/bash
+    shell: /bin/zsh
     state: present
 
 - name: Add james SSH keys
