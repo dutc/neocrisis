@@ -724,7 +724,6 @@ begin
                 , params as slug_params
                 , collision
                 , pos
-                , pos
                 , delay_pos
                 , cpos
                 , delay_cpos
