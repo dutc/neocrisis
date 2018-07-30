@@ -6,12 +6,17 @@ from numbers import Number
 from flask import Flask, g, request, jsonify, make_response
 from psycopg2 import connect
 from psycopg2.extras import NamedTupleCursor
-
-
-counter = Value('i', 0)
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
+limiter = Limiter(
+    app,
+    key_func = get_remote_address,
+    default_limits = ['1 per second'],
+)
 
+counter = Value('i', 0)
 
 def get_db():
     'opens database connection'

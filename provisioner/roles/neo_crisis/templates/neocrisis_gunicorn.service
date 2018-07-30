@@ -11,6 +11,8 @@ Group=www-data
 #ExecStart=/vagrant/dev_venv/bin/gunicorn --workers 3 --bind unix:/tmp/neocrisis.sock -m 007 wsgi:app
 WorkingDirectory={{ proj_folder }}/api
 Environment="PATH={{ proj_folder }}/venv/bin"
+Environment="DBNAME={{ db_name }}"
+Environment="HOST=127.0.0.1"
 ExecStart={{ proj_folder }}/venv/bin/gunicorn --workers 4 --bind unix:{{ proj_folder }}/api/neocrisis.sock -m 007 wsgi:app
 
 [Install]
