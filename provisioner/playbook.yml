@@ -1,0 +1,20 @@
+---
+- name: Ansible playbook for our awesome Neo Crisis
+  hosts: all
+  vars:
+    # workaround as Ubuntu16 does not come with Python2
+    # and Ansible uses Python2 by default
+    ansible_python_interpreter: "/usr/bin/python3"
+    app_user: pynyc
+    db_name: neocrisis
+    proj_folder: /var/www/neocrisis
+    repo: https://github.com/dutc/neocrisis.git
+  become: yes
+  become_method: sudo
+  roles:
+    - utilities
+    - setup_users
+    - py3_basic
+    - postgres
+    - nginx
+    - neo_crisis

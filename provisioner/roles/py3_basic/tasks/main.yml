@@ -1,0 +1,11 @@
+---
+- name: Install Python3-dev
+  apt: name=python3-dev
+
+- name: Install python3-pip
+  apt: name=python3-pip
+
+- name: Install python3 virtualenv
+  pip:
+    name: virtualenv
+    executable: pip3
