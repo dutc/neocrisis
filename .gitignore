@@ -1,1 +1,6 @@
 .ipynb_checkpoints
+.vagrant/
+provisioner/playbook.retry
+__pycache__/
+dev_venv/
+ubuntu-bionic-18.04-cloudimg-console.log
