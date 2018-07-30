@@ -4,3 +4,6 @@
 
 - name: Install nmap port scanner
   apt: name=nmap
+
+- name: Install zsh shell
+  apt: name=zsh

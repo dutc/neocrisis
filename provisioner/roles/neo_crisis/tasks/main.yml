@@ -13,7 +13,7 @@
 
 - name: Install requirements inside virtualenv
   pip:
-    requirements: "{{ proj_folder }}/requirements.txt"
+    requirements: "{{ proj_folder }}/api/requirements.txt"
     virtualenv: "{{ proj_folder }}/venv"
     virtualenv_python: python3.6
 

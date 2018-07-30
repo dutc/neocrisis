@@ -6,9 +6,9 @@
     # and Ansible uses Python2 by default
     ansible_python_interpreter: "/usr/bin/python3"
     app_user: pynyc
-    db_name: neocrisis
+    db_name: nc
     proj_folder: /var/www/neocrisis
-    repo: https://github.com/dutc/neocrisis.git
+    repo: https://github.com/vmenezes/neocrisis.git
   become: yes
   become_method: sudo
   roles:
