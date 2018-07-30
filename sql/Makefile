@@ -4,11 +4,12 @@ ifneq (,$(wildcard $(PWD)/env))
 	SHELL := $(PWD)/env /bin/zsh
 endif
 
-relcurpath := $(lastword $(MAKEFILE_LIST))
-abscurpath := $(abspath $(relcurpath))
+makefile   := $(lastword $(MAKEFILE_LIST))
+abscurpath := $(shell realpath $(abspath $(makefile)))
+relcurpath := $(shell realpath --relative-to="$(PWD)" $(abspath $(makefile)))
+abscurdir  := $(dir $(abscurpath))
+relcurdir  := $(dir $(relcurpath))
 curpath    := $(relcurpath)
-abscurdir  := $(dir $(curpath))
-relcurdir  := $(shell realpath --relative-to="$(PWD)" "$(abscurdir)")
 curdir     := $(relcurdir)
 
 PSQL := PSQLRC="$(curdir)/utils/psqlrc" psql $(PSQL_FLAGS) -d nc
@@ -76,3 +77,12 @@ setup-db:
 	pg_ctl -D "$(curdir)/db" -l "$(curdir)/db-logs/setup.log" start
 	createdb nc
 	pg_ctl -D "$(curdir)/db" stop
+
+.PHONY: debug
+debug:
+	@echo abscurpath=$(abscurpath)
+	@echo relcurpath=$(relcurpath)
+	@echo curpath=$(curpath)
+	@echo abscurdir=$(abscurdir)
+	@echo relcurdir=$(relcurdir)
+	@echo curdir=$(curdir)
