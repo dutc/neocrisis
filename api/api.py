@@ -9,6 +9,9 @@ from psycopg2.extras import NamedTupleCursor
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
+DBNAME = os.environ.get('DBNAME', 'nc')
+DBHOST = os.environ.get('HOST', '/tmp/')
+
 app = Flask(__name__)
 limiter = Limiter(
     app,
@@ -113,9 +116,6 @@ def laser():
 
 
 if __name__ == '__main__':
-    DBNAME = os.environ.get('DBNAME', 'nc')
-    DBHOST = os.environ.get('HOST', '/tmp/')
-
     port = os.environ.get('JSON_API_PORT', 5000)
     debug = os.environ.get('DEBUG', False)
     app.run(host='localhost', port=port, debug=debug)
