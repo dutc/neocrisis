@@ -28,6 +28,8 @@ create schema if not exists api;
 raise info 'removing public functions'; -- {{{
 drop function if exists public.c cascade;
 drop function if exists public.pi_ cascade;
+drop function if exists public.sin_ cascade;
+drop function if exists public.cos_ cascade;
 drop function if exists public.error cascade;
 -- }}}
 
@@ -37,6 +39,12 @@ immutable language sql as 'select 299792458.0';
 
 create or replace function public.pi_() returns numeric
 immutable language sql as 'select pi()::numeric';
+
+create or replace function public.sin_(numeric) returns numeric
+immutable language sql as 'select sin($1)::numeric';
+
+create or replace function public.cos_(numeric) returns numeric
+immutable language sql as 'select cos($1)::numeric';
 
 create or replace function public.error() returns trigger as $func$
 begin
@@ -79,6 +87,12 @@ do $types$ begin
         , phi numeric
     ); -- }}}
 
+    create type cpos as ( -- {{{
+        x numeric
+        , y numeric
+        , z numeric
+    ); -- }}}
+
     create type mtype as enum ('r', 'theta', 'phi');
 
     create type collision as ( -- {{{
@@ -96,21 +110,28 @@ do $funcs$ begin
     create or replace function round(v pos, s int) -- {{{
     returns pos as $func$
     begin
-        return (round((v.r), s), round((v.theta), s), round((v.phi), s))::pos;
+        return (round((v).r, s), round((v).theta, s), round((v).phi, s));
     end;
     $func$ immutable language plpgsql; -- }}}
 
     create or replace function round(v rock_params, s int) -- {{{
     returns rock_params as $func$
     begin
-        return (round((v.r), s), round((v.theta), s), round((v.phi), s))::pos;
+        return (
+            round((v).m_theta, s)
+            , round((v).b_theta, s)
+            , round((v).m_phi, s)
+            , round((v).b_phi, s)
+            , round((v).r_0, s)
+            , round((v).v, s)
+        );
     end;
     $func$ immutable language plpgsql; -- }}}
 
     create or replace function round(v slug_params, s int) -- {{{
     returns slug_params as $func$
     begin
-        return (round((v.r), s), round((v.theta), s), round((v.phi), s))::pos;
+        return (round((v).r, s), round((v).theta, s), round((v).phi, s));
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -122,6 +143,8 @@ do $funcs$ begin
     set search_path = game, public;
 
     drop function if exists normalize cascade;
+    drop function if exists pos2cpos cascade;
+    drop function if exists octant cascade;
     drop function if exists pos cascade;
     drop function if exists collide cascade;
     drop function if exists collisions cascade;
@@ -135,21 +158,52 @@ do $funcs$ begin
     create or replace function normalize(v pos) -- {{{
     returns pos as $func$
     begin
-        return ((v).r, mod((v).theta, 2*pi_()), mod((v).phi, pi_()))::pos;
+        return ((v).r, mod((v).theta, 2*pi_()), mod((v).phi, pi_()));
     end;
     $func$ immutable language plpgsql; -- }}}
 
     create or replace function normalize(v rock_params) -- {{{
     returns rock_params as $func$
     begin
-        return ((v).r, mod((v).theta, 2*pi_()), mod((v).phi, pi_()))::pos;
+        return ((v).r, mod((v).theta, 2*pi_()), mod((v).phi, pi_()));
     end;
     $func$ immutable language plpgsql; -- }}}
 
     create or replace function normalize(v slug_params) -- {{{
     returns slug_params as $func$
     begin
-        return ((v).r, mod((v).theta, 2*pi_()), mod((v).phi, pi_()))::pos;
+        return ((v).r, mod((v).theta, 2*pi_()), mod((v).phi, pi_()));
+    end;
+    $func$ immutable language plpgsql; -- }}}
+
+    create or replace function pos2cpos(v pos) -- {{{
+    returns cpos as $func$
+    begin
+        return (
+            (v).r * sin_((v).phi) * cos_((v).theta)
+            , (v).r * sin_((v).phi) * sin_((v).theta)
+            , (v).r * cos_((v).phi)
+        );
+    end;
+    $func$ immutable language plpgsql; -- }}}
+
+    create or replace function octant(v pos) -- {{{
+    returns integer as $func$
+    declare
+        c cpos;
+    begin
+        c := pos2cpos(v);
+        return case
+            when (c).x >= 0 and (c).y >= 0 and (c).z >= 0 then 1
+            when (c).x <  0 and (c).y >= 0 and (c).z >= 0 then 2
+            when (c).x <  0 and (c).y <  0 and (c).z >= 0 then 3
+            when (c).x >= 0 and (c).y <  0 and (c).z >= 0 then 4
+            when (c).x >= 0 and (c).y >= 0 and (c).z <  0 then 5
+            when (c).x <  0 and (c).y >= 0 and (c).z <  0 then 6
+            when (c).x <  0 and (c).y <  0 and (c).z <  0 then 7
+            when (c).x >= 0 and (c).y <  0 and (c).z <  0 then 8
+            else null
+        end;
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -265,7 +319,7 @@ do $funcs$ begin
             r.id
             , slug_id
             , collide(r.fired, r.params, slug_fired, slug_params)
-        from rocks as r;
+        from game.rocks as r;
     end;
     $func$ stable language plpgsql; -- }}}
 
@@ -285,7 +339,7 @@ do $funcs$ begin
             rock_id
             , s.id
             , collide(rock_fired, rock_params, s.fired, s.params)
-        from slugs as s;
+        from game.slugs as s;
     end;
     $func$ stable language plpgsql; -- }}}
 
@@ -361,13 +415,13 @@ do $funcs$ begin
         raise info 'trigger: %.%.% % ("%")', tg_table_schema, tg_table_name, tg_name, tg_op, new.name;
 
         if tg_op = 'INSERT' then
-            insert into collisions
+            insert into game.collisions
                 (rock, slug, collision)
                 select * from game.collisions(new.id, new.fired, new.params);
         elsif tg_op = 'UPDATE' and new <> old then
-            update collisions set
+            update game.collisions set
                 collision = collide(r.fired, r.params, new.fired, new.params)
-            from rocks as r
+            from game.rocks as r
             where r.id = rock and new.id = slug;
         end if;
         return new;
@@ -386,12 +440,12 @@ do $funcs$ begin
         elsif tg_op = 'UPDATE' and new <> old then
             if new.mass <> old.mass then
                 -- mass changed: may affect fragmenting behavior
-                delete from rocks where source_rock = new.id;
+                delete from game.rocks where source_rock = new.id;
                 delete from game.hits where rock = new.id;
             end if;
-            update collisions set
+            update game.collisions set
                 collision = collide(new.fired, new.params, s.fired, s.params)
-            from slugs as s
+            from game.slugs as s
             where s.id = slug and new.id = rock;
         end if;
 
@@ -401,17 +455,8 @@ do $funcs$ begin
 
     create or replace function collisions_trigger() -- {{{
     returns trigger as $trig$
-    declare
-        _rock text;
-        _slug text;
     begin
-        if tg_op <> 'DELETE' then
-            _rock := (select name from rocks where id = new.rock limit 1);
-            _slug := (select name from slugs where id = new.slug limit 1);
-            raise info 'trigger: %.%.% % (%, %)', tg_table_schema, tg_table_name, tg_name, tg_op, _rock, _slug;
-        else
-            raise info 'trigger: %.%.% %', tg_table_schema, tg_table_name, tg_name, tg_op;
-        end if;
+        raise info 'trigger: %.%.% %', tg_table_schema, tg_table_name, tg_name, tg_op;
 
         with
             before as (select rock, slug, collision from game.hits)
@@ -426,17 +471,15 @@ do $funcs$ begin
                 , diff as (select * from after except select * from before)
             insert into hits (rock, slug, collision) select * from diff;
         else
+            -- NOTE|dutc: processing a delete sometimes inadvertently leads to
+            --            inserts on non-existent rocks (invalid fragments);
+            --            add subselect to eliminate these
             with
                 before as (select rock, slug, collision from game.hits)
                 , after as (select rock, slug, collision from hits())
                 , diff as (select * from after except select * from before)
-                , fkey as ( -- NOTE|dutc: prevent inserts on dead rocks
-                    select d.rock, d.slug, d.collision
-                    from diff as d
-                    inner join rocks as r on (r.id = d.rock)
-                    inner join slugs as s on (s.id = d.slug)
-                )
-            insert into hits (rock, slug, collision) select * from fkey;
+            insert into hits (rock, slug, collision)
+            select * from diff where rock in (select id from game.rocks);
         end if;
 
         return new;
@@ -454,20 +497,20 @@ do $funcs$ begin
         _rock text;
         _slug text;
     begin
-        _rock := (select name from rocks where id = new.rock limit 1);
-        _slug := (select name from slugs where id = new.slug limit 1);
+        _rock := (select name from game.rocks where id = new.rock limit 1);
+        _slug := (select name from game.slugs where id = new.slug limit 1);
         raise info 'trigger: %.%.% % ("%", "%")', tg_table_schema, tg_table_name, tg_name, tg_op, _rock, _slug;
 
-        src_name := (select coalesce(source_name, name) from rocks where id = new.rock limit 1);
-        src_mass := (select mass from rocks where id = new.rock limit 1);
-        src_params := (select params from rocks where id = new.rock limit 1);
-        count := (select count(*) from rocks where source_name = src_name or name = src_name);
+        src_name := (select coalesce(source_name, name) from game.rocks where id = new.rock limit 1);
+        src_mass := (select mass from game.rocks where id = new.rock limit 1);
+        src_params := (select params from game.rocks where id = new.rock limit 1);
+        count := (select count(*) from game.rocks where source_name = src_name or name = src_name);
 
         if src_mass <= 1 then
             return new;
         end if;
 
-        insert into rocks (
+        insert into game.rocks (
             source_name
             , source_rock
             , source_hit
@@ -546,6 +589,7 @@ begin
         , slug integer not null references slugs (id) on delete cascade
         , collision collision
     ) with oids;
+    alter table collisions add constraint collisions_uniq_rock_slug unique(rock, slug);
     create index collisions_rock on collisions (rock);
     create index collisions_collision on collisions (collision) where not collision is null;
     create index collisions_collision_t on collisions (((collision).t));
@@ -554,8 +598,8 @@ begin
 
     create table if not exists hits ( -- {{{
         id serial primary key
-        , rock integer not null references rocks (id) on delete cascade
-        , slug integer not null references slugs (id) on delete cascade
+        , rock integer unique not null references rocks (id) on delete cascade
+        , slug integer unique not null references slugs (id) on delete cascade
         , collision collision
         , phase timestamp with time zone not null default now()
     );
@@ -567,7 +611,6 @@ begin
     drop trigger if exists slugs_trigger on slugs;
     drop trigger if exists rocks_trigger on rocks;
     drop trigger if exists collisions_trigger on collisions;
-    drop trigger if exists collisions_delete_trigger on collisions;
     drop trigger if exists hits_trigger on hits;
 
     drop trigger if exists slugs_id_trigger on slugs;
@@ -579,9 +622,8 @@ begin
         for each row execute procedure slugs_trigger();
     create trigger rocks_trigger after insert or update on rocks
         for each row execute procedure rocks_trigger();
-    create trigger collisions_trigger after insert or update on collisions
-        for each row execute procedure collisions_trigger();
-    create trigger collisions_trigger_delete after delete on collisions
+    -- NOTE|dutc: collisions_trigger is STATEMENT level
+    create trigger collisions_trigger after insert or update or delete on collisions
         for each statement execute procedure collisions_trigger();
     create trigger hits_trigger after insert on hits
         for each row execute procedure hits_trigger();
@@ -603,8 +645,100 @@ do $views$
 begin
     set search_path = api, game, public;
 
+    drop view if exists api.rocks;
+    drop view if exists api.slugs;
+    drop view if exists api.all_neos;
+    drop view if exists api.neos;
     drop view if exists api.collisions;
     drop view if exists api.hits;
+
+    create or replace view rocks as (
+        select
+            r.id
+            , r.name
+            , r.mass
+            , r.fired
+            , (h.collision).t as collided
+            , r.params
+            , (h.collision)
+            , pos(r.fired, r.params, now())
+            , pos(r.fired, r.params, now(), true) as delay_pos
+            , pos2cpos(pos(r.fired, r.params, now())) as cpos
+            , pos2cpos(pos(r.fired, r.params, now(), true)) as delay_cpos
+            , octant(pos(r.fired, r.params, now()))
+            , octant(pos(r.fired, r.params, now(), true)) as delay_octant
+            , now() as t
+        from game.rocks as r
+        left outer join game.hits as h
+           on (r.id = h.rock)
+    );
+
+    create or replace view slugs as (
+        select
+            s.id
+            , s.name
+            , s.fired
+            , (h.collision).t as collided
+            , s.params
+            , (h.collision)
+            , pos(s.fired, s.params, now())
+            , pos(s.fired, s.params, now(), true) as delay_pos
+            , pos2cpos(pos(s.fired, s.params, now())) as cpos
+            , pos2cpos(pos(s.fired, s.params, now(), true)) as delay_cpos
+            , octant(pos(s.fired, s.params, now()))
+            , octant(pos(s.fired, s.params, now(), true)) as delay_octant
+            , now() as t
+        from game.slugs as s
+        left outer join game.hits as h
+           on (s.id = h.slug)
+    );
+
+    create or replace view all_neos as (
+            select
+                'rocks'::regclass
+                , id
+                , name
+                , mass
+                , fired
+                , collided
+                , params as rock_params
+                , null as slug_params
+                , collision
+                , pos
+                , delay_pos
+                , cpos
+                , delay_cpos
+                , octant
+                , delay_octant
+                , t
+            from rocks
+        union
+            select
+                'rocks'::regclass
+                , id
+                , name
+                , 1 as mass
+                , fired
+                , collided
+                , null as rock_params
+                , params as slug_params
+                , collision
+                , pos
+                , pos
+                , delay_pos
+                , cpos
+                , delay_cpos
+                , octant
+                , delay_octant
+                , t
+            from slugs
+    );
+
+    create or replace view neos as (
+        select *
+        from all_neos
+        where fired <= now() and (collided is null or collided > now())
+    );
 
     create or replace view collisions as ( -- {{{
         select
@@ -613,8 +747,8 @@ begin
             , s.name as slug
             , c.collision
         from game.collisions as c
-        inner join rocks as r on (c.rock = r.id)
-        inner join slugs as s on (c.slug = s.id)
+        inner join game.rocks as r on (c.rock = r.id)
+        inner join game.slugs as s on (c.slug = s.id)
     ); -- }}}
 
     create or replace view hits as (-- {{{
@@ -624,8 +758,8 @@ begin
             , s.name as slug
             , h.collision
         from game.hits as h
-        inner join rocks as r on (h.rock = r.id)
-        inner join slugs as s on (h.slug = s.id)
+        inner join game.rocks as r on (h.rock = r.id)
+        inner join game.slugs as s on (h.slug = s.id)
     ); -- }}}
 
 end $views$; -- }}}
