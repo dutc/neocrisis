@@ -740,7 +740,9 @@ begin
     create or replace view neos as (
         select *
         from all_neos
-        where fired <= now() and (collided is null or collided > now())
+        where fired <= now()
+            and (collided is null or collided > now())
+            and ((pos).r >= 0)
     );
 
     create or replace view collisions as ( -- {{{
