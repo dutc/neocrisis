@@ -1,53 +1,91 @@
 import os
 from random import randint
+from multiprocessing import Value
+from numbers import Number
 
-from flask import Flask
+from flask import Flask, g, request, jsonify, make_response
+from psycopg2 import connect
+from psycopg2.extras import NamedTupleCursor
 
 
-OK = 'ok'
-OUT_OF_AMMO = 'out of ammo'
-
+counter = Value('i', 0)
 
 app = Flask(__name__)
 
 
-def check_ammo():
-    lucky = randint(1, 10) % 2 == 0
-    return lucky
+def get_db():
+    'opens database connection'
+    if not hasattr(g, 'db'):
+        g.db = connect(f'dbname={DBNAME} host={DBHOST}',
+                       cursor_factory=NamedTupleCursor)
+        g.db.set_session(autocommit=True)
+    return g.db
 
 
-def shoot_laser(name, theta, phi):
-    success = check_ammo()
-    if lucky:
-        return OK
-    return OUT_OF_AMMO
+@app.teardown_appcontext
+def close_db(_):
+    if hasattr(g, 'db'):
+        g.db.close()
 
 
-def observation(field, theta, phi):
-    objects = [
-        {}
-    ]
-    return dict(objects=objects)
+def fire_slug(name, theta, phi):
+    query = '''
+        insert into game.slugs (name, params)
+        values (%(name)s, (%(theta)s, %(phi)s, c() / 10))
+    '''
+    params = {'name': name, 'theta': theta, 'phi': phi}
+    with get_db().cursor() as cur:
+        cur.execute(query, params)
+    return {'slug': params}
 
 
-@app.route('/telescope', methods=['GET'])
-def telescope():
-    field = request.args.get('field')
-    theta = request.args.get('theta')
-    phi = request.args.get('phi')
-    return jsonify(observation(field, theta, phi))
+def observation(octant):
+    query = 'select * from api.neos where octant = %(octant)s'
+    with get_db().cursor() as cur:
+        cur.execute(query, {'octant': octant})
+        objects = [
+            {
+                'name': x.name
+            }
+            for x in cur
+        ]
+    return {'objects': objects}
 
 
-@app.route('/laser', methods=['POST'])
+@app.route('/telescope/<int:octant>', methods=['GET'])
+def telescope(octant):
+    if not 1 <= octant <= 8:
+        msg = {'error': f'invalid octant {octant} must be [1, 8]'}
+        return make_response(jsonify(msg), 400)
+    return jsonify(observation(octant))
+
+
+@app.route('/railgun', methods=['POST'])
 def laser():
-    request_data = request.json
-    name = request_data.get('name', 'Missile')
-    theta = request_data.get('theta')
-    phi = request_data.get('phi')
-    return shoot_laser(name, theta, phi)
+    data = request.json
+
+    with counter.get_lock():
+        counter.value += 1
+        name = data.get('name', f'{counter.value * 10}')
+
+    try:
+        theta = float(data.get('theta'))
+        phi = float(data.get('phi'))
+    except ValueError:
+        msg = {'error': f'bad theta/phi params'}
+        return make_response(jsonify(msg), 400)
+
+    slug = fire_slug(name, theta, phi)
+    if slug is None:
+        msg = {'error': f'firing failed'}
+        return make_response(jsonify(msg), 400)
+    return jsonify(slug)
 
 
 if __name__ == '__main__':
+    DBNAME = os.environ.get('DBNAME', 'nc')
+    DBHOST = os.environ.get('HOST', '/tmp/')
+
     port = os.environ.get('JSON_API_PORT', 5000)
     debug = os.environ.get('DEBUG', False)
     app.run(host='localhost', port=port, debug=debug)

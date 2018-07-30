@@ -190,9 +190,9 @@ do $funcs$ begin
     create or replace function octant(v pos) -- {{{
     returns integer as $func$
     declare
-        c cpos;
+        c game.cpos;
     begin
-        c := pos2cpos(v);
+        c := game.pos2cpos(v);
         return case
             when (c).x >= 0 and (c).y >= 0 and (c).z >= 0 then 1
             when (c).x <  0 and (c).y >= 0 and (c).z >= 0 then 2
@@ -228,7 +228,7 @@ do $funcs$ begin
         r := (params).r_0 + (params).v * t;
         theta := (params).m_theta * t + (params).b_theta;
         phi := (params).m_phi * t + (params).b_phi;
-        return (r, theta, phi)::pos;
+        return (r, theta, phi);
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -253,7 +253,7 @@ do $funcs$ begin
         r := (params).v * t;
         theta = (params).theta;
         phi = (params).phi;
-        return (r, theta, phi)::pos;
+        return (r, theta, phi);
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -268,10 +268,10 @@ do $funcs$ begin
         rock_t_0 numeric;
         slug_t_0 numeric;
         rel_v numeric;
-        rock_pos pos;
-        slug_pos pos;
+        rock_pos game.pos;
+        slug_pos game.pos;
         t timestamp with time zone;
-        m mtype[];
+        m game.mtype[];
     begin
         rock_t_0 := extract(epoch from rock_fired);
         slug_t_0 := extract(epoch from slug_fired);
@@ -281,25 +281,25 @@ do $funcs$ begin
                  (((rock).r_0 + (slug).v * slug_t_0 - (rock).v * rock_t_0)
                  / rel_v);
             if t >= rock_fired and t >= slug_fired then
-                rock_pos := pos(rock_fired, rock, t);
-                slug_pos := pos(slug_fired, slug, t);
+                rock_pos := game.pos(rock_fired, rock, t);
+                slug_pos := game.pos(slug_fired, slug, t);
 
-                rock_pos := round(normalize(rock_pos), 4);
-                slug_pos := round(normalize(slug_pos), 4);
+                rock_pos := game.round(game.normalize(rock_pos), 4);
+                slug_pos := game.round(game.normalize(slug_pos), 4);
 
                 if (rock_pos).theta <> (slug_pos).theta then
-                    m := m || 'theta'::mtype;
+                    m := m || 'theta'::game.mtype;
                 end if;
                 if (rock_pos).phi <> (slug_pos).phi then
-                    m := m || 'phi'::mtype;
+                    m := m || 'phi'::game.mtype;
                 end if;
             else
-                m := m || 'r'::mtype;
+                m := m || 'r'::game.mtype;
             end if;
         else
-            m := m || 'r'::mtype;
+            m := m || 'r'::game.mtype;
         end if;
-        return (t, slug_pos, m)::collision;
+        return (t, slug_pos, m);
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -318,7 +318,7 @@ do $funcs$ begin
         select
             r.id
             , slug_id
-            , collide(r.fired, r.params, slug_fired, slug_params)
+            , game.collide(r.fired, r.params, slug_fired, slug_params)
         from game.rocks as r;
     end;
     $func$ stable language plpgsql; -- }}}
@@ -338,7 +338,7 @@ do $funcs$ begin
         select
             rock_id
             , s.id
-            , collide(rock_fired, rock_params, s.fired, s.params)
+            , game.collide(rock_fired, rock_params, s.fired, s.params)
         from game.slugs as s;
     end;
     $func$ stable language plpgsql; -- }}}
@@ -350,7 +350,7 @@ do $funcs$ begin
     ); -- }}}
 
     create or replace function uniq_hits_sfunc( -- {{{
-        acc uniq_hits_t
+        acc game.uniq_hits_t
         , rock integer
         , slug integer
     )
@@ -384,7 +384,7 @@ do $funcs$ begin
                 c.rock
                 , c.slug
                 , c.collision
-                , uniq_hits(c.rock, c.slug) over win
+                , game.uniq_hits(c.rock, c.slug) over win
             from game.collisions as c
             where (c.collision).miss is null
             window win as (
@@ -460,25 +460,25 @@ do $funcs$ begin
 
         with
             before as (select rock, slug, collision from game.hits)
-            , after as (select rock, slug, collision from hits())
+            , after as (select rock, slug, collision from game.hits())
             , diff as (select * from before except select * from after)
-        delete from hits where rock in (select rock from diff);
+        delete from game.hits where rock in (select rock from diff);
 
         if tg_op <> 'DELETE' then
             with
                 before as (select rock, slug, collision from game.hits)
-                , after as (select rock, slug, collision from hits())
+                , after as (select rock, slug, collision from game.hits())
                 , diff as (select * from after except select * from before)
-            insert into hits (rock, slug, collision) select * from diff;
+            insert into game.hits (rock, slug, collision) select * from diff;
         else
             -- NOTE|dutc: processing a delete sometimes inadvertently leads to
             --            inserts on non-existent rocks (invalid fragments);
             --            add subselect to eliminate these
             with
                 before as (select rock, slug, collision from game.hits)
-                , after as (select rock, slug, collision from hits())
+                , after as (select rock, slug, collision from game.hits())
                 , diff as (select * from after except select * from before)
-            insert into hits (rock, slug, collision)
+            insert into game.hits (rock, slug, collision)
             select * from diff where rock in (select id from game.rocks);
         end if;
 
@@ -533,7 +533,7 @@ do $funcs$ begin
                 , (src_params).b_phi + (src_params).b_phi / 2 * extract(epoch from (new.collision).t)
                 , (new.collision).pos.r + 1
                 , (src_params).v
-            )::rock_params
+            )::game.rock_params
         );
         return new;
     end;
