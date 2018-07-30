@@ -6,3 +6,4 @@ Jinja2==2.10
 MarkupSafe==1.0
 Werkzeug==0.14.1
 psycopg2==2.7.5
+jinja2-cli
