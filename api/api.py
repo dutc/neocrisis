@@ -11,6 +11,7 @@ from flask_limiter.util import get_remote_address
 
 DBNAME = os.environ.get('DBNAME', 'nc')
 DBHOST = os.environ.get('HOST', '/tmp/')
+DBUSER = os.environ.get('DBUSER', 'postgres')
 
 app = Flask(__name__)
 limiter = Limiter(
@@ -24,7 +25,7 @@ counter = Value('i', 0)
 def get_db():
     'opens database connection'
     if not hasattr(g, 'db'):
-        g.db = connect(f'dbname={DBNAME} host={DBHOST}',
+        g.db = connect(f'dbname={DBNAME} host={DBHOST} user={DBUSER}',
                        cursor_factory=NamedTupleCursor)
         g.db.set_session(autocommit=True)
     return g.db
