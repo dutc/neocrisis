@@ -90,7 +90,7 @@ begin
     where name = 'ceres';
     perform pg_temp.check_hits(5);
 
-    raise info 'check update rock (move)';
+    raise info 'check update rock (move → miss)';
     update rocks
     set params.b_theta = (params).b_theta + pi_() / 8
     where name = 'eros';
@@ -100,7 +100,7 @@ begin
     assert array_length(array(select name from rocks where name like 'eros%'), 1)
         = 1, 'incorrect eros fragments';
 
-    raise info 'check update rock (move)';
+    raise info 'check update rock (move → hit)';
     update rocks
     set params.b_theta = (params).b_theta - pi_() / 8
     where name = 'eros';
