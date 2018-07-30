@@ -89,4 +89,24 @@ begin
     set mass = 4
     where name = 'ceres';
     perform pg_temp.check_hits(5);
+
+    raise info 'check update rock (move)';
+    update rocks
+    set params.b_theta = (params).b_theta + pi_() / 8
+    where name = 'eros';
+    perform pg_temp.check_hits(4);
+    assert (array(select slug from api.hits where rock = 'eros'))[1]
+        is null, 'wrong hit for eros';
+    assert array_length(array(select name from rocks where name like 'eros%'), 1)
+        = 1, 'incorrect eros fragments';
+
+    raise info 'check update rock (move)';
+    update rocks
+    set params.b_theta = (params).b_theta - pi_() / 8
+    where name = 'eros';
+    perform pg_temp.check_hits(5);
+    assert (array(select slug from api.hits where rock = 'eros'))[1]
+        = '400 @ eros (hit)', 'wrong hit for eros';
+    assert array_length(array(select name from rocks where name like 'eros%'), 1)
+        = 2, 'incorrect eros fragments';
 end $$;
