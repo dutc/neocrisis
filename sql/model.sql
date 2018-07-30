@@ -405,9 +405,13 @@ do $funcs$ begin
         _rock text;
         _slug text;
     begin
-        _rock := (select name from rocks where id = new.rock limit 1);
-        _slug := (select name from slugs where id = new.slug limit 1);
-        raise info 'trigger: %.%.% % (%, %)', tg_table_schema, tg_table_name, tg_name, tg_op, _rock, _slug;
+        if tg_op <> 'DELETE' then
+            _rock := (select name from rocks where id = new.rock limit 1);
+            _slug := (select name from slugs where id = new.slug limit 1);
+            raise info 'trigger: %.%.% % (%, %)', tg_table_schema, tg_table_name, tg_name, tg_op, _rock, _slug;
+        else
+            raise info 'trigger: %.%.% %', tg_table_schema, tg_table_name, tg_name, tg_op;
+        end if;
 
         with
             before as (select rock, slug, collision from game.hits)
@@ -415,11 +419,25 @@ do $funcs$ begin
             , diff as (select * from before except select * from after)
         delete from hits where rock in (select rock from diff);
 
-        with
-            before as (select rock, slug, collision from game.hits)
-            , after as (select rock, slug, collision from hits())
-            , diff as (select * from after except select * from before)
-        insert into hits (rock, slug, collision) select * from diff;
+        if tg_op <> 'DELETE' then
+            with
+                before as (select rock, slug, collision from game.hits)
+                , after as (select rock, slug, collision from hits())
+                , diff as (select * from after except select * from before)
+            insert into hits (rock, slug, collision) select * from diff;
+        else
+            with
+                before as (select rock, slug, collision from game.hits)
+                , after as (select rock, slug, collision from hits())
+                , diff as (select * from after except select * from before)
+                , fkey as ( -- NOTE|dutc: prevent inserts on dead rocks
+                    select d.rock, d.slug, d.collision
+                    from diff as d
+                    inner join rocks as r on (r.id = d.rock)
+                    inner join slugs as s on (s.id = d.slug)
+                )
+            insert into hits (rock, slug, collision) select * from fkey;
+        end if;
 
         return new;
     end;
@@ -549,6 +567,7 @@ begin
     drop trigger if exists slugs_trigger on slugs;
     drop trigger if exists rocks_trigger on rocks;
     drop trigger if exists collisions_trigger on collisions;
+    drop trigger if exists collisions_delete_trigger on collisions;
     drop trigger if exists hits_trigger on hits;
 
     drop trigger if exists slugs_id_trigger on slugs;
@@ -562,6 +581,8 @@ begin
         for each row execute procedure rocks_trigger();
     create trigger collisions_trigger after insert or update on collisions
         for each row execute procedure collisions_trigger();
+    create trigger collisions_trigger_delete after delete on collisions
+        for each statement execute procedure collisions_trigger();
     create trigger hits_trigger after insert on hits
         for each row execute procedure hits_trigger();
 

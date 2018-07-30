@@ -12,34 +12,34 @@ do language plpgsql $$ declare
     exc_detail text;
 begin
 
+create function pg_temp.insert_rock( -- {{{
+    name text
+    , params rock_params
+    , fired timestamp with time zone default now()
+    , mass integer default 4
+    )
+returns void as $func$
+begin
+    insert into rocks (name, fired, mass, params)
+    values (name, fired, mass, params);
+end;
+$func$ language plpgsql; -- }}}
+
+create function pg_temp.insert_slug( -- {{{
+    name text
+    , params slug_params
+    , fired timestamp with time zone default now()
+    )
+returns void as $func$
+begin
+    insert into slugs (name, fired, params)
+    values (name, fired, params);
+end;
+$func$ language plpgsql; -- }}}
+
 raise info 'populating game data';
 do $data$ begin
     set search_path = game, public;
-
-    create function pg_temp.insert_rock( -- {{{
-        name text
-        , params rock_params
-        , fired timestamp with time zone default now()
-        , mass integer default 4
-        )
-    returns void as $func$
-    begin
-        insert into rocks (name, fired, mass, params)
-        values (name, fired, mass, params);
-    end;
-    $func$ language plpgsql; -- }}}
-
-    create function pg_temp.insert_slug( -- {{{
-        name text
-        , params slug_params
-        , fired timestamp with time zone default now()
-        )
-    returns void as $func$
-    begin
-        insert into slugs (name, fired, params)
-        values (name, fired, params);
-    end;
-    $func$ language plpgsql; -- }}}
 
     -- {{{ rocks
     raise info 'populating rocks';

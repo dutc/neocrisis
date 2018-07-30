@@ -1,3 +1,4 @@
+-- vim: set foldmethod=marker
 \echo 'NEO-Crisis <http://github.com/dutc/neocrisis>'
 \echo 'James Powell <james@dontusethiscode.com>'
 \set VERBOSITY terse
@@ -26,7 +27,22 @@ begin
 end;
 $func$ language plpgsql; -- }}}
 
+create function pg_temp.insert_rock( -- {{{
+    name text
+    , params rock_params
+    , fired timestamp with time zone default now()
+    , mass integer default 4
+    )
+returns void as $func$
+begin
+    insert into rocks (name, fired, mass, params)
+    values (name, fired, mass, params);
+end;
+$func$ language plpgsql; -- }}}
+
 do $$
+declare
+    _rec record;
 begin
     set search_path = game, public;
 
@@ -109,4 +125,21 @@ begin
         = '400 @ eros (hit)', 'wrong hit for eros';
     assert array_length(array(select name from rocks where name like 'eros%'), 1)
         = 2, 'incorrect eros fragments';
+
+    raise info 'check insert rock';
+    perform pg_temp.insert_rock('venus', row(0, 3, 0, 3, c() * 1800, 0));
+    perform pg_temp.check_hits(5);
+    assert (array(select slug from api.hits where rock = 'luna'))[1]
+        is null, 'wrong hit for luna';
+    assert (array(select slug from api.hits where rock = 'venus'))[1]
+        = '800 @ luna (hit)', 'wrong hit for venus';
+
+    raise info 'check delete rock';
+    delete from rocks
+    where name = 'venus';
+    perform pg_temp.check_hits(5);
+    assert (array(select slug from api.hits where rock = 'luna'))[1]
+        = '800 @ luna (hit)', 'wrong hit for luna';
+
+    raise info 'all checks passed';
 end $$;
