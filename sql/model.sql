@@ -1,6 +1,5 @@
 -- vim: set foldmethod=marker
-\echo 'NEO-Crisis'
-\echo 'http://github.com/dutc/neocrisis'
+\echo 'NEO-Crisis <http://github.com/dutc/neocrisis>'
 \echo 'James Powell <james@dontusethiscode.com>'
 \set VERBOSITY terse
 \set ON_ERROR_STOP true
@@ -12,27 +11,27 @@ do language plpgsql $$ declare
 begin
 
 -- {{{ setup
-raise notice 'initial setup';
+raise info 'initial setup';
 do $setup$ begin
 create extension if not exists intarray;
 
-raise notice 'dropping schemas'; -- {{{
+raise info 'dropping schemas'; -- {{{
 drop schema if exists game cascade;
 drop schema if exists api cascade;
 -- }}}
 
-raise notice 'creating schemas'; -- {{{
+raise info 'creating schemas'; -- {{{
 create schema if not exists game;
 create schema if not exists api;
 -- }}}
 
-raise notice 'removing public functions'; -- {{{
+raise info 'removing public functions'; -- {{{
 drop function if exists public.c cascade;
 drop function if exists public.pi_ cascade;
 drop function if exists public.error cascade;
 -- }}}
 
-raise notice 'populating public functions'; -- {{{
+raise info 'populating public functions'; -- {{{
 create or replace function public.c() returns numeric
 immutable language sql as 'select 299792458.0';
 
@@ -49,7 +48,7 @@ $func$ immutable language plpgsql;
 end $setup$; -- }}}
 
 -- {{{ types
-raise notice 'populating types';
+raise info 'populating types';
 do $types$ begin
     set search_path = game, public;
 
@@ -91,7 +90,7 @@ do $types$ begin
 end $types$; -- }}}
 
 -- {{{ built-in functions
-raise notice 'extending built-in functions';
+raise info 'extending built-in functions';
 do $funcs$ begin
 
     create or replace function round(v pos, s int) -- {{{
@@ -118,7 +117,7 @@ do $funcs$ begin
 end $funcs$; -- }}}
 
 -- {{{ custom functions
-raise notice 'populating custom functions';
+raise info 'populating custom functions';
 do $funcs$ begin
     set search_path = game, public;
 
@@ -128,6 +127,10 @@ do $funcs$ begin
     drop function if exists collisions cascade;
     drop function if exists hits cascade;
     drop function if exists predicted_hits cascade;
+
+    drop type if exists uniq_hits_t cascade;
+    drop function if exists uniq_hits_sfunc cascade;
+    drop aggregate if exists uniq_hits (integer) cascade;
 
     create or replace function normalize(v pos) -- {{{
     returns pos as $func$
@@ -286,6 +289,33 @@ do $funcs$ begin
     end;
     $func$ stable language plpgsql; -- }}}
 
+    create type uniq_hits_t as ( -- {{{
+        uniq boolean
+        , rocks integer[]
+        , slugs integer[]
+    ); -- }}}
+
+    create or replace function uniq_hits_sfunc( -- {{{
+        acc uniq_hits_t
+        , rock integer
+        , slug integer
+    )
+    returns uniq_hits_t as $func$
+    begin
+        return case
+            when (acc).rocks @> array[rock] or (acc).slugs @> array[slug]
+            then (false, (acc).rocks, (acc).slugs)
+            else (true, (acc).rocks || array[rock], (acc).slugs || array[slug])
+        end;
+    end;
+    $func$ immutable language plpgsql; -- }}}
+
+    create aggregate uniq_hits (integer, integer) ( -- {{{
+        sfunc = uniq_hits_sfunc
+        , stype = uniq_hits_t
+        , initcond = '(,{},{})'
+    ); -- }}}
+
     create or replace function hits() -- {{{
     returns table (
         rock integer
@@ -294,98 +324,29 @@ do $funcs$ begin
     ) as $func$
     begin
         return query
-        select
-        distinct on (h.slug)
-        *
+        select x.rock, x.slug, x.collision
         from (
             select
                 c.rock
-                , (array_agg(c.slug order by (c.collision).t))[1] as slug
-                , (array_agg(c.collision order by (c.collision).t))[1] as collision
-            from (
-                select *
-                from game.collisions as c
-                where (c.collision).miss is null
-                ) as c
-            group by c.rock
-            ) as h
-        order by h.slug, (h.collision).t, h.rock;
-    end;
-    $func$ stable language plpgsql; -- }}}
-
-    create or replace function predicted_hits( -- {{{
-        slug_id integer
-        , slug_fired timestamp with time zone
-        , slug_params slug_params
-        )
-    returns table (
-        rock integer
-        , slug integer
-        , collision collision
-        ) as $func$
-    begin
-        return query
-        select
-        distinct on (h.slug)
-        *
-        from (
-            select
-                c.rock
-                , (array_agg(c.slug order by (c.collision).t))[1] as slug
-                , (array_agg(c.collision order by (c.collision).t))[1] as collision
-            from (
-                    select c.rock, c.slug, c.collision
-                    from game.collisions as c
-                    where c.slug <> slug_id and (c.collision).miss is null
-                union
-                    select c.rock, c.slug, c.collision
-                    from game.collisions(slug_id, slug_fired, slug_params) as c
-                    where (c.collision).miss is null
-                ) as c
-            group by c.rock
-            ) as h
-        order by h.slug, (h.collision).t, h.rock;
-    end;
-    $func$ stable language plpgsql; -- }}}
-
-    create or replace function predicted_hits( -- {{{
-        rock_id integer
-        , rock_fired timestamp with time zone
-        , rock_params rock_params
-    ) returns table (
-        rock integer
-        , slug integer
-        , collision collision
-    ) as $func$
-    begin
-        return query
-        select
-        distinct on (h.slug)
-        *
-        from (
-            select
-                c.rock
-                , (array_agg(c.slug order by (c.collision).t))[1] as slug
-                , (array_agg(c.collision order by (c.collision).t))[1] as collision
-            from (
-                    select c.rock, c.slug, c.collision
-                    from game.collisions as c
-                    where c.rock <> rock_id and (c.collision).miss is null
-                union
-                    select c.rock, c.slug, c.collision
-                    from game.collisions(rock_id, rock_fired, rock_params) as c
-                    where (c.collision).miss is null
-                ) as c
-            group by c.rock
-            ) as h
-        order by h.slug, (h.collision).t, h.rock;
+                , c.slug
+                , c.collision
+                , uniq_hits(c.rock, c.slug) over win
+            from game.collisions as c
+            where (c.collision).miss is null
+            window win as (
+                partition by 1
+                order by (c.collision).t, c.id
+                rows between unbounded preceding and current row
+            )
+        ) as x
+        where (x.uniq_hits).uniq is true;
     end;
     $func$ stable language plpgsql; -- }}}
 
 end $funcs$; -- }}}
 
 -- {{{ triggers
-raise notice 'populating trigger functions';
+raise info 'populating trigger functions';
 do $funcs$ begin
     set search_path = game, public;
 
@@ -396,181 +357,98 @@ do $funcs$ begin
 
     create or replace function slugs_trigger() -- {{{
     returns trigger as $trig$
-    declare
-        _rec record;
     begin
-        raise notice 'trigger: %.%.% ("%")', tg_table_schema, tg_table_name, tg_name, new.name;
+        raise info 'trigger: %.%.% % ("%")', tg_table_schema, tg_table_name, tg_name, tg_op, new.name;
 
-        with
-            before as (select * from hits())
-            , after as (select * from predicted_hits(new.id, new.fired, new.params))
-            , diff as (select * from before except select * from after)
-        delete from hits where rock in (select rock from diff);
-
-        raise notice '    --- new ---';
-        for _rec in
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-            select r.name as rock, s.name as slug
-            from before as x
-                inner join rocks as r on (r.id = x.rock)
-                inner join slugs as s on (s.id = x.slug)
-        loop
-            raise notice '    bef: %, %', _rec.rock, _rec.slug;
-        end loop;
-        for _rec in
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-            select r.name as rock, s.name as slug
-            from after as x
-                inner join rocks as r on (r.id = x.rock)
-                inner join slugs as s on (s.id = x.slug)
-        loop
-            raise notice '    aft: %, %', _rec.rock, _rec.slug;
-        end loop;
-        for _rec in
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-            select r.name as rock, s.name as slug
-            from diff as x
-                inner join rocks as r on (r.id = x.rock)
-                inner join slugs as s on (s.id = x.slug)
-        loop
-            raise notice '    new: %, %', _rec.rock, _rec.slug;
-        end loop;
-
-        -- NOTE|dutc: the insert into/update collisions must happen before
-        --            the insert into hits
         if tg_op = 'INSERT' then
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-                , _ as (
-                    insert into collisions
-                        (rock, slug, collision)
-                        select * from game.collisions(new.id, new.fired, new.params)
-                )
-            insert into hits (rock, slug, collision) select * from diff;
+            insert into collisions
+                (rock, slug, collision)
+                select * from game.collisions(new.id, new.fired, new.params);
         elsif tg_op = 'UPDATE' and new <> old then
-            if new.id <> old.id then raise exception 'cannot change id'; end if;
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-                , _ as (
-                    update collisions set
-                        collision = collide(r.fired, r.params, new.fired, new.params)
-                    from rocks as r
-                    where r.id = rock and new.id = slug
-                )
-            insert into hits (rock, slug, collision) select * from diff;
+            update collisions set
+                collision = collide(r.fired, r.params, new.fired, new.params)
+            from rocks as r
+            where r.id = rock and new.id = slug;
         end if;
         return new;
     end;
     $trig$ language plpgsql; -- }}}
 
     create or replace function rocks_trigger() -- {{{
-        returns trigger as $trig$
-    declare
-        _rec record;
+    returns trigger as $trig$
     begin
-        raise notice 'trigger: %.%.% ("%")', tg_table_schema, tg_table_name, tg_name, new.name;
+        raise info 'trigger: %.%.% % ("%")', tg_table_schema, tg_table_name, tg_name, tg_op, new.name;
 
-        delete from hits where rock = new.id;
-
-        raise notice '    --- new ---';
-        for _rec in
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-            select r.name as rock, s.name as slug
-            from before as x
-                inner join rocks as r on (r.id = x.rock)
-                inner join slugs as s on (s.id = x.slug)
-        loop
-            raise notice '    bef: %, %', _rec.rock, _rec.slug;
-        end loop;
-        for _rec in
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-            select r.name as rock, s.name as slug
-            from after as x
-                inner join rocks as r on (r.id = x.rock)
-                inner join slugs as s on (s.id = x.slug)
-        loop
-            raise notice '    aft: %, %', _rec.rock, _rec.slug;
-        end loop;
-        for _rec in
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-            select r.name as rock, s.name as slug
-            from diff as x
-                inner join rocks as r on (r.id = x.rock)
-                inner join slugs as s on (s.id = x.slug)
-        loop
-            raise notice '    new: %, %', _rec.rock, _rec.slug;
-        end loop;
-
-        -- NOTE|dutc: the insert into/update collisions must happen before
-        --            the insert into hits
         if tg_op = 'INSERT' then
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-                , _ as (
-                    insert into collisions
-                        (rock, slug, collision)
-                        select * from game.collisions(new.id, new.fired, new.params)
-                )
-            insert into hits (rock, slug, collision) select * from diff;
+            insert into collisions
+                (rock, slug, collision)
+                select * from game.collisions(new.id, new.fired, new.params);
         elsif tg_op = 'UPDATE' and new <> old then
-            if new.id <> old.id then raise exception 'cannot change id'; end if;
-            with
-                before as (select * from hits())
-                , after as (select * from predicted_hits(new.id, new.fired, new.params))
-                , diff as (select * from after except select * from before)
-                , _ as (
-                    update collisions set
-                        collision = collide(new.fired, new.params, s.fired, s.params)
-                    from slugs as s
-                    where s.id = slug and new.id = rock
-                )
-            insert into hits (rock, slug, collision) select * from diff;
+            if new.mass <> old.mass then
+                -- mass changed: may affect fragmenting behavior
+                delete from rocks where source_rock = new.id;
+                delete from game.hits where rock = new.id;
+            end if;
+            update collisions set
+                collision = collide(new.fired, new.params, s.fired, s.params)
+            from slugs as s
+            where s.id = slug and new.id = rock;
         end if;
 
         return new;
     end;
     $trig$ language plpgsql; -- }}}
 
+    create or replace function collisions_trigger() -- {{{
+    returns trigger as $trig$
+    declare
+        _rock text;
+        _slug text;
+    begin
+        _rock := (select name from rocks where id = new.rock limit 1);
+        _slug := (select name from slugs where id = new.slug limit 1);
+        raise info 'trigger: %.%.% % (%, %)', tg_table_schema, tg_table_name, tg_name, tg_op, _rock, _slug;
+
+        with
+            before as (select rock, slug, collision from game.hits)
+            , after as (select rock, slug, collision from hits())
+            , diff as (select * from before except select * from after)
+        delete from hits where rock in (select rock from diff);
+
+        with
+            before as (select rock, slug, collision from game.hits)
+            , after as (select rock, slug, collision from hits())
+            , diff as (select * from after except select * from before)
+        insert into hits (rock, slug, collision) select * from diff;
+
+        return new;
+    end;
+    $trig$ language plpgsql; -- }}}
+
     create or replace function hits_trigger() -- {{{
-        returns trigger as $trig$
+    returns trigger as $trig$
     declare
         src_name text;
         src_mass integer;
         src_params rock_params;
         count integer;
+
+        _rock text;
+        _slug text;
     begin
+        _rock := (select name from rocks where id = new.rock limit 1);
+        _slug := (select name from slugs where id = new.slug limit 1);
+        raise info 'trigger: %.%.% % ("%", "%")', tg_table_schema, tg_table_name, tg_name, tg_op, _rock, _slug;
+
         src_name := (select coalesce(source_name, name) from rocks where id = new.rock limit 1);
         src_mass := (select mass from rocks where id = new.rock limit 1);
         src_params := (select params from rocks where id = new.rock limit 1);
         count := (select count(*) from rocks where source_name = src_name or name = src_name);
 
-        if src_mass < 1 then
+        if src_mass <= 1 then
             return new;
         end if;
+
         insert into rocks (
             source_name
             , source_rock
@@ -592,7 +470,7 @@ do $funcs$ begin
                 , (src_params).b_theta + (src_params).m_theta / 2 * extract(epoch from (new.collision).t)
                 , (src_params).m_phi / 2
                 , (src_params).b_phi + (src_params).b_phi / 2 * extract(epoch from (new.collision).t)
-                , (new.collision).pos.r
+                , (new.collision).pos.r + 1
                 , (src_params).v
             )::rock_params
         );
@@ -603,7 +481,7 @@ do $funcs$ begin
 end $funcs$; -- }}}
 
 -- {{{ tables
-raise notice 'populating tables';
+raise info 'populating tables';
 do $tables$
 begin
     set search_path = game, public;
@@ -670,6 +548,7 @@ begin
 
     drop trigger if exists slugs_trigger on slugs;
     drop trigger if exists rocks_trigger on rocks;
+    drop trigger if exists collisions_trigger on collisions;
     drop trigger if exists hits_trigger on hits;
 
     drop trigger if exists slugs_id_trigger on slugs;
@@ -681,6 +560,8 @@ begin
         for each row execute procedure slugs_trigger();
     create trigger rocks_trigger after insert or update on rocks
         for each row execute procedure rocks_trigger();
+    create trigger collisions_trigger after insert or update on collisions
+        for each row execute procedure collisions_trigger();
     create trigger hits_trigger after insert on hits
         for each row execute procedure hits_trigger();
 
@@ -696,7 +577,7 @@ begin
 end $tables$; -- }}}
 
 -- {{{ views
-raise notice 'populating api views';
+raise info 'populating api views';
 do $views$
 begin
     set search_path = api, game, public;
@@ -706,7 +587,8 @@ begin
 
     create or replace view collisions as ( -- {{{
         select
-            r.name as rock
+            c.id
+            , r.name as rock
             , s.name as slug
             , c.collision
         from game.collisions as c
@@ -716,12 +598,13 @@ begin
 
     create or replace view hits as (-- {{{
         select
-            r.name as rock
+            h.id
+            , r.name as rock
             , s.name as slug
-            , c.collision
-        from game.hits as c
-        inner join rocks as r on (c.rock = r.id)
-        inner join slugs as s on (c.slug = s.id)
+            , h.collision
+        from game.hits as h
+        inner join rocks as r on (h.rock = r.id)
+        inner join slugs as s on (h.slug = s.id)
     ); -- }}}
 
 end $views$; -- }}}
