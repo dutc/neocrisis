@@ -668,6 +668,7 @@ begin
             , octant(pos(r.fired, r.params, now()))
             , octant(pos(r.fired, r.params, now(), true)) as delay_octant
             , now() as t
+            , now() - r.fired as age
         from game.rocks as r
         left outer join game.hits as h
            on (r.id = h.rock)
@@ -688,6 +689,7 @@ begin
             , octant(pos(s.fired, s.params, now()))
             , octant(pos(s.fired, s.params, now(), true)) as delay_octant
             , now() as t
+            , now() - s.fired as age
         from game.slugs as s
         left outer join game.hits as h
            on (s.id = h.slug)
@@ -711,6 +713,7 @@ begin
                 , octant
                 , delay_octant
                 , t
+                , age
             from rocks
         union
             select
@@ -730,6 +733,7 @@ begin
                 , octant
                 , delay_octant
                 , t
+                , age
             from slugs
     );
 

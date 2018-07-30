@@ -40,12 +40,37 @@ def fire_slug(name, theta, phi):
 
 
 def observation(octant):
-    query = 'select * from api.neos where octant = %(octant)s'
+    query = '''
+        select
+            regclass
+            , name
+            , mass
+            , fired
+            , (pos).r::double precision as pos_r
+            , (pos).theta::double precision as pos_theta
+            , (pos).phi::double precision as pos_phi
+            , (cpos).x::double precision as cpos_x
+            , (cpos).y::double precision as cpos_y
+            , (cpos).z::double precision as cpos_z
+            , t
+            , octant
+            , age
+        from api.neos
+        where octant = %(octant)s
+    '''
     with get_db().cursor() as cur:
         cur.execute(query, {'octant': octant})
         objects = [
             {
-                'name': x.name
+                'type': {'api.rocks': 'rock', 'api.slugs': 'slug'}.get(x.regclass, 'unknown'),
+                'name': x.name,
+                'mass': x.mass,
+                'fired': x.fired,
+                'pos': {'r': x.pos_r, 'theta': x.pos_theta, 'phi': x.pos_phi},
+                'cpos': {'x': x.cpos_x, 'y': x.cpos_y, 'z': x.cpos_z},
+                'obs_time': x.t,
+                'octant': x.octant,
+                'age': x.age.seconds,
             }
             for x in cur
         ]
