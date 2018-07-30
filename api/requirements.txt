@@ -1,0 +1,16 @@
+certifi==2018.4.16
+chardet==3.0.4
+click==6.7
+Flask==1.0.2
+httpie==0.9.9
+idna==2.7
+itsdangerous==0.24
+Jinja2==2.10
+jinja2-cli==0.6.0
+MarkupSafe==1.0
+psycopg2==2.7.5
+Pygments==2.2.0
+PyYAML==3.13
+requests==2.19.1
+urllib3==1.23
+Werkzeug==0.14.1
