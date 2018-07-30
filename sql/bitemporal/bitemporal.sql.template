@@ -26,7 +26,7 @@ create schema if not exists history;
 	raise notice 'Creating table history."{{table}}"';
 	drop table if exists history."{{table}}" cascade;
 	create table if not exists history."{{table}}" (like {{table}});
-	create trigger versioning_trigger
+	create trigger zzz_versioning_trigger -- ensure last
   	  before insert or update or delete on {{table}}
   	  for each row execute procedure versioning('asof', 'history."{{table}}"', true);
 	create index on history."{{table}}" using gist (asof);
