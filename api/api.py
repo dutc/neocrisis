@@ -25,7 +25,7 @@ counter = Value('i', 0)
 def get_db():
     'opens database connection'
     if not hasattr(g, 'db'):
-        g.db = connect(f'dbname={DBNAME} host={DBHOST} user={DBUSER}',
+        g.db = connect(f'dbname={DBNAME} user={DBUSER}',
                        cursor_factory=NamedTupleCursor)
         g.db.set_session(autocommit=True)
     return g.db
