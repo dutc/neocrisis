@@ -1,7 +1,7 @@
 ---
 - name: Clone neocrisis repo into /var/www/
   git:
-    repo: https://github.com/dutc/neocrisis.git
+    repo: {{ repo }}
     dest: "{{ proj_folder }}"
 
 - name: "Set www-data as the group of {{ proj_folder }}"

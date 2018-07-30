@@ -8,6 +8,7 @@
     app_user: pynyc
     db_name: neocrisis
     proj_folder: /var/www/neocrisis
+    repo: https://github.com/dutc/neocrisis.git
   become: yes
   become_method: sudo
   roles:
