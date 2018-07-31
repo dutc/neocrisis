@@ -228,7 +228,7 @@ To compute the trajectory of a rock, take two measurements of its position in sp
 2. We want to solve for `v` and <code>r<sub>0</sub></code>.
    - we know that <code>r<sub>1</sub> = v × t<sub>1</sub> + r<sub>0</sub></code> and <code>r<sub>2</sub> = v × t<sub>2</sub> + r<sub>0</sub></code>
    - <b>therefore, <code>v = (r<sub>1</sub> - r<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
-   - <b>therefore, <code>r<sub>0</sub> = r<sub>1</sub> - v × t<sub>1</sub></code></b> or <b><code>r<sub>0</sub> = r<sub>2</sub> - v × t<sub>2</sub></code>
+   - <b>therefore, <code>r<sub>0</sub> = r<sub>1</sub> - v × t<sub>1</sub></code></b> or <b><code>r<sub>0</sub> = r<sub>2</sub> - v × t<sub>2</sub></code></b>
 3. We also want to solve for <code>m<sub>φ</sub></code> and <code>b<sub>φ</sub></code>.
    - we know that <code>phi<sub>1</sub> = m<sub>φ</sub> × t<sub>1</sub> + b<sub>φ</sub></code> and <code>phi<sub>2</sub> = m<sub>φ</sub> × t<sub>2</sub> + b<sub>φ</sub></code>
    - <b>therefore, <code>m<sub>φ</sub> = (phi<sub>1</sub> - phi<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
