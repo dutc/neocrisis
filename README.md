@@ -278,10 +278,10 @@ Altogether:
 #### game engine
 
 The game engine lives entirely in the data model of a Postgres database.
-- the data model is at [sql/model.sql](sql/model.sql)
-- sample (test) data can be found at [sql/data.sql](sql/data.sql) 
-- simple smoke tests (using the sample data) can be found at [sql/checks.sql](sql/checks.sql)
-- the data model is made bitemporal via [sql/bitemporal](sql/bitemporal)
+- the data model is at [engine/model.sql](engine/model.sql)
+- sample (test) data can be found at [engine/data.sql](engine/data.sql) 
+- simple smoke tests (using the sample data) can be found at [engine/checks.sql](engine/checks.sql)
+- the data model is made bitemporal via [engine/bitemporal](engine/bitemporal)
 
 There are two schemas:
 - `game` which contains the game core data
@@ -320,10 +320,10 @@ You can find it at [api/api.py](api/api.py).
 
 #### sample scripts
 
-You can find some sample scripts in [scripts/](scripts/).
-- [scripts/observer.py](scripts/observer.py) images the night sky in a loop and
+You can find some sample scripts in [examples/](examples/).
+- [examples/observer.py](examples/observer.py) images the night sky in a loop and
   reports what it finds
-- [scripts/autofire.py](scripts/autofire.py) is a sample automated defense system
+- [examples/autofire.py](examples/autofire.py) is a sample automated defense system
   that scans and automatically fires at every object it sees
 
 ## MEETUPS

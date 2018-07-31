@@ -38,7 +38,7 @@ test-cli:
 	@which psql jinja2 python bash zsh >/dev/null || exit 1
 test-model: $(curdir)/model.sql
 	$(PSQL) < $<
-test-bitemporal: $(curdir)/bitemporal/bitemporal.sh
+test-bitemporal: $(curdir)/bitemporal/bitemporal.sh $(curdir)/bitemporal/bitemporal.sql.template
 	$(PSQL) <<( $<  )
 test-data: $(curdir)/data.sql
 	$(PSQL) < $<
