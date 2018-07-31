@@ -114,7 +114,7 @@ $ http POST http://localhost:5000/railgun name='100 @ apophis' theta:=0 phi:=0
 
 ```http
 HTTP/1.0 200 OK
-Content-Length: 73
+Content-Length: 75
 Content-Type: application/json
 Date: Wed, 4 Jul 2018 09:00:01 EST
 Server: Werkzeug/0.14.1 Python/3.6.6

@@ -124,6 +124,7 @@ def laser():
 
 
 if __name__ == '__main__':
-    port = os.environ.get('JSON_API_PORT', 5000)
+    host = os.environ.get('HOST', 'localhost')
+    port = os.environ.get('PORT', 5000)
     debug = os.environ.get('DEBUG', False)
-    app.run(host='localhost', port=port, debug=debug)
+    app.run(host=host, port=port, debug=debug)
