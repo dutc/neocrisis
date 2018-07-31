@@ -281,10 +281,40 @@ The game engine lives entirely in the data model of a Postgres database.
 - the data model is at [sql/model.sql](sql/model.sql)
 - sample (test) data can be found at [sql/data.sql](sql/data.sql) 
 - simple smoke tests (using the sample data) can be found at [sql/checks.sql](sql/checks.sql)
+- the data model is made bitemporal via [sql/bitemporal](sql/bitemporal)
+
+There are two schemas:
+- `game` which contains the game core data
+- `api` which contains views used by the API
+
+The major tables are:
+- `game.rocks` which contains all rocks for a given game (incl. those that have collided with a slug or the earth)
+- `game.slugs` which contains all slugs for a given game (incl. those that have collided with a rock)
+- `game.collisions` which contains all collisions between all rocks and all slugs (rocks × slugs); the `collision` column represents the state of the collision
+- `game.hits` which contains all of the hits (every computed hit of a slug and a rock)
+
+The `collision` composite type represents the result of a collision computation. Its fields include:
+- `t`, the time at when the collision would have occurred (or `null` if no collision was possible)
+- `pos`, the position at which the collision would have occured (or `null`)
+- `mdiff`, the difference in position between the slug and rock if there was a miss (or `null` if there was a <b>hit</b>)
+- `miss`, an enum field with the reason for the miss — `r` didn't match, `theta` didn't match, and/or `phi` didn't match (or `null`  if there was a <b>hit</b>)
+
+The `game.collisions` and `game.hits` tables are populated by triggers.
+- upon insert/update to `game.rocks` or `game.slugs`, recompute all collisions and insert/update in `game.collisions`
+- upon insert/update/delete to `game.collisions`, recompute all hits and delete/insert in `game.hits`
+- upon insert to `game.hits`, compute and rock fragments and insert into `game.rocks` (potentially “cascading” triggers)
+
+The major views in `api` are:
+- `api.rocks` whch contains all rocks (incl. those that have collided) with positions and other derived fields computed
+- `api.slugs` whch contains all slugs (incl. those that have collided) with positions and other derived fields computed
+- `api.all_neos` which contains a union of all rocks and slugs (incl. those that have collided)
+- `api.neos` which contains a union of all *active* rocks and slugs (not incl. those that have collided)
+- `api.collisions` which contains all collisions (whether hits or missed) inner-joined nicely with `game.rocks` and `game.slugs` to include display names
+- `api.hits` which contains all collisions (whether hits or missed) inner-joined nicely with `game.rocks` and `game.slugs` to include display names
 
 #### REST API
 
-The REST API is a single file `flask` (https://github.com/pallets/flask) app.
+The REST API is a single-file `flask` (https://github.com/pallets/flask) app.
 
 You can find it at [api/api.py](api/api.py).
 
