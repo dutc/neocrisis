@@ -185,7 +185,7 @@ Server: Werkzeug/0.14.1 Python/3.6.6
 }
 ```
 
-## TRAJECTORIES and SPHERICAL COÖRDINATES
+## TRAJECTORIES, OCTANTS, and SPHERICAL COÖRDINATES
 
 See [docs/trajectories.pdf](docs/trajectories.pdf) for more information.
 
@@ -200,6 +200,8 @@ Cartesian coördinate | measures | range & units | directional convention
 `y`                  | distance | [0, ∞) meters | from the earth's core toward the 90° meridian (Memphis, TN)
 `z`                  | distance | [0, ∞) meters | from the earth's core toward 0° latitutde (North Pole)
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Octant_numbers.svg" alt="octant numbers" style="width:200px;"/>
+
 Our convention for spherical coördinates `(r, θ, φ)` is as follows:
 
 sperical coördinate      | measures | range & units   | directional convention
@@ -207,6 +209,21 @@ sperical coördinate      | measures | range & units   | directional convention
 `r` ‘radius’             | distance | [0, ∞) meters   | from the earth's core  toward outer space
 `θ` ‘theta’, ‘azimuth’   | *angle*  | [0, 2π] radians | <b>east-to-west</b> (longitudinally) from the 0° Prime Meridian (Greenwich, UK) toward the 90° meridian (Memphis, TN)
 `φ` ‘phi’, ‘inclination’ | *angle*  | [0, π] radians  | <b>north-to-south</b> (latitudinally) from the North Pole to the South Pole
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/3D_Spherical_2.svg" alt="spherical coördinates" style="width:200px;"/>
+
+Our convention for octant numbers is as follows:
+
+number | roman numeral | `x`-sign | `y`-sign | `z`-sign
+-------|---------------|----------|----------|---------
+ 1     | I             | `+`      | `+`      | `+`
+ 2     | II            | `-`      | `+`      | `+`
+ 3     | III           | `-`      | `-`      | `+`
+ 4     | IV            | `+`      | `-`      | `+`
+ 5     | V             | `+`      | `+`      | `-`
+ 6     | VI            | `-`      | `+`      | `-`
+ 7     | VII           | `-`      | `-`      | `-`
+ 8     | VIII          | `+`      | `-`      | `-`
 
 The trajectories of rocks and slugs follow the below equations.  The position
 of an object is determined only by its parameters and `t`, time.
