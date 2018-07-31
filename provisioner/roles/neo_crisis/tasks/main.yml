@@ -3,6 +3,7 @@
   git:
     repo: "{{ repo }}"
     dest: "{{ proj_folder }}"
+  tags: deploy
 
 - name: "Set www-data as the group of {{ proj_folder }}"
   file:
@@ -10,43 +11,69 @@
     recurse: yes
     group: www-data
     owner: "{{ app_user }}"
+  tags: deploy
 
 - name: Install requirements inside virtualenv
   pip:
     requirements: "{{ proj_folder }}/api/requirements.txt"
     virtualenv: "{{ proj_folder }}/venv"
     virtualenv_python: python3.6
+  tags: deploy
 
 - name: Create Neo Crisis Gunicorn service
   template:
-      src: neocrisis_gunicorn.service
-      dest: /etc/systemd/system/
+    src: neocrisis_gunicorn.service
+    dest: /etc/systemd/system/
+  tags: deploy
 
 - name: Enable Neo Crisis Gunicorn service
   systemd: state=started name=neocrisis_gunicorn
+  tags: deploy
 
 - name: Create Neo Crisis NGINX conf
   template:
       src: neocrisis_nginx
       dest: /etc/nginx/sites-available/neocrisis
+  tags: deploy
 
 - name: Enable Neo Crisis NGINX conf
   file:
     src: /etc/nginx/sites-available/neocrisis
     dest: /etc/nginx/sites-enabled/neocrisis
     state: link
+  tags: deploy
 
 - name: Disable default site shipped with NGINX installation
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
+  tags: deploy
+
+- name: Run a good Ol systemctl daemon-reload
+  command: systemctl daemon-reload
+  tags: deploy
 
 - name: Restart Neo Crisis Gunicorn service
   service:
     name: neocrisis_gunicorn
     state: restarted
+  tags: deploy
 
 - name: Restart NGINX
   service:
     name: nginx
     state: restarted
+  tags: deploy
+
+- name: Write shell script to destination
+  copy:
+    dest: "/tmp/init_db"
+    content: "sudo -u {{ app_user }} psql nc < {{ proj_folder }}/sql/model.sql"
+    mode: 0777
+  tags: ['never', 'init_db']
+
+- name: Initial DB setup. ANY DB DATA IS BEING DESTROYED!
+  command: "/tmp/init_db"
+  tags: ['never', 'init_db']
+  # become: yes
+  # become_user: "{{ app_user }}"
