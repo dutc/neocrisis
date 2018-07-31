@@ -98,6 +98,7 @@ do $types$ begin
     create type collision as ( -- {{{
         t timestamp with time zone
         , pos pos
+        , mdiff pos
         , miss mtype[]
     ); -- }}}
 
@@ -299,7 +300,16 @@ do $funcs$ begin
         else
             m := m || 'r'::game.mtype;
         end if;
-        return (t, slug_pos, m);
+        return (
+            t
+            , slug_pos
+            , (
+                (rock_pos).r - (slug_pos).r
+                , (rock_pos).theta - (slug_pos).theta
+                , (rock_pos).phi - (slug_pos).phi
+            )::game.pos
+            , m
+        );
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -420,7 +430,7 @@ do $funcs$ begin
                 select * from game.collisions(new.id, new.fired, new.params);
         elsif tg_op = 'UPDATE' and new <> old then
             update game.collisions set
-                collision = collide(r.fired, r.params, new.fired, new.params)
+                collision = game.collide(r.fired, r.params, new.fired, new.params)
             from game.rocks as r
             where r.id = rock and new.id = slug;
         end if;
@@ -434,7 +444,7 @@ do $funcs$ begin
         raise info 'trigger: %.%.% % ("%")', tg_table_schema, tg_table_name, tg_name, tg_op, new.name;
 
         if tg_op = 'INSERT' then
-            insert into collisions
+            insert into game.collisions
                 (rock, slug, collision)
                 select * from game.collisions(new.id, new.fired, new.params);
         elsif tg_op = 'UPDATE' and new <> old then
@@ -444,7 +454,7 @@ do $funcs$ begin
                 delete from game.hits where rock = new.id;
             end if;
             update game.collisions set
-                collision = collide(new.fired, new.params, s.fired, s.params)
+                collision = game.collide(new.fired, new.params, s.fired, s.params)
             from game.slugs as s
             where s.id = slug and new.id = rock;
         end if;
@@ -491,7 +501,7 @@ do $funcs$ begin
     declare
         src_name text;
         src_mass integer;
-        src_params rock_params;
+        src_params game.rock_params;
         count integer;
 
         _rock text;
@@ -717,7 +727,7 @@ begin
             from rocks
         union
             select
-                'rocks'::regclass
+                'slugs'::regclass
                 , id
                 , name
                 , 1 as mass

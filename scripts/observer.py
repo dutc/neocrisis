@@ -36,4 +36,4 @@ if __name__ == '__main__':
                 print(f'{" ":>31}  {pos[-1]["theta"]:>29.1f} Θ')
                 print(f'{" ":>31}  {pos[-1]["phi"]:>29.1f} Φ')
 
-            sleep(1)
+            sleep(.1)

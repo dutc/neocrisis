@@ -17,7 +17,7 @@ app = Flask(__name__)
 limiter = Limiter(
     app,
     key_func = get_remote_address,
-    default_limits = ['1 per second'],
+    default_limits = ['10 per second'],
 )
 
 counter = Value('i', 0)
@@ -77,7 +77,7 @@ def observation(octant):
                 'fired': x.fired,
                 'pos': {'r': x.pos_r, 'theta': x.pos_theta, 'phi': x.pos_phi},
                 'cpos': {'x': x.cpos_x, 'y': x.cpos_y, 'z': x.cpos_z},
-                'obs_time': x.t,
+                'obs_time': x.t.isoformat(),
                 'octant': x.octant,
                 'age': x.age.seconds,
             }
@@ -95,8 +95,12 @@ def telescope(octant):
 
 
 @app.route('/railgun', methods=['POST'])
+@limiter.limit('1 per 5 seconds')
 def laser():
     data = request.json
+    if data is None:
+        msg = {'error': 'malformed request'}
+        return make_response(jsonify(msg), 400)
 
     with counter.get_lock():
         counter.value += 1
