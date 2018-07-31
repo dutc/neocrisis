@@ -192,7 +192,7 @@ See [docs/trajectories.pdf](docs/trajectories.pdf) for more information.
 The position of slugs and rocks can be described in terms of Cartesian
 coördinates `(x, y, z)` or spherical coördinates `(r, θ, φ)`.
 
-Our convention for Cartesian coördinates `(x, y, z)` is as follows:
+#### Our convention for Cartesian coördinates `(x, y, z)` is as follows:
 
 Cartesian coördinate | measures | range & units | directional convention
 ---------------------|----------|---------------|-----------------------
@@ -200,9 +200,9 @@ Cartesian coördinate | measures | range & units | directional convention
 `y`                  | distance | [0, ∞) meters | from the earth's core toward the 90° meridian (Memphis, TN)
 `z`                  | distance | [0, ∞) meters | from the earth's core toward 0° latitutde (North Pole)
 
-Our convention for spherical coördinates `(r, θ, φ)` is as follows:
+#### Our convention for spherical coördinates `(r, θ, φ)` is as follows:
 
-sperical coördinate      | measures | range & units   | directional convention
+spherical coördinate     | measures | range & units   | directional convention
 -------------------------|----------|-----------------|-----------------------
 `r` ‘radius’             | distance | [0, ∞) meters   | from the earth's core  toward outer space
 `θ` ‘theta’, ‘azimuth’   | *angle*  | [0, 2π] radians | <b>east-to-west</b> (longitudinally) from the 0° Prime Meridian (Greenwich, UK) toward the 90° meridian (Memphis, TN)
@@ -210,7 +210,7 @@ sperical coördinate      | measures | range & units   | directional convention
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/3D_Spherical_2.svg" alt="spherical coördinates" width="400" />
 
-Our convention for octant numbers is as follows:
+#### Our convention for octant numbers is as follows:
 
 number | roman numeral | `x`-sign | `y`-sign | `z`-sign
 -------|---------------|----------|----------|---------
@@ -225,13 +225,14 @@ number | roman numeral | `x`-sign | `y`-sign | `z`-sign
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Octant_numbers.svg" alt="octant numbers" width="400" />
 
-The trajectories of rocks and slugs follow the below equations.  The position
-of an object is determined only by its parameters and `t`, time.
+#### The trajectories of rocks and slugs follow the below equations:
 
 NEO   | params | r | phi | theta
 ------|--------|---|-----|-------
 slugs | `v` velocity<br>`phi` fixed at fire time<br>`theta` fixed at fire time | `r = v × t` | `phi` | `theta`
 rocks | `v` velocity<br>`r₀`initial radius<br><code>m<sub>φ</sub></code> phi-slope<br><code>b<sub>φ</sub></code> phi-intercept<br><code>m<sub>θ</sub></code> theta-slope<br><code>b<sub>θ</sub></code> theta-intercept | `r = v × t + r₀` | <code>phi = m<sub>φ</sub> × t + b<sub>φ</sub></code> | <code>theta = m<sub>θ</sub> × t + b<sub>θ</sub></code>
+
+The position of an object is determined only by its parameters and `t`, time.
 
 ### MATH HELP and HINTS
 
