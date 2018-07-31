@@ -273,6 +273,29 @@ Altogether:
     theta<sub>collide</sub> = m<sub>0</sub> × t<sub>collide</sub> + b<sub>0</sub>
 </pre>
 
+## CODE and IMPLEMENTATOIN
+
+#### game engine
+
+The game engine lives entirely in the data model of a Postgres database.
+- the data model is at [sql/model.sql](sql/model.sql)
+- sample (test) data can be found at [sql/data.sql](sql/data.sql) 
+- simple smoke tests (using the sample data) can be found at [sql/checks.sql](sql/checks.sql)
+
+#### REST API
+
+The REST API is a single file `flask` (https://github.com/pallets/flask) app.
+
+You can find it at [api/api.py](api/api.py).
+
+#### sample scripts
+
+You can find some sample scripts in [scripts/](scripts/).
+- [scripts/observer.py](scripts/observer.py) images the night sky in a loop and
+  reports what it finds
+- [scripts/autofire.py](scripts/autofire.py) is a sample automated defense system
+  that scans and automatically fires at every object it sees
+
 ## MEETUPS
 
 `neocrisis` is a collaborative coding game created by the folks behind NYC
