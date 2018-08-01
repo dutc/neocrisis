@@ -10,8 +10,12 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 DBNAME = os.environ.get('DBNAME', 'nc')
-DBHOST = os.environ.get('HOST', '/tmp/')
+DBHOST = os.environ.get('DBHOST', None)
 DBUSER = os.environ.get('DBUSER', 'postgres')
+
+DBPARAMS = {'dbname': DBNAME, 'user': DBUSER}
+if DBHOST is not None:
+    DBPARAMS['host'] = DBHOST
 
 app = Flask(__name__)
 limiter = Limiter(
@@ -25,8 +29,7 @@ counter = Value('i', 0)
 def get_db():
     'opens database connection'
     if not hasattr(g, 'db'):
-        g.db = connect(f'dbname={DBNAME} user={DBUSER}',
-                       cursor_factory=NamedTupleCursor)
+        g.db = connect(**DBPARAMS, cursor_factory=NamedTupleCursor)
         g.db.set_session(autocommit=True)
     return g.db
 
@@ -74,7 +77,7 @@ def observation(octant):
                 'type': {'api.rocks': 'rock', 'api.slugs': 'slug'}.get(x.regclass, 'unknown'),
                 'name': x.name,
                 'mass': x.mass,
-                'fired': x.fired,
+                'fired': x.fired.isoformat(),
                 'pos': {'r': x.pos_r, 'theta': x.pos_theta, 'phi': x.pos_phi},
                 'cpos': {'x': x.cpos_x, 'y': x.cpos_y, 'z': x.cpos_z},
                 'obs_time': x.t.isoformat(),
@@ -121,6 +124,7 @@ def laser():
 
 
 if __name__ == '__main__':
-    port = os.environ.get('JSON_API_PORT', 5000)
+    host = os.environ.get('HOST', 'localhost')
+    port = os.environ.get('PORT', 5000)
     debug = os.environ.get('DEBUG', False)
-    app.run(host='localhost', port=port, debug=debug)
+    app.run(host=host, port=port, debug=debug)

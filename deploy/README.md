@@ -1,6 +1,6 @@
-# Neo Crisis Provisioner
+# NEO-Crisis Provisioner
 
-This is a small Ansible script to setup environment needed for our awesome Neo Crisis because the world is ending and we have no time to be shelling into servers to do all the hard work manually :)
+This is a small Ansible script to setup environment needed for our awesome NEO-crisis because the world is ending and we have no time to be shelling into servers to do all the hard work manually :)
 
 This provisioner expects the target machine to be a Ubuntu18.04 but does not validates that(feel free to try on different flavors/versions). Stack:
 

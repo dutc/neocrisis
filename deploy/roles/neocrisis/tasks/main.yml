@@ -13,30 +13,30 @@
     owner: "{{ app_user }}"
   tags: deploy
 
-- name: Install requirements inside virtualenv
+- name: Install requirements inside virtualenv (for api)
   pip:
-    requirements: "{{ proj_folder }}/api/requirements.txt"
+    requirements: "{{ proj_folder }}/engine/requirements.txt"
     virtualenv: "{{ proj_folder }}/venv"
     virtualenv_python: python3.6
   tags: deploy
 
-- name: Create Neo Crisis Gunicorn service
+- name: Create neocrisis Gunicorn service
   template:
     src: neocrisis_gunicorn.service
     dest: /etc/systemd/system/
   tags: deploy
 
-- name: Enable Neo Crisis Gunicorn service
+- name: Enable neocrisis Gunicorn service
   systemd: state=started name=neocrisis_gunicorn
   tags: deploy
 
-- name: Create Neo Crisis NGINX conf
+- name: Create neocrisis NGINX conf
   template:
       src: neocrisis_nginx
       dest: /etc/nginx/sites-available/neocrisis
   tags: deploy
 
-- name: Enable Neo Crisis NGINX conf
+- name: Enable neocrisis NGINX conf
   file:
     src: /etc/nginx/sites-available/neocrisis
     dest: /etc/nginx/sites-enabled/neocrisis
@@ -53,7 +53,7 @@
   command: systemctl daemon-reload
   tags: deploy
 
-- name: Restart Neo Crisis Gunicorn service
+- name: Restart neocrisis Gunicorn service
   service:
     name: neocrisis_gunicorn
     state: restarted
