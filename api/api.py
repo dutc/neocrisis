@@ -45,7 +45,7 @@ def close_db(_):
 def fire_slug(name, theta, phi):
     query = '''
         insert into game.slugs (name, params)
-        values (%(name)s, (%(theta)s, %(phi)s, c() / 10))
+        values (%(name)s, (%(theta)s, %(phi)s, 10))
     '''
     params = {'name': name, 'theta': theta, 'phi': phi}
     with get_db().cursor() as cur:
