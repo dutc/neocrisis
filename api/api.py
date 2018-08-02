@@ -17,6 +17,8 @@ DBPARAMS = {'dbname': DBNAME, 'user': DBUSER}
 if DBHOST is not None:
     DBPARAMS['host'] = DBHOST
 
+SATELLITE_NAME = os.environ.get('SATELLITE_NAME', None)
+
 app = Flask(__name__)
 limiter = Limiter(
     app,
@@ -121,6 +123,13 @@ def laser():
         msg = {'error': f'firing failed'}
         return make_response(jsonify(msg), 400)
     return jsonify(slug)
+
+
+@app.route('/info', methods=['GET'])
+@limiter.limit('1 per 1 second')
+def info():
+    info = {'platform_name': SATELLITE_NAME}
+    return jsonify(info)
 
 
 if __name__ == '__main__':
