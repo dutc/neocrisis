@@ -48,7 +48,7 @@ Instructions for how to request or send info to the server is below.
 
 Verb | endpoint URL | params | description 
 -----|--------------|--------|-------------
-GET | `/telescope/<int:octant>` | `octant` from [0, 8] | images the specified `octant` (Ⅰ-Ⅷ) of the night sky and returns NEOs it sees
+GET | `/telescope/<int:octant>` | `octant` from [1, 8] | images the specified `octant` (Ⅰ-Ⅷ) of the night sky and returns NEOs it sees
 POST | `/railgun` |  `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi`
 
 The `/telescope` endpoint returns a JSON structure that looks like:
