@@ -15,21 +15,24 @@ if DBHOST is not None:
     DBPARAMS['host'] = DBHOST
 
 
-ETA_QUERY = """
-select 
+ETA_QUERY = r"""
+set search_path = game, public;
+
+select
     name
     , regclass
-    , (pos).r / (rock_params).v as eta
+    , (pos).r as eta / (rock_params).v as eta
 from api.neos
-where regclass = 'rocks'::regclass and (rock_params).v != 0;
+where neos.regclass = 'rocks'::regclass -- and (rock_params).v != 0;
 """
 
 
 if __name__ == '__main__':
-    db = psycopg2.connect(
-        **DBPARAMS, cursor_factory=NamedTupleCursor)
+    db = psycopg2.connect(**DBPARAMS, cursor_factory=NamedTupleCursor)
     with db.cursor() as cursor:
         while True:
+            import pdb
+            pdb.set_trace()
             cursor.execute(ETA_QUERY)
             for asteroid in cursor:
                 name, eta = asteroid.name, asteroid.eta
