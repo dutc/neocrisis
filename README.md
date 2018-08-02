@@ -72,7 +72,7 @@ age | the age of the object (how long it has been around since fired) in seconds
 
 Use `curl` or `http` (https://github.com/jakubroztocil/httpie/) to experiment with this API. Examples:
 
-Take an image of octant I for search for objects.
+Take an image of octant 1 to search for objects.
 
 ```sh
 $ http GET http://neocrisis.xyz/telescope/1
@@ -132,7 +132,7 @@ Server: Werkzeug/0.14.1 Python/3.6.6
 }
 ```
 
-Image octant I again to see both the rock and the slug.
+Image octant 1 again to see both the rock and the slug.
 
 ```sh
 $ http GET http://neocrisis.xyz/telescope/1
