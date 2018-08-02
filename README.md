@@ -110,7 +110,7 @@ Server: Werkzeug/0.14.1 Python/3.6.6
 }
 ```
 
-Fire a slug at 99942 apophis.
+Fire a slug at 99942 apophis, naming it "100 @ apophis". 
 
 ```sh
 $ http POST http://neocrisis.xyz/railgun name='100 @ apophis' theta:=0 phi:=0
