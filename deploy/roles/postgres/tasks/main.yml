@@ -2,6 +2,9 @@
 - name: Install Postgres server
   apt: name=postgresql-10
 
+- name: Install Postgres server-dev
+  apt: name=postgresql-server-dev-10
+
 - name: Install psycopg2 globaly, required by Ansible postgres_user module and probably our app
   pip:
     name: psycopg2
@@ -19,4 +22,32 @@
   become_user: "{{ app_user }}"
   postgresql_db:
     login_user: "{{ app_user }}"
+    login_password: None
     name: "{{ db_name }}"
+
+- name: "Clone Temporal Tables postgres extension into /opt/pg_temporal_tables"
+  git:
+    repo: https://github.com/arkhipov/temporal_tables.git
+    dest: /opt/pg_temporal_tables
+
+- name: Running "make" for Postgres Temporal Tables
+  command: 'make chdir=/opt/pg_temporal_tables'
+
+- name: Running "make install" for Postgres Temporal Tables
+  command: 'make install chdir=/opt/pg_temporal_tables'
+
+- name: Add Postgres Temporal Tables extension
+  postgresql_ext:
+    login_user: "{{ app_user }}"
+    name: temporal_tables
+    db: "{{ db_name }}"
+  become: yes
+  become_user: "{{ app_user }}"
+
+- name: "Add Postgres contrib/intarray extension to {{ db_name }} DB"
+  postgresql_ext:
+    login_user: "{{ app_user }}"
+    name: intarray
+    db: "{{ db_name }}"
+  become: yes
+  become_user: "{{ app_user }}"

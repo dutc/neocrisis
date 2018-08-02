@@ -36,9 +36,19 @@ The `/var/www/neocrisis/` is the "production" code pulled from Github during dep
 
 With Ansible 2.5.1 installed on your computer, update provisioner/inventory to match your username/credentials(if you want to deploy it to a diff server, just change the IP to any other Ubuntu18 server). Run `sudo ansible-playbook provisioner/playbook.yml -i provisioner/inventory`. This will setup users create DB, install all requirements, etc but it does NOT run DB migrations(for now). So if it is your 1st deployment, ssh into the server and run:
 
+To run only deployment tasks use the `--tags=deploy` as:
 ```
-cd /var/www/neocrisis/sql
-sudo -u pynyc psql nc < model.sql
+sudo ansible-playbook deploy/playbook.yml -i deploy/inventory --tags=deploy
+```
+
+To run only deployment init db script use the parameter `--tags=init_db` as:
+```
+sudo ansible-playbook deploy/playbook.yml -i deploy/inventory --tags=init_db
+```
+
+Case you have multiple servers on your inventory and want to run a playbook against a specific one, use the `--limit` as:
+```
+sudo ansible-playbook deploy/playbook.yml -i deploy/inventory --limit=dev
 ```
 
 ## Helpful commands
@@ -49,10 +59,5 @@ sudo systemctl restart neocrisis_gunicorn
 sudo nginx -t
 sudo systemctl restart nginx
 sudo /var/www/neocrisis/venv/bin/python
+sudo -u pynyc psql nc < /var/www/neocrisis//sql/model.sql
 ```
-
-### To be continued...
-
-- Add tags to roles and triggers to restart NGINX, Systemd and neocrisis_gunicorn properly
-- Add provisioning task that runs models.sql script
-- add deployment script that just do service related tasks
