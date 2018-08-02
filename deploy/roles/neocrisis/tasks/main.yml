@@ -75,7 +75,7 @@
 - name: Write shell script to destination
   copy:
     dest: "/tmp/init_db"
-    content: "sudo -u {{ app_user }} psql nc < {{ proj_folder }}/sql/model.sql"
+    content: "sudo -u {{ app_user }} psql nc < {{ proj_folder }}/engine/model.sql"
     mode: 0777
   tags: ['never', 'init_db']
 
