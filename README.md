@@ -50,7 +50,7 @@ Verb | endpoint URL | params | description
 -----|--------------|--------|-------------
 GET | `/info` || gives information about the orbital weapon station
 GET | `/telescope/<int:octant>` | `octant` from [1, 8] | images the specified `octant` (Ⅰ-Ⅷ) of the night sky and returns NEOs it sees
-POST | `/railgun` |  `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi`
+POST | `/railgun` |  `name`, string<br>`target`, string <br>`phi`, number<br>`theta`, number | fires a slug named `name` intending to hit `target` at the specified angles `theta` and `phi`
 
 The `/telescope` endpoint returns a JSON structure that looks like:
 `{ "objects": [ obj, … ] }`
@@ -239,7 +239,7 @@ number | roman numeral | `x`-sign | `y`-sign | `z`-sign
 NEO   | params | r | phi | theta
 ------|--------|---|-----|-------
 slugs | `v` velocity<br>`phi` fixed at fire time<br>`theta` fixed at fire time | `r = v × t` | `phi` | `theta`
-rocks | `v` velocity<br><code>r<sub>₀</sub></code> initial radius<br><code>m<sub>φ</sub></code> phi-slope<br><code>b<sub>φ</sub></code> phi-intercept<br><code>m<sub>θ</sub></code> theta-slope<br><code>b<sub>θ</sub></code> theta-intercept | `r = v × t + r₀` | <code>phi = m<sub>φ</sub> × t + b<sub>φ</sub></code> | <code>theta = m<sub>θ</sub> × t + b<sub>θ</sub></code>
+rocks | `v` velocity<br><code>r<sub>₀</sub></code> initial radius<br><code>m<sub>φ</sub></code> phi-slope<br><code>b<sub>φ</sub></code> phi-intercept<br><code>m<sub>θ</sub></code> theta-slope<br><code>b<sub>θ</sub></code> theta-intercept | `r = v × t + r₀` | <code>phi = m<sub>φ</sub> × t + b<sub>φ</sub></code> | <code>theta = m<sub>θ</sub> × t + b<sub>θ</sub></code>
 
 The position of an object is determined only by its parameters and `t`, time.
 
@@ -364,3 +364,4 @@ Python! It has been played at the following events:
 *Submit a PR to list any events where you've played NEO Crisis.*
 
 ## CREDITS and COPYRIGHT
+

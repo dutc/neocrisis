@@ -42,12 +42,12 @@ def close_db(_):
         g.db.close()
 
 
-def fire_slug(name, theta, phi):
+def fire_slug(name, target, theta, phi):
     query = '''
         insert into game.slugs (name, params)
-        values (%(name)s, (%(theta)s, %(phi)s, c() / 10))
+        values (%(name)s, (%(theta)s, %(phi)s, c() / 10, %(target)))
     '''
-    params = {'name': name, 'theta': theta, 'phi': phi}
+    params = {'name': name, 'theta': theta, 'phi': phi, 'target': target}
     with get_db().cursor() as cur:
         cur.execute(query, params)
     return {'slug': params}
@@ -116,11 +116,12 @@ def laser():
     try:
         theta = float(data.get('theta'))
         phi = float(data.get('phi'))
+        target = data.get('target')
     except ValueError:
         msg = {'error': f'bad theta/phi params'}
         return make_response(jsonify(msg), 400)
 
-    slug = fire_slug(name, theta, phi)
+    slug = fire_slug(name, target, theta, phi)
     if slug is None:
         msg = {'error': f'firing failed'}
         return make_response(jsonify(msg), 400)
