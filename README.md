@@ -42,9 +42,11 @@ down the ‘rocks.’
 The orbital defense platforms can be controlled via JSON REST APIs. There are
 two endpoints.
 
-The server is located at:
+The server can be found at:
 
 http://neocrisis.xyz
+
+Instructions for how to request or send info to the server is below. 
 
 endpoint URL | HTTP verb | params | description 
 -------------|-----------|--------|-------------
@@ -110,7 +112,9 @@ Server: Werkzeug/0.14.1 Python/3.6.6
 }
 ```
 
-Fire a slug at 99942 apophis, naming it "100 @ apophis". 
+The above output shows one object, an asteroid (note the type: rock)
+
+Next, we can fire a slug at 99942 apophis, naming it "100 @ apophis". 
 
 ```sh
 $ http POST http://neocrisis.xyz/railgun name='100 @ apophis' theta:=0 phi:=0
@@ -204,6 +208,8 @@ Cartesian coördinate | measures | range & units | directional convention
 `y`                  | distance | [0, ∞) meters | from the earth's core toward the 90° meridian (Memphis, TN)
 `z`                  | distance | [0, ∞) meters | from the earth's core toward 0° latitutde (North Pole)
 
+Note that our convention is left-handed, as opposed to the traditional right-handed coordniate system seen the graphic above and below. This is because our positive y direction is west, instead of east; in other words, their +y is our -y.
+
 #### Our convention for spherical coördinates `(r, θ, φ)` is as follows:
 
 spherical coördinate     | measures | range & units   | directional convention
@@ -241,16 +247,16 @@ The position of an object is determined only by its parameters and `t`, time.
 ### MATH HELP and HINTS
 
 Hints:
-- the above equations are independent of each other: r, phi, and theta do not affect each other
-- for the rocks, each equation has only two unknowns; therefore, you only need to talk two measurements to determine the unknowns
+- the above equations are independent of each other: r, phi, and theta do not affect each other.
+- for the rocks, each equation has only two unknowns; therefore, you only need to take two measurements to determine the unknowns
 
 To compute the trajectory of a rock, take two measurements of its position in spherical coördinates `(r, θ, φ)`.
 1. Two measurements are taken at <code>t<sub>1</sub></code> and <code>t<sub>2</sub></code>.
    - call them <code>(r<sub>1</sub>, phi<sub>1</sub>, theta<sub>1</sub>)</code> and <code>(r<sub>2</sub>, phi<sub>2</sub>, theta<sub>2</sub>)</code>
-2. We want to solve for `v` and <code>r<sub>0</sub></code>.
-   - we know that <code>r<sub>1</sub> = v × t<sub>1</sub> + r<sub>0</sub></code> and <code>r<sub>2</sub> = v × t<sub>2</sub> + r<sub>0</sub></code>
+2. We want to solve for `v<sub>rock</sub>` and <code>r<sub>0</sub></code>. Note: The rocks travel at a constant velocity, so there's no calculus needed to find instantaneous velocity; the average velocity will be the velocity at all times. 
+   - we know that <code>r<sub>1</sub> = v<sub>rock</sub> × t<sub>1</sub> + r<sub>0</sub></code> and <code>r<sub>2</sub> = v<sub>rock</sub> × t<sub>2</sub> + r<sub>0</sub></code>
    - <b>therefore, <code>v = (r<sub>1</sub> - r<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
-   - <b>therefore, <code>r<sub>0</sub> = r<sub>1</sub> - v × t<sub>1</sub></code></b> or <b><code>r<sub>0</sub> = r<sub>2</sub> - v × t<sub>2</sub></code></b>
+   - <b>therefore, <code>r<sub>0</sub> = r<sub>1</sub> - v<sub>rock</sub> × t<sub>1</sub></code></b> or <b><code>r<sub>0</sub> = r<sub>2</sub> - v<sub>rock</sub> × t<sub>2</sub></code></b>
 3. We also want to solve for <code>m<sub>φ</sub></code> and <code>b<sub>φ</sub></code>.
    - we know that <code>phi<sub>1</sub> = m<sub>φ</sub> × t<sub>1</sub> + b<sub>φ</sub></code> and <code>phi<sub>2</sub> = m<sub>φ</sub> × t<sub>2</sub> + b<sub>φ</sub></code>
    - <b>therefore, <code>m<sub>φ</sub> = (phi<sub>1</sub> - phi<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
@@ -260,7 +266,7 @@ To compute the trajectory of a rock, take two measurements of its position in sp
    - <b>therefore, <code>m<sub>θ</sub> = (phi<sub>1</sub> - phi<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
    - <b>therefore, <code>b<sub>θ</sub> = phi<sub>1</sub> - m<sub>θ</sub> × t<sub>1</sub></code></b> or <b><code>b<sub>θ</sub> = phi<sub>2</sub> - m<sub>θ</sub> × t<sub>2</sub></code></b>
 5. We need to compute direction in which to fire the slug; its `phi` and `theta` angles
-   - we're given the slug's `v` velocity
+   - we're given the slug's `v<sub>slug</sub>` velocity
    - we know the slug's `r` and the rock's `r` are the same at collision time <code>r<sub>slug</sub> = r<sub>rock</sub></code>
    - we know <code>r<sub>rock, collide</sub> = v<sub>rock</sub> × t<sub>collide</t> + r<sub>0</sub></code> and <code>r<sub>slug, collide</sub> = v<sub>slug</sub> × t<sub>collide</t></code>
    - <b>therefore, <code>t<sub>collide</t> = r<sub>0</sub> ÷ (v<sub>rock</sub> - v<sub>slug</sub>)</code></b>
