@@ -42,6 +42,11 @@ down the ‘rocks.’
 The orbital defense platforms can be controlled via JSON REST APIs. There are
 two endpoints.
 
+The server can be located at:
+
+http://neocrisis.xyz/telescope/1
+
+
 endpoint URL | HTTP verb | params | description 
 -------------|-----------|--------|-------------
 `/telescope/<int:octant>` | GET | `octant`, number from [0, 8] | images the specified `octant` (I - VIII) of the night sky and returns NEOs it sees
