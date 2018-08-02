@@ -13,7 +13,14 @@
     owner: "{{ app_user }}"
   tags: deploy
 
-- name: Install requirements inside virtualenv (for api)
+- name: Install api/requirements.txt inside virtualenv (for api)
+  pip:
+    requirements: "{{ proj_folder }}/api/requirements.txt"
+    virtualenv: "{{ proj_folder }}/venv"
+    virtualenv_python: python3.6
+  tags: deploy
+
+- name: Install engine/requirements.txt inside virtualenv (for api)
   pip:
     requirements: "{{ proj_folder }}/engine/requirements.txt"
     virtualenv: "{{ proj_folder }}/venv"
@@ -73,7 +80,7 @@
   tags: ['never', 'init_db']
 
 - name: Initial DB setup. ANY DB DATA IS BEING DESTROYED!
-  command: "/tmp/init_db"
+  command: "bash /tmp/init_db"
   tags: ['never', 'init_db']
   # become: yes
   # become_user: "{{ app_user }}"
