@@ -104,7 +104,7 @@ def telescope(octant):
 
 
 @app.route('/railgun', methods=['POST'])
-@limiter.limit('1 per 5 seconds')
+@limiter.limit('5 per 1 seconds')
 def laser():
     data = request.json
     if data is None:
@@ -130,7 +130,7 @@ def laser():
 
 
 @app.route('/info', methods=['GET'])
-@limiter.limit('1 per 1 second')
+@limiter.limit('10 per 1 second')
 def info():
     info = {
         'name': SATELLITE_NAME,
