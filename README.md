@@ -48,10 +48,10 @@ http://neocrisis.xyz
 
 Instructions for how to request or send info to the server is below. 
 
-endpoint URL | HTTP verb | params | description 
--------------|-----------|--------|-------------
-`/telescope/<int:octant>` | GET | `octant`, number from [0, 8] | images the specified `octant` (I - VIII) of the night sky and returns NEOs it sees
-`/railgun` | POST | `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi`
+endpoint URL | params | description 
+-------------|--------|-------------
+GET `/telescope/<int:octant>` | `octant`, number from [0, 8] | images the specified `octant` (1 - 8) of the night sky and returns NEOs it sees
+POST `/railgun` |  `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi`
 
 The `/telescope` endpoint returns a JSON structure that looks like:
 `{ "objects": [ obj, … ] }`
