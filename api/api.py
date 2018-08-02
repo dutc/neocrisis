@@ -23,7 +23,7 @@ app = Flask(__name__)
 limiter = Limiter(
     app,
     key_func = get_remote_address,
-    default_limits = ['10 per second'],
+    default_limits = ['20 per second'],
 )
 
 counter = Value('i', 0)
@@ -105,7 +105,7 @@ def telescope(octant):
 
 @app.route('/railgun', methods=['POST'])
 @limiter.limit('5 per 1 seconds')
-def laser():
+def railgun():
     data = request.json
     if data is None:
         msg = {'error': 'malformed request'}
