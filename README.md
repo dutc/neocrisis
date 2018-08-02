@@ -32,7 +32,7 @@ down the ‘rocks.’
     - slugs cannot turn; they move in straight lines only
     - the trajectories are modelled by linear equations in spherical coördinates
 - slugs collide only with other rocks
-    - slugs cannot collide other slugs, and rocks cannot collide other rocks
+    - slugs cannot collide with other slugs, and rocks cannot collide with other rocks
     - if the rock has a mass of 1, then collision with a slug vaporizes both
       the rock and slug immediately
     - if the rock has a mass greater than 1, then collision with a slug vaporizes the slug and rock but a rock fragment with smaller mass will be created
