@@ -90,7 +90,7 @@ def observation(octant):
         ]
     return {'objects': objects}
 
-
+@app.route('/', methods=['GET'])
 @app.route('/docs', methods=['GET'])
 def docs():
     return redirect('https://github.com/dutc/neocrisis.git')
