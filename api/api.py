@@ -129,7 +129,15 @@ def laser():
 @app.route('/info', methods=['GET'])
 @limiter.limit('1 per 1 second')
 def info():
-    info = {'platform_name': SATELLITE_NAME}
+    info = {
+        'name': SATELLITE_NAME,
+        'railgun': {
+            'online': true,
+        },
+        'telescope': {
+            'online': true,
+        },
+    }
     return jsonify(info)
 
 

@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "provisioner/playbook.yml"
+    ansible.playbook = "deploy/playbook.yml"
     # Uses pip to install ansible because bug on current version of Ansible crashes
     # trying to install python-software-properties that isnt available/needed
     # on Ubuntu18 anymore. To be fixed on Ansible 2.1.2
