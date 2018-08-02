@@ -48,7 +48,7 @@ Instructions for how to request or send info to the server is below.
 
 Verb | endpoint URL | params | description 
 -----|--------------|--------|-------------
-GET | `/telescope/<int:octant>` | `octant` from [0, 8] | images the specified `octant` (I - VIII) of the night sky and returns NEOs it sees
+GET | `/telescope/<int:octant>` | `octant` from [0, 8] | images the specified `octant` (Ⅰ-Ⅷ) of the night sky and returns NEOs it sees
 POST | `/railgun` |  `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi`
 
 The `/telescope` endpoint returns a JSON structure that looks like:
@@ -65,14 +65,14 @@ fired | when the rock was fired at the earth or when the slug was fired into spa
 pos | the spherical coördinates of the object at observation time
 cpos | the Caresian coördinates of the object at observation time
 obs_time | the observation time
-octant | the octant (I, II, III, IV, V, VI, VII, VIII) as an integer in which the object was spotted
+octant | the octant (Ⅰ, Ⅱ, Ⅲ, Ⅳ, Ⅴ, Ⅵ, Ⅶ, Ⅷ) as an integer in which the object was spotted
 age | the age of the object (how long it has been around since fired) in seconds 
 
 ### REST API EXAMPLE
 
 Use `curl` or `http` (https://github.com/jakubroztocil/httpie/) to experiment with this API. Examples:
 
-Take an image of octant 1 to search for objects.
+Take an image of octant one (Ⅰ) to search for objects.
 
 ```sh
 $ http GET http://neocrisis.xyz/telescope/1
@@ -110,9 +110,9 @@ Server: Werkzeug/0.14.1 Python/3.6.6
 }
 ```
 
-The above output shows one object, an asteroid (note the type: rock)
+The above output shows one Near Earth Object: an asteroid (note the type ‘rock’) named ‘99942 apophis.’ It's on a direct course to hit the earth, unlike the real 99942 Apophis awhich has only a 2.7% chance of hitting earth on April 13, 2029 (https://en.wikipedia.org/wiki/99942_Apophis)
 
-Next, we can fire a slug at 99942 apophis, naming it "100 @ apophis". 
+Next, we can fire a railgun slug at 99942 apophis. To better keep track of this new object, we can name it. We can name it anything we like. We'll name it ‘100 @ apophis’ to indicate what we intended to aim at.
 
 ```sh
 $ http POST http://neocrisis.xyz/railgun name='100 @ apophis' theta:=0 phi:=0
@@ -134,7 +134,7 @@ Server: Werkzeug/0.14.1 Python/3.6.6
 }
 ```
 
-Image octant 1 again to see both the rock and the slug.
+Image octant one (Ⅰ) again to see both the rock and the railgun slug we fired at it.
 
 ```sh
 $ http GET http://neocrisis.xyz/telescope/1
@@ -238,7 +238,7 @@ number | roman numeral | `x`-sign | `y`-sign | `z`-sign
 NEO   | params | r | phi | theta
 ------|--------|---|-----|-------
 slugs | `v` velocity<br>`phi` fixed at fire time<br>`theta` fixed at fire time | `r = v × t` | `phi` | `theta`
-rocks | `v` velocity<br>`r₀`initial radius<br><code>m<sub>φ</sub></code> phi-slope<br><code>b<sub>φ</sub></code> phi-intercept<br><code>m<sub>θ</sub></code> theta-slope<br><code>b<sub>θ</sub></code> theta-intercept | `r = v × t + r₀` | <code>phi = m<sub>φ</sub> × t + b<sub>φ</sub></code> | <code>theta = m<sub>θ</sub> × t + b<sub>θ</sub></code>
+rocks | `v` velocity<br><code>r<sub>₀</sub></code> initial radius<br><code>m<sub>φ</sub></code> phi-slope<br><code>b<sub>φ</sub></code> phi-intercept<br><code>m<sub>θ</sub></code> theta-slope<br><code>b<sub>θ</sub></code> theta-intercept | `r = v × t + r₀` | <code>phi = m<sub>φ</sub> × t + b<sub>φ</sub></code> | <code>theta = m<sub>θ</sub> × t + b<sub>θ</sub></code>
 
 The position of an object is determined only by its parameters and `t`, time.
 
@@ -251,7 +251,7 @@ Hints:
 To compute the trajectory of a rock, take two measurements of its position in spherical coördinates `(r, θ, φ)`.
 1. Two measurements are taken at <code>t<sub>1</sub></code> and <code>t<sub>2</sub></code>.
    - call them <code>(r<sub>1</sub>, phi<sub>1</sub>, theta<sub>1</sub>)</code> and <code>(r<sub>2</sub>, phi<sub>2</sub>, theta<sub>2</sub>)</code>
-2. We want to solve for <code>v<sub>rock</sub></code> and <code>r<sub>0</sub></code>. Note: Unlike a real asteroid, these asteroids' distance to the earth varies linearly, so you do not need any calculus/instantaneous velocities, and the below formula for average velocity is appropriate (since the average velocity is the velocity at all times). 
+2. We want to solve for <code>v<sub>rock</sub></code> and <code>r<sub>0</sub></code>. Note: unlike a real asteroid, these asteroids' distances to the earth vary linearly. You need only basic algebra to determine a firing solution. No calculus is needed. They do not accelerate: their velocities are constant at all times.
    - we know that <code>r<sub>1</sub> = v<sub>rock</sub> × t<sub>1</sub> + r<sub>0</sub></code> and <code>r<sub>2</sub> = v<sub>rock</sub> × t<sub>2</sub> + r<sub>0</sub></code>
    - <b>therefore, <code>v = (r<sub>1</sub> - r<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
    - <b>therefore, <code>r<sub>0</sub> = r<sub>1</sub> - v<sub>rock</sub> × t<sub>1</sub></code></b> or <b><code>r<sub>0</sub> = r<sub>2</sub> - v<sub>rock</sub> × t<sub>2</sub></code></b>
