@@ -208,7 +208,7 @@ Cartesian coördinate | measures | range & units | directional convention
 `y`                  | distance | [0, ∞) meters | from the earth's core toward the 90° meridian (Memphis, TN)
 `z`                  | distance | [0, ∞) meters | from the earth's core toward 0° latitutde (North Pole)
 
-Note that our convention is left-handed, as opposed to the traditional right-handed coordniate system seen the graphic above and below. This is because our positive y direction is west, instead of east; in other words, their +y is our -y.
+Note that our convention is left-handed, as opposed to the traditional right-handed coordniate system seen the graphics below. This is because our positive y direction is west, instead of east; in other words, their +y is our -y.
 
 #### Our convention for spherical coördinates `(r, θ, φ)` is as follows:
 
