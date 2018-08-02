@@ -3,7 +3,7 @@ from random import randint
 from multiprocessing import Value
 from numbers import Number
 
-from flask import Flask, g, request, jsonify, make_response
+from flask import Flask, g, request, jsonify, make_response, redirect
 from psycopg2 import connect
 from psycopg2.extras import NamedTupleCursor
 from flask_limiter import Limiter
@@ -90,6 +90,10 @@ def observation(octant):
         ]
     return {'objects': objects}
 
+
+@app.route('/docs', methods=['GET'])
+def docs():
+    redirect('https://github.com/dutc/neocrisis.git')
 
 @app.route('/telescope/<int:octant>', methods=['GET'])
 def telescope(octant):
