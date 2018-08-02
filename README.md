@@ -42,7 +42,7 @@ down the ‘rocks.’
 The orbital defense platforms can be controlled via JSON REST APIs. There are
 two endpoints.
 
-The server can be located at:
+The server is located at:
 
 http://neocrisis.xyz
 
