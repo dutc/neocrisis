@@ -38,17 +38,17 @@ With Ansible 2.5.1 installed on your computer, update provisioner/inventory to m
 
 To run only deployment tasks use the `--tags=deploy` as:
 ```
-sudo ansible-playbook -i provisioner/inventory  provisioner/playbook.yml --tags=deploy
+sudo ansible-playbook deploy/playbook.yml -i deploy/inventory --tags=deploy
 ```
 
 To run only deployment init db script use the parameter `--tags=init_db` as:
 ```
-sudo ansible-playbook -i provisioner/inventory  provisioner/playbook.yml --tags=init_db
+sudo ansible-playbook deploy/playbook.yml -i deploy/inventory --tags=init_db
 ```
 
 Case you have multiple servers on your inventory and want to run a playbook against a specific one, use the `--limit` as:
 ```
-sudo ansible-playbook -i provisioner/inventory  provisioner/playbook.yml --limit dev
+sudo ansible-playbook deploy/playbook.yml -i deploy/inventory --limit=dev
 ```
 
 ## Helpful commands
