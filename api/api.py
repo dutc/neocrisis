@@ -135,10 +135,10 @@ def info():
     info = {
         'name': SATELLITE_NAME,
         'railgun': {
-            'online': true,
+            'online': True,
         },
         'telescope': {
-            'online': true,
+            'online': True,
         },
     }
     return jsonify(info)
