@@ -253,10 +253,11 @@ Hints:
 To compute the trajectory of a rock, take two measurements of its position in spherical coördinates `(r, θ, φ)`.
 1. Two measurements are taken at <code>t<sub>1</sub></code> and <code>t<sub>2</sub></code>.
    - call them <code>(r<sub>1</sub>, phi<sub>1</sub>, theta<sub>1</sub>)</code> and <code>(r<sub>2</sub>, phi<sub>2</sub>, theta<sub>2</sub>)</code>
-2. We want to solve for <code>v<sub>rock</sub></code> and <code>r<sub>0</sub></code>. Note: The rocks travel at a constant velocity, so there's no calculus needed to find instantaneous velocity; the average velocity will be the velocity at all times. 
+2. We want to solve for <code>v<sub>rock</sub></code> and <code>r<sub>0</sub></code>. Note: Unlike a real asteroid, these asteroids' distance to the earth varies linearly, so you do not need any calculus/instantaneous velocities, and the below formula for average velocity is appropriate (since the average velocity is the velocity at all times). 
    - we know that <code>r<sub>1</sub> = v<sub>rock</sub> × t<sub>1</sub> + r<sub>0</sub></code> and <code>r<sub>2</sub> = v<sub>rock</sub> × t<sub>2</sub> + r<sub>0</sub></code>
    - <b>therefore, <code>v = (r<sub>1</sub> - r<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
    - <b>therefore, <code>r<sub>0</sub> = r<sub>1</sub> - v<sub>rock</sub> × t<sub>1</sub></code></b> or <b><code>r<sub>0</sub> = r<sub>2</sub> - v<sub>rock</sub> × t<sub>2</sub></code></b>
+   - <b> Remember, velocity is a vector (signed) quantity! Since the rock is moving TOWARDS the origin (in other words,  <code>r<sub>rock</sub>(t)</code> is becoming smaller over time), its velocity will be negative
 3. We also want to solve for <code>m<sub>φ</sub></code> and <code>b<sub>φ</sub></code>.
    - we know that <code>phi<sub>1</sub> = m<sub>φ</sub> × t<sub>1</sub> + b<sub>φ</sub></code> and <code>phi<sub>2</sub> = m<sub>φ</sub> × t<sub>2</sub> + b<sub>φ</sub></code>
    - <b>therefore, <code>m<sub>φ</sub> = (phi<sub>1</sub> - phi<sub>2</sub>) ÷ (t<sub>1</sub> - t<sub>2</sub>)</code></b>
@@ -267,8 +268,8 @@ To compute the trajectory of a rock, take two measurements of its position in sp
    - <b>therefore, <code>b<sub>θ</sub> = phi<sub>1</sub> - m<sub>θ</sub> × t<sub>1</sub></code></b> or <b><code>b<sub>θ</sub> = phi<sub>2</sub> - m<sub>θ</sub> × t<sub>2</sub></code></b>
 5. We need to compute direction in which to fire the slug; its `phi` and `theta` angles
    - we're given the slug's <code>v<sub>slug</sub></code> velocity
-   - we know the slug's `r` and the rock's `r` are the same at collision time <code>r<sub>slug</sub> = r<sub>rock</sub></code>
-   - we know <code>r<sub>rock, collide</sub> = v<sub>rock</sub> × t<sub>collide</t> + r<sub>0</sub></code> and <code>r<sub>slug, collide</sub> = v<sub>slug</sub> × t<sub>collide</t></code>
+   - we know that at collision time <code>t<sub>collide</sub></code>, that <code>r<sub>rock</sub></code> and <code>r<sub>slug</sub></code> will be the same:  <code>r<sub>slug</sub> = r<sub>rock</sub></code> = <code>r<sub>collide</sub></code>
+   - we know <code>r<sub>collide</sub> = v<sub>rock</sub> × t<sub>collide</t> + r<sub>0</sub></code> and <code>r<sub>slug, collide</sub> = v<sub>slug</sub> × t<sub>collide</t></code>
    - <b>therefore, <code>t<sub>collide</t> = r<sub>0</sub> ÷ (v<sub>rock</sub> - v<sub>slug</sub>)</code></b>
    - knowing the collision time, we can determine the firing angles
    - <b>therefore, <code>phi<sub>collide</sub> = m<sub>φ</sub> × t<sub>collide</sub> + b<sub>φ</sub></code> and <code>theta<sub>collide</sub> = m<sub>0</sub> × t<sub>collide</sub> + b<sub>0</sub></code></b>
