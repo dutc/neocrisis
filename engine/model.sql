@@ -565,6 +565,7 @@ begin
     create table if not exists slugs ( -- {{{
         id serial primary key
         , name text not null
+        , target text
         , fired timestamp with time zone default now()
         , params slug_params not null default (0, 0, 0)
             check (
@@ -579,6 +580,7 @@ begin
         id serial primary key
         , name text not null
         , mass integer not null default 4
+        , target text
         , fired timestamp with time zone default now()
         , params rock_params not null default (0, 0, 0, 0, 0, 0)
             check (
@@ -666,6 +668,7 @@ begin
         select
             r.id
             , r.name
+            , r.target
             , r.mass
             , r.fired
             , (h.collision).t as collided
@@ -688,6 +691,7 @@ begin
         select
             s.id
             , s.name
+            , s.target
             , s.fired
             , (h.collision).t as collided
             , s.params
@@ -710,6 +714,7 @@ begin
                 'rocks'::regclass
                 , id
                 , name
+                , target
                 , mass
                 , fired
                 , collided
@@ -730,6 +735,7 @@ begin
                 'slugs'::regclass
                 , id
                 , name
+                , target
                 , 1 as mass
                 , fired
                 , collided

@@ -59,6 +59,7 @@ def observation(octant):
             regclass
             , name
             , mass
+            , target
             , fired
             , (pos).r::double precision as pos_r
             , (pos).theta::double precision as pos_theta
@@ -78,6 +79,7 @@ def observation(octant):
             {
                 'type': {'api.rocks': 'rock', 'api.slugs': 'slug'}.get(x.regclass, 'unknown'),
                 'name': x.name,
+                'target': x.target,
                 'mass': x.mass,
                 'fired': x.fired.isoformat(),
                 'pos': {'r': x.pos_r, 'theta': x.pos_theta, 'phi': x.pos_phi},
