@@ -6,8 +6,3 @@ server {
         proxy_pass http://unix:{{ proj_folder }}/api/neocrisis.sock;
     }
 }
-
-server {
-    server_name www.neocrisis.xyz;
-    return 301 https://github.com/dutc/neocrisis;
-}
