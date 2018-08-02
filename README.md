@@ -51,7 +51,7 @@ Instructions for how to request or send info to the server is below.
 endpoint URL | HTTP verb | params | description 
 -------------|-----------|--------|-------------
 `/telescope/<int:octant>` | GET | `octant`, number from [0, 8] | images the specified `octant` (I - VIII) of the night sky and returns NEOs it sees
-`/railgun` | POST | `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi
+`/railgun` | POST | `name`, string<br>`phi`, number<br>`theta`, number | fires a slug named `name` at the specified angles `theta` and `phi`
 
 The `/telescope` endpoint returns a JSON structure that looks like:
 `{ "objects": [ obj, … ] }`
