@@ -93,7 +93,7 @@ def observation(octant):
 
 @app.route('/docs', methods=['GET'])
 def docs():
-    redirect('https://github.com/dutc/neocrisis.git')
+    return redirect('https://github.com/dutc/neocrisis.git')
 
 @app.route('/telescope/<int:octant>', methods=['GET'])
 def telescope(octant):
