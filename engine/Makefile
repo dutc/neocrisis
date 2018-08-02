@@ -2,6 +2,8 @@
 
 ifneq (,$(wildcard $(PWD)/env))
 	SHELL := $(PWD)/env /bin/zsh
+else
+	SHELL := /bin/zsh
 endif
 
 makefile   := $(lastword $(MAKEFILE_LIST))
