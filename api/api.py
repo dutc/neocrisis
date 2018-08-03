@@ -56,7 +56,8 @@ def fire_slug(name, target, theta, phi):
 def observation(octant):
     query = '''
         select
-            regclass
+            id
+            , regclass
             , name
             , mass
             , target
@@ -77,6 +78,7 @@ def observation(octant):
         cur.execute(query, {'octant': octant})
         objects = [
             {
+                'id': x.id,
                 'type': {'api.rocks': 'rock', 'api.slugs': 'slug'}.get(x.regclass, 'unknown'),
                 'name': x.name,
                 'target': x.target,
