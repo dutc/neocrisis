@@ -3,7 +3,7 @@ from random import randint
 from multiprocessing import Value
 from numbers import Number
 
-from flask import Flask, g, request, jsonify, make_response
+from flask import Flask, g, request, jsonify, make_response, redirect
 from psycopg2 import connect
 from psycopg2.extras import NamedTupleCursor
 from flask_limiter import Limiter
@@ -23,7 +23,7 @@ app = Flask(__name__)
 limiter = Limiter(
     app,
     key_func = get_remote_address,
-    default_limits = ['10 per second'],
+    default_limits = ['20 per second'],
 )
 
 counter = Value('i', 0)
@@ -45,7 +45,7 @@ def close_db(_):
 def fire_slug(name, target, theta, phi):
     query = '''
         insert into game.slugs (name, params)
-        values (%(name)s, (%(theta)s, %(phi)s, c() / 10, %(target)))
+        values (%(name)s, (%(theta)s, %(phi)s, 10))
     '''
     params = {'name': name, 'theta': theta, 'phi': phi, 'target': target}
     with get_db().cursor() as cur:
@@ -92,6 +92,10 @@ def observation(octant):
         ]
     return {'objects': objects}
 
+@app.route('/', methods=['GET'])
+@app.route('/docs', methods=['GET'])
+def docs():
+    return redirect('https://github.com/dutc/neocrisis.git')
 
 @app.route('/telescope/<int:octant>', methods=['GET'])
 def telescope(octant):
@@ -102,8 +106,8 @@ def telescope(octant):
 
 
 @app.route('/railgun', methods=['POST'])
-@limiter.limit('1 per 5 seconds')
-def laser():
+@limiter.limit('5 per 1 seconds')
+def railgun():
     data = request.json
     if data is None:
         msg = {'error': 'malformed request'}
@@ -129,7 +133,7 @@ def laser():
 
 
 @app.route('/info', methods=['GET'])
-@limiter.limit('1 per 1 second')
+@limiter.limit('10 per 1 second')
 def info():
     info = {
         'name': SATELLITE_NAME,
