@@ -42,12 +42,12 @@ def close_db(_):
         g.db.close()
 
 
-def fire_slug(name, theta, phi):
+def fire_slug(name, target, theta, phi):
     query = '''
         insert into game.slugs (name, params)
         values (%(name)s, (%(theta)s, %(phi)s, 10))
     '''
-    params = {'name': name, 'theta': theta, 'phi': phi}
+    params = {'name': name, 'theta': theta, 'phi': phi, 'target': target}
     with get_db().cursor() as cur:
         cur.execute(query, params)
     return {'slug': params}
@@ -59,6 +59,7 @@ def observation(octant):
             regclass
             , name
             , mass
+            , target
             , fired
             , (pos).r::double precision as pos_r
             , (pos).theta::double precision as pos_theta
@@ -78,6 +79,7 @@ def observation(octant):
             {
                 'type': {'api.rocks': 'rock', 'api.slugs': 'slug'}.get(x.regclass, 'unknown'),
                 'name': x.name,
+                'target': x.target,
                 'mass': x.mass,
                 'fired': x.fired.isoformat(),
                 'pos': {'r': x.pos_r, 'theta': x.pos_theta, 'phi': x.pos_phi},
@@ -118,11 +120,12 @@ def railgun():
     try:
         theta = float(data.get('theta'))
         phi = float(data.get('phi'))
+        target = data.get('target')
     except ValueError:
         msg = {'error': f'bad theta/phi params'}
         return make_response(jsonify(msg), 400)
 
-    slug = fire_slug(name, theta, phi)
+    slug = fire_slug(name, target, theta, phi)
     if slug is None:
         msg = {'error': f'firing failed'}
         return make_response(jsonify(msg), 400)

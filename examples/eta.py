@@ -15,28 +15,29 @@ if DBHOST is not None:
     DBPARAMS['host'] = DBHOST
 
 
-ETA_QUERY = r"""
-set search_path = game, public;
-
+QUERY = r"""
 select
-    name
-    , regclass
-    , (pos).r as eta / (rock_params).v as eta
-from api.neos
-where neos.regclass = 'rocks'::regclass -- and (rock_params).v != 0;
+    n.name
+    , coalesce(n.target, 'unknown') as target
+    , n.regclass
+    , case
+    when (n.rock_params).v = 0 then 'Infinity'::double precision
+    else (n.pos).r / (n.rock_params).v
+    end as eta
+from api.neos as n
+where n.regclass = 'api.rocks'::regclass
 """
 
-
 if __name__ == '__main__':
-    db = psycopg2.connect(**DBPARAMS, cursor_factory=NamedTupleCursor)
-    with db.cursor() as cursor:
-        while True:
-            import pdb
-            pdb.set_trace()
-            cursor.execute(ETA_QUERY)
-            for asteroid in cursor:
-                name, eta = asteroid.name, asteroid.eta
-                print(f'ASTEROID "{name}" IS {eta} SECONDS FROM IMPACT')
-            time.sleep(1)
-            os.system('clear')
-    db.close()
+    with psycopg2.connect(**DBPARAMS, cursor_factory=NamedTupleCursor) as db:
+        with db.cursor() as cur:
+            while True:
+                os.system('clear')
+                # cur.execute('select name from api.neos')
+                # for row in cur:
+                #     print(row)
+                print(f'{"name".center(32,"-")}{"target".center(32,"-")}{"eta".center(16,"-")}')
+                cur.execute(QUERY)
+                for row in cur:
+                    print(f'{row.name:^32}{row.target:^32}{row.eta:>8.0f}s')
+                time.sleep(.1)
