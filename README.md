@@ -50,7 +50,7 @@ Verb | endpoint URL | params | description
 -----|--------------|--------|-------------
 GET | `/info` || gives information about the orbital weapon station
 GET | `/telescope/<int:octant>` | `octant` from [1, 8] | images the specified `octant` (Ⅰ-Ⅷ) of the night sky and returns NEOs it sees
-POST | `/railgun` |  `name`, string<br>`target`, string <br>`phi`, number<br>`theta`, number | fires a slug named `name` intending to hit `target` at the specified angles `theta` and `phi`
+POST | `/railgun` |  `name`, string<br>`target`, string <br>`phi`, number<br>`theta`, number<br>`fired`, string (optional) | fires a slug named `name` intending to hit `target` at the specified angles `theta` and `phi`, optionally specifying the future `fired` time at which to fire the slug (for precise timing purposes)
 
 The `/telescope` endpoint returns a JSON structure that looks like:
 `{ "objects": [ obj, … ] }`
