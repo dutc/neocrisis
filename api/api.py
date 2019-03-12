@@ -8,6 +8,8 @@ from psycopg2 import connect
 from psycopg2.extras import NamedTupleCursor
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from dateutil.parser import parse
+from datetime import datetime
 
 DBNAME = os.environ.get('DBNAME', 'nc')
 DBHOST = os.environ.get('DBHOST', None)
@@ -42,16 +44,22 @@ def close_db(_):
         g.db.close()
 
 
-def fire_slug(name, target, theta, phi):
-    query = '''
-        insert into game.slugs (name, params)
-        values (%(name)s, (%(theta)s, %(phi)s, 10))
-    '''
+def fire_slug(name, target, theta, phi, fired=None):
     params = {'name': name, 'theta': theta, 'phi': phi, 'target': target}
+    if fired is None:
+        query = '''
+            insert into game.slugs (name, params)
+            values (%(name)s, (%(theta)s, %(phi)s, 10))
+        '''
+    else:
+        query = '''
+            insert into game.slugs (name, params, fired)
+            values (%(name)s, (%(theta)s, %(phi)s, 10), %(fired)s)
+        '''
+        params['fired'] = fired
     with get_db().cursor() as cur:
         cur.execute(query, params)
     return {'slug': params}
-
 
 def observation(octant):
     query = '''
@@ -123,11 +131,23 @@ def railgun():
         theta = float(data.get('theta'))
         phi = float(data.get('phi'))
         target = data.get('target')
-    except ValueError:
+    except Exception:
         msg = {'error': f'bad theta/phi params'}
         return make_response(jsonify(msg), 400)
 
-    slug = fire_slug(name, target, theta, phi)
+    if 'fired' not in data:
+        fired = None
+    else:
+        try:
+            fired = parse(data['fired'], tzinfos={})
+            if fired < datetime.now():
+                msg = {'error': f"firing time before current time"}
+                return make_response(jsonify(msg), 400)
+        except Exception:
+            msg = {'error': f'bad firing time'}
+            return make_response(jsonify(msg), 400)
+
+    slug = fire_slug(name, target, theta, phi, fired=fired)
     if slug is None:
         msg = {'error': f'firing failed'}
         return make_response(jsonify(msg), 400)
