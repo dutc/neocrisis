@@ -613,7 +613,6 @@ begin
         , rock integer unique not null references rocks (id) on delete cascade
         , slug integer unique not null references slugs (id) on delete cascade
         , collision collision
-        , phase timestamp with time zone not null default now()
     );
     alter table rocks add column source_name text default null;
     alter table rocks add column source_rock integer default null references rocks (id) on delete cascade;
@@ -781,6 +780,28 @@ begin
         from game.hits as h
         inner join game.rocks as r on (h.rock = r.id)
         inner join game.slugs as s on (h.slug = s.id)
+    ); -- }}}
+
+    create or replace view misses as (-- {{{
+        with misses as (
+            select distinct id from game.rocks
+                except
+            select distinct rock as id from game.hits
+        )
+        select
+            r.name as rock
+            , r.fired as fired
+            , (
+                r.fired + interval '1 second' * ((r).params.r_0 / -(r).params.v)
+                , normalize(game.pos(r.fired, r.params,
+                    r.fired + interval '1 second' * ((r).params.r_0 / -(r).params.v)))
+                , (0, 0, 0)::pos
+                , null
+            )::collision as collision
+            , r.target
+        from game.rocks as r
+        inner join misses as m on (m.id = r.id)
+        where r.fired + interval '1 second' * ((r).params.r_0 / -(r).params.v) < now()
     ); -- }}}
 
 end $views$; -- }}}

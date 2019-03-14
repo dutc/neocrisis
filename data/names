@@ -1,1815 +1,1815 @@
-U Zessin
-Id Jong
-A Burt
-T Naran
-M Pool
-J McNeil
-R Collins
-Ed Bueger
-C Foster
-Jv Rossum
-M Hrončok
-Vd Lima
-D Preston
-A Cucci
-B Schmertz
-L Kneler
-M Frank
-T Campbell
-N Zeldovich
-D Ascher
-A Mazin
-N Benesch
-A Tambe
-J Killen
-U Eckhardt
-E Andersén
-G Grzywacz
-G Cooper
-D Brecht
-D Dorfman
-D Marek
-M Favas
-S Martini
-C Hoffman
-A Varma
-F Patel
-A Stührk
-C Douady
-R Hindle
-R Srinivasan
-V Šmilauer
-JC Avión
-L Pefferkorn
-Z Petkovic
-S Bevan
-G Gonçalves
-M Meyer
-AW Smith
-S Saha
-C Webster
-K Howard
-K Manheimer
-A Ysmal
-A Rigo
-J Lawall
-D Cinege
-M Taylor
-S Krah
-A Holder
-M Pall
-S Purcell
-I Simionescu
-F Lundh
-B Olson
-J Chen
-R Rampin
-A Kruis
-A Horev
-ES Raymond
-M Zarnstorff
-V Korolev
-J Palard
-A Coventry
-K Kisiel
-O Krasnikov
-D Abrahams
-E Morehouse
-J Armstrong
-D Soede
-P Homburg
-M Ahrens
-M McLay
-S Berg
-R Townsend
-I Herman
-L Lajeanne
-TR Palmer
-K Kocak
-Z Mithra
-S Harvey
-P Meyer
-A Szekely
-M Chermside
-C Zeitouny
-T Lamb
-NP Simons
-M Scharf
-Jonas H
-S Mihaila
-J Konieczny
-J Wheeler
-E Fortuné
-L Takeuchi
-P Price
-C Lawrence
-D Binks
-S Turner
-C Stoel
-D Finnie
-A Bensky
-B Haddow
-J Machin
-C Marc
-LH Fresh
-K Lu
-A Fokin
-A Ishimoto
-J Burgett
-TB Hartwell
-P Bosch
-T MacKenzie
-R Hettinger
-S Holden
-T Cole
-R Boerdijk
-S Sundaresan
-G Chapman
-A Shkop
-AJJ Davis
-R Russell
-DR Tzeck
-C Stratakis
-A Griffini
-N Kobald
-B Cauet
-CA Craig
-J MacDonald
-JMB Rivas
-N Riley
-A Krpic
-P Lindqvist
-A Dalke
-P Dubois
-G Limberg
-A Shende
-E Tukia
-D Coneybeare
-T Chia
-N Spurrier
-W Bolsterlee
-R Wolff
-Yd Leeuw
-G Matthews
-D Cole
-E Bendersky
-M Barnett
-G Holl
-J Tromp
-T Everett
-S Reiz
-A Vant
-T Beadle
-L Thiderman
-P Lauder
-S Schulenburg
-F Festi
-M Inge
-N Pickett
-R Williams
-A Ankan
-T Einat
-E Demaine
-V Khera
-E Rodriguez
-M Novikov
-K Walzer
-T Perrin
-Rv Liere
-F Bock
-G Griffin
-N Schnider
-EH Smith
-L Hastings
-N Aides
-AV Mishkovskyi
-R Stoakley
-S Velankar
-E Lipman
-F Kreutz
-J McCracken
-T Hwang
-C Buckley
-A Babo
-A Augustin
-D Scherer
-M Russell
-A Kuchling
-Y Chou
-A Gaul
-A Jackson
-A Afanasyev
-P Viktorin
-N Ferguson
-M Gautier
-S Reifschneider
-D Diniz
-G Furnish
-D Shachnev
-R Li
-CJ Schroeder
-T Nelson
-A Woodbeck
-K Hightower
-G Ewing
-C Devlin
-S Piercy
-Mvd Peijl
-R Butler
-A Shah
-T Bousch
-V Kushnir
-G Herron
-Z Weinberg
-O Broytmann
-S Raj
-J Ducasse
-M Joiner
-R Smith
-Hd Graaff
-G Kochanski
-A Baciero
-A Espaze
-M Widjaja
-CJ Phoenix
-E Yi
-T Perl
-J King
-P Anderson
-A Diamant
-S Rushing
-KB Kaiser
-F Aneche
-H Sasse
-M Teichmann
-D Zongker
-N Bastin
-V Marchetti
-J Alakuijala
-G Polo
-J Giddy
-A Willmer
-S Storchaka
-J Shukla
-PP Lefebvre
-P Bleyer
-M Levinson
-A Hourihane
-D Barry
-B Rosner
-J Kołodziej
-P Parente
-L Wang
-B Kras
-S Kryskalla
-M Faassen
-B McLoughlin
-U Upadhyay
-Av Bidder
-I Donmez
-G Schmid
-Z Luo
-B Howes
-K Gräsman
-B Cannon
-L Ulmer
-T Tims
-A Kaptur
-KJ Qiu
-J Szakmeister
-T Wouters
-JC Davis
-B Reiter
-EK Ream
-J Jehannet
-S Cufre
-K Hinsen
-J Henstridge
-J Snider
-M Chapman
-J Rush
-B Berna
-A Stewart
-L Mewburn
-L Buitinck
-N Palumbo
-D Kuhlman
-S Kirsch
-N Hussain
-E Siegerman
-D Drukker
-P Sevander
-D Wagner-Hall
-Z Ware
-M Bryant
-T Stabell-Kulo
-M Mulich
-M Tripathi
-T Heller
-J Aycock
-P Rubin
-V Terrón
-R Sinha
-E Furman
-B Dupuis
-S Ruby
-N Muller
-V Sharma
-MSZ Rizvi
-M May
-I Becker
-M Scataglini
-Q Barnes
-AS Runde
-F Tweedale
-V Michel
-G Yoshida
-D Cournapeau
-W Lewis
-D Merejkowsky
-B Noon
-M Hoy
-J Wiseman
-G Philipson
-A Khurana
-M Panzenböck
-T Heaney
-M Donolo
-H Kawai
-E Catmur
-J Tittsler
-S Wijaya
-M Henry
-S Dial
-D Mennella
-P Knight
-J Lynch
-J Lowe
-J Reese
-A Phillips
-T Jollans
-A Qvist
-G Temple
-Xd Gaye
-P Prescod
-H Diogenes
-M Troffaes
-D Rizzo
-N Schemenauer
-G Duzan
-W Rishel
-M Yamamoto
-P Jackson
-F Nehr
-H Park
-C Miller
-K Yee
-F Willison
-S Wirtel
-T O'Malley
-HL Tavares
-P Szczepaniak
-D Stufft
-M Dzumanenko
-A Chrigström
-P Kroger
-N Inada
-W Langner
-T Rachel
-B Roberts
-D Pula
-Z Dollenstein
-A Ikinci
-M Mäki
-R Smotrzyk
-L Regebro
-D Jenkins
-N Maclaren
-M Pieters
-JA Vidrine
-T Peters
-G Häring
-G Rodola
-I Proskurnia
-A Briggs
-D Wilson
-F Couzo
-E Daniel
-B Clements
-T Middleton
-B Bedford
-P Swartz
-T Loredo
-D Harrigan
-H Heimbuerger
-J Djolonga
-W Yoon
-I Turner-Trauring
-E Elizondo
-M Bachry
-W Ewert
-V Delft
-C Rowland
-D May
-EV Smith
-C Schubert
-J Rutherford
-M Chaput
-M Selik
-D Kozan
-PØ Karlsen
-C Hudon
-V Mukhamedzhanova
-P Winkler
-I Cordasco
-N Chammas
-X Zhang
-S Thorne
-D Beazley
-A Belopolsky
-B Jackson
-A Poliak
-A Chin-A-Young
-A Robinson
-J Knupp
-P Subbiah
-M Gedminas
-ED Greef
-B Scott
-D Yoo
-R Clemons
-M Kato
-A Yaari
-P Carrier
-O Martin
-J Vermeulen
-V Shcherbina
-R Abraham
-Sarah K
-G Liktaras
-G Worley
-Y Shuaijie
-B Janssen
-A Gaedke
-J Dasteel
-J Niehof
-R Blanch
-D Na
-E Adler
-E Kuusela
-A Techtonik
-M Nowikowski
-L Munro
-B Savage
-D Schwertberger
-D Wyatt
-JA Erhard
-M Otteneder
-T Becker
-T Wardill
-A Cuni
-MP Reilly
-E Price
-R Pfannschmidt
-B Bayles
-C Barton
-W Dörwald
-AD Duma
-J Taddei
-G Edwards
-C Robben
-Y Gale
-J Almeida
-M Roddy
-E Lindvall
-C Stern
-A Riley
-M Birtwell
-M Stepniowski
-P Haight
-M Papillon
-B Escoto
-M Pomraning
-Z Pincus
-T Sylvain
-A Watters
-G McFarlane
-D Gruneau
-NB Bidart
-J Palus
-D Dittmar
-K Briggs
-R Kern
-R Apte
-P Wirtz
-BK Jones
-N Mathewson
-J Piéronne
-L Ballabio
-N Becker
-M Plch
-T Miedema
-K Jacobsen
-D Barnett
-N Vine
-Svd Zee
-J Kim
-D Grisby
-B Janin
-C Spence
-evilzero
-A Kachayev
-R Donnelly
-J Tikhonov
-L Vacek
-Ev Blokland
-R Loyzaga
-T Hoger
-E Beser
-A Fontaine
-G Chappell
-V Salgado
-JD Pettit
-S Ma
-R Voicilas
-J DeGood
-L Hähne
-Gd Perthuis
-N O'Brian
-D Chambers
-KV Jónsson
-C Waldman
-I Talip
-MVd Bergh
-M Chisholm
-N Batchelder
-E Rose
-G Nofi
-M Dorman
-Z Halas
-K Holanda
-A Martelli
-Z O'Whielacronx
-N Russo
-R Masse
-K Miller
-SD Daniels
-C Ryland
-N Sanchez
-D Costanzo
-G Jones
-S Rasic
-F Sells
-Z Effron
-C Rebert
-L Gaifax
-UA Lindgren
-I Cheung
-A Martin
-M Zamazal
-CR Lees
-A Zaprzala
-M Orrù
-L Gustäbel
-M Verdone
-J Ollie
-R Jayakrishnan
-P Everitt
-R Salz
-F Thibault
-T Northover
-T Rice
-A Jung
-T Kinebuchi
-C White
-N Henrie
-A Kitada
-A Ardelean
-J Pulliainen
-D Morr
-L Wirzenius
-J Calderone
-A Dustman
-MSM Rodrigues
-C Hsu
-F Vercruesse
-A Raj
-B Curtin
-J Gehrcke
-Z Jędrzejewski-Szmek
-D Trout
-D Beaudry
-S Cross
-A Taylor
-SL Amador
-R Finn
-T Gellekum
-G Ball
-F Ricciardi
-Q Gallet-Gilles
-T Burnette
-Y Liu
-D Wolfe
-tmk
-A Shigin
-B Yodlowski
-C Holmquist
-M Recht
-G Kollerie
-F Schwindt
-J Jewett
-A Roiban
-M Niemira
-D Viehland
-P Chambon
-Z Bitter
-D Turner
-L Clark-Michalek
-A Vezza
-N Bogoychev
-J Edmonds
-A Hill
-N Soffer
-M Wichmann
-A Brohi
-K VanderBeek
-P Devalkeneer
-Y Robla
-J Eunice
-M Farrell
-J Kanis
-P Szabó
-S Khurana
-B Laurie
-T Hatch
-NJ Lovely
-R Kaplan
-M Shiplett
-A Nester
-M Perreault
-J Black
-S Franke
-JV Miller
-K Svensson
-R Donohue
-A Bogildea
-T Carel
-D Steele
-C Roy
-K Simonov
-E Hershey
-R Westman
-OS Neto
-T Lee
-D Vasiliev
-J Hermann
-O Nierstrasz
-B Hayden
-R Dev
-R Thomas
-mattip
-S Work
-B Pettersen
-T Lange
-S Cousins
-K Busch
-B Lindqvist
-S Tonkin
-SM Gava
-J Ramnani
-M Carlton
-B Gertzfield
-L Maystre
-J Vogel
-H Weber
-C Feynman
-S Williams
-J Ahlstrom
-D Griffin
-T Carroll
-J Seo
-J Interrante
-F Wiemann
-J Hugunin
-J Peel
-A Olsen
-J Añez
-P Moore
-N Sullivan
-R Andrus
-J Anglin
-M Sloan
-O Tiram
-B Watson
-V Čačić
-D Urban
-A Roach
-A Arlen
-AB Pillai
-C Jerdonek
-E Huss
-J Dolecek
-S Joseph
-V Haisman
-T Mitchell
-V Legoll
-J DeLaHunt
-H Eckardt
-F Gansevles
-S Majewski
-D Bashford
-K Altis
-U Furquim
-G Philbrick
-A Lord
-E Dandrea
-A Grynenko
-K Vijayan
-T Holenstein
-PH Jensen
-F Cruz
-J Oakley
-E Tollerud
-C Laird
-G Langford
-J Orendorff
-L Cho
-AD Moore
-G Wiener
-M Bozon
-J Jorgensen
-M Oberkirch
-R Holm
-P Biondi
-Akira
-R Santos
-A Patrascu
-O Palkovsky
-J Hylton
-N Fischbeck
-J Jansen
-J Dennis
-J Jauhiainen
-S Reeves
-J Wagner
-F Ribeiro
-A Filatova
-M Seifert
-B Darnell
-E Welbourne
-RD Murray
-SD Nurpmeso
-JV Goey
-A Palivoda
-JC Abela
-A Leufroy
-T Nyberg
-J Bauer
-J Oberheide
-F Håård
-L Rojas
-T Silk
-D Kazakov
-M Yoshikawa
-A Starks
-R Hawkes
-R Roth
-J Dzolonga
-J Popplewell
-S Koshiba
-A Hammarquist
-A Babenhauserheide
-R Hopper
-D Phillips
-T Rovito
-D Rumed
-A Oakley
-B Tutt
-J Sipprell
-F Ahmad
-R Walker
-M Bussonnier
-J Courteau
-J Kaplan-Moss
-R Lamy
-J O'Connor
-E Peuha
-M Morrison
-P Lovett
-J Chang
-K Sitaker
-R Irwin
-S Witzel
-G Sipe
-C Huang
-D Draayer
-J Bronson
-PA Koren
-A Kasyanov
-A Ronacher
-N Ghaznavi
-TJ Kim
-T Tromey
-L Ellinghaus
-S Clift
-R Mstoi
-B Peksag
-H Krosing
-R Milner
-K Jachim
-R Rachum
-T Tisdall
-J Diederich
-J Radix
-E Türkay
-W Hale4
-A Rasinen
-S Bethard
-M Lundy
-M Roberts
-N Tallim
-N Joly
-L Routt
-V Dupras
-G Talvola
-M Paolini
-M McFadden
-T Epperly
-J Kozera
-J DuBois
-S Mathieu
-A Schnell
-A Pelme
-A Liu
-H Urtubia
-O Cerna
-Z Wilcox-O'Hearn
-R Schreiber
-J Epler
-J Kaliszewski
-B Kabrda
-M Cosbuc
-G Stein
-C Fabricio
-E Tiedemann
-I Pop
-T Arihiro
-R Klatchko
-F Groffen
-JD Wilson
-J Kloth
-J Koshy
-B Radons
-M Ernst
-G Olson
-U Bartelt
-J Williams
-LP Deutsch
-L Hardman
-B Merrell
-G Funch
-S Alexander
-M Šuppa
-A McNamara
-J Hayek
-F Reghenzani
-J Hartley
-G Neville-Neil
-RS Wanderley
-JM Vandenberg
-C Lowe
-C Herborth
-D Brennan
-G Lefkowitz
-K McDonald
-D Ely
-M Leduc-Hamel
-N Norwitz
-G Jansen
-W Tanksley
-I Lee
-J Balogh
-D Baranov
-G Civario
-V Kok
-K Delong
-J Lamy
-S Blondon
-G Spear
-B Froehle
-M Hudson
-G Eraslan
-T Wiedijk
-B Sayer
-M Hammond
-N Trapuzzano
-N Girdhar
-R McCreary
-R Kleckner
-GM Bravo
-SS Martín
-M Urman
-S Law
-R Devarakonda
-L Dunstan
-J Jones
-P Stoehr
-M Summerfield
-M Jehanzeb
-R Dunn
-D Townshend
-SO Vasquez
-C Barker
-F Pérez
-C Shepherd
-Y Selivanov
-P Milani
-FM Brugué
-J Hauser
-S Finer
-S Palakodety
-K Goel
-JA Morrison
-J Nagle
-P Otten
-M Foord
-W Wu
-V Vainio
-JT Miller
-G Simões
-C Winter
-ENV Weele
-C Angelico
-T Fenzl
-C Bradbury
-T Hochberg
-N Horesh
-O Grisel
-T Funaba
-A Sampson
-T Ballinger
-F Allen
-R Debnath
-G Webster
-O Vielpeau
-I Rossi
-A Tuininga
-A Vassalotti
-C Wohlganger
-Sd Vries
-D Kholia
-D Dale
-J Berman
-J Finkelstein
-S Brauch
-É Araujo
-Svd Veen
-H Shao
-C McDonough
-A Askar
-T Orsava
-M Layzell
-J Jevnik
-N Honda
-D Clarke
-H Fürstenau
-M Liss
-N Aspinall
-N Chauvat
-A Francis
-R Lagerwall
-D Calvelo
-E Jones
-S Sablé
-A Delobelle
-J Hamano
-C Meyer
-J Trowbridge
-M Perrego
-Z Li
-T Sarna
-T Jarosch
-I Sandler
-D Severson
-E Rundstein
-M Fuchs
-J Noller
-A Izbyshev
-E Burnett
-M Gilfix
-A Gupta
-G Makarewicz
-J Brouwers
-J Sernbrant
-Y Chaudhari
-D Pierson
-M Kozyarchuk
-J Asbahr
-F Wierzbicki
-A Bennetts
-J Chandler
-D Cave
-J Rosenberg
-R Kern
-M Roseman
-P Connell
-W Maier
-A Baxter
-C Natali
-G Malcolm
-Ld Jonge
-LF Helsten
-V Marangozov
-J Sanders
-S Waterbury
-JS Pierre
-S Kirsche
-S Hansen
-J Craven
-M Gallagher
-P Spilling
-M Vogt
-J Anger
-T Güttler
-L Damerow
-L Kates
-J Winston
-D Osipov
-R Becker
-B Kahn
-Z Spytz
-M Kodali
-P Boddie
-P Webster
-H Shang
-J Hillacre
-O Reichenberg
-D Gass
-S Kreft
-W Scherer
-М Коренберг
-B Thorne
-R Rengelink
-V Riscutia
+C Angelico 318
+K Rodgers 10
+J Hildebrand 664
+N Russo 6799
+C Roole 4270992
+J Norton 652
+D Lam 53
+V Kok 1402063
+R Santos 14
+Ž Seilnacht 097384
+J Kaliszewski 5934390
+T Hatch 31715
+M Brandenberg 82531944
+G Eraslan 68
+S Ratnakumar 76
+T Perrin 66330
+H Suzuki 4707670
+J Davis 839
+R Ruohonen 395255
+G Couch 9493657
+Z Petkovic 75229
+J Anderson 54865
+R Stoakley 6223392
+M Jacob 4572
+M Donolo 94
+SD Evans 957
+JD Wilson 292803
+Mvd Peijl 517690
+D Stufft 718376
+S Miale 1996568
+J DeLaHunt 97
+T Middleton 35618
+Wv Heyst 23
+A Lee 8997
+A Vant 72516303
+M Ligr 38990375
+G Humphreys 348128
+V Marchetti 217237
+R Debnath 881198
+L Gustäbel 46484695
+K McDonald 38105
+L Cho 57061
+AD Duma 76
+R Smith 2357
+PA Koren 2594
+T Hwang 95
+C Miller 61
+M Singh 58895807
+J Borgström 37
+I Simionescu 3882446
+N Schemenauer 653
+B Halley 63
+E Abusalimov 45
+T Wardill 54
+T Peters 502
+A Delobelle 870
+T Stabell-Kulo 030644
+L Routt 59914
+D Kohler 591
+D Trout 63346891
+S Fedoseev 7955247
+P Carrier 097
+W Martínez 22667014
+N Inada 55267187
+O Vielpeau 5112
+T Kuratomi 98
+J Hermann 42
+A Métaireau 62
+J Anger 039924
+Y Aknin 695
+MSM Rodrigues 950447
+I Pop 82
+F Wiemann 328366
+Rv Liere 26099180
+M Stepniowski 4118
+D Jacobs 0941074
+V Delft 71
+K Yoshida 48
+D Calvelo 88854350
+A Afshar 4240
+Yd Leeuw 32159705
+Hd Graaff 94
+A Ardelean 66952592
+JR Coombs 49249447
+R McCreary 4395
+M Guravage 30
+K Simonov 05939919
+R Mstoi 399
+M Chermside 80395486
+N Muller 2399180
+O Reichenberg 02
+C Theune 15495
+E Lipman 4291
+X Li 572
+N Horesh 21
+C Combelles 22
+C Feynman 43
+A Watters 44053
+EV Smith 884
+H Schlawack 64151
+T Holmes 9112
+GV Wilson 245
+R Rengelink 478
+S Holden 330
+Pt Hagen 8278244
+M Scharf 305
+Vd Lima 70589
+B Kleineidam 70
+KB Kaiser 7934357
+HL Tavares 532
+S Montanaro 713
+A Taylor 365169
+N Sanchez 65766
+I Talip 7221
+M Carlton 81480429
+N Vine 54905856
+I Beer 2127
+L Hudson 3982319
+R Walker 577153
+R Butler 46140
+AB Pillai 222643
+F Fix 82473552
+R Andrus 5982
+A Umer 260311
+M Plch 08346
+M Sloan 84767
+D Yoo 18
+Gv Rossum 70797901
+P Rubin 155146
+I Proskurnia 78595575
+J Szakmeister 59
+R Owen 00626
+J Dasteel 3393
+J Knupp 94
+E Peuha 0185
+M Bussonnier 572
+DM Cooke 687791
+J Cugini 921
+R Hawkes 52
+M Boquien 5297366
+JV Miller 49287
+JS Pierre 89200
+F Cruz 688
+DM Mounce 06589
+M Muller 7508760
+L Meertens 084730
+M Klose 22484
+E Adler 43
+D Boswell 81023239
+N Norwitz 5508
+M Lenik 814
+N Chauvat 63579512
+F Kreutz 77126706
+S Sundaresan 79462426
+M Vogt 04424001
+M Dengler 570087
+D Stromberg 4109
+RM Tew 996167
+T Heller 0592472
+J Paalasmaa 36431347
+A McIntyre 5942
+J Pickering 564223
+G Niemeyer 8473
+R Yorke 27728
+S Marnach 63968
+A Kuchling 85984566
+G Worley 388
+J Chandler 2695
+S Kreft 81721
+Y Pan 43700
+K Hinsen 4375972
+B Kras 113579
+L Clark-Michalek 492
+M Mulich 54779
+A Calmettes 81891793
+S Sharma 57491
+M Barnett 95172284
+S Work 128038
+T Golden 65950430
+C McPheeters 874072
+Z Jędrzejewski-Szmek 1218734
+A Sampson 452825
+J McCracken 5144
+A Baciero 5693
+T Brink 2252175
+E Rose 252
+M Roddy 10
+JA Erhard 77523249
+N Bareil 4125
+Akira 86904
+J Kerr 5238452
+S Palakodety 5441
+C Wells 65809290
+PH Jensen 6084712
+N Benesch 4431713
+S Chowdhury 7572
+M Hoy 176981
+F Xicluna 843
+M Kato 13083914
+N Riley 3678
+Sd Vries 5724348
+M Morrison 83236772
+Y Lavi 542
+N Estibals 800
+MV Portela 50
+LF Helsten 0190
+A Bensky 77087
+R Behrends 55465998
+N Tallim 099729
+J Wilk 436976
+A Yaari 94760094
+C Iacob 976
+S Holloway 9975
+G Sakkis 3561
+E Tollerud 559431
+T Lange 03778
+S Mihaila 72171850
+D Black 7259
+E Demaine 5150
+H Chang 1627
+J Lawall 49082
+D Wyatt 35875062
+D Edelsohn 37
+G Olson 548
+Z Dollenstein 40237
+C Willing 27346321
+S Dial 893824
+A Mikropoulos 1575440
+D Stutzbach 161827
+S Kryskalla 2376
+LP Melo 565093
+B Peksag 946106
+J Love 1632
+J Fulton 157
+R Brodie 92
+S Ghosh 69766185
+D Riti 02
+D Miller 693
+P Knight 51390
+K Kocak 8840
+A Izbyshev 29
+L Buitinck 27
+J Kloth 0471
+A Svetlov 29341
+AN Patil 096339
+J Ehresman 191251
+I Seyer 9988
+A Ishimoto 293875
+I Frohne 627
+Z Pincus 48
+T Kinebuchi 4879
+Xd Gaye 580
+N Batchelder 3371889
+J Snider 56270382
+S Law 435218
+T Fenzl 7556154
+Y Sionneau 43
+T Rice 09337704
+MP Reilly 845
+K VanderBeek 69
+J Pulliainen 727
+T Ingraldi 02670
+J Dzolonga 650
+Y Shuaijie 0098243
+D Kozan 6618
+H Wundram 32443
+N Maclaren 2210675
+Aahz 91682675
+O Plakhotnyuk 02
+K Goel 524
+N Kobald 649367
+A Kaptur 9300834
+W Walczak 904429
+Z Bitter 48892
+V Riscutia 94
+K Jachim 495822
+J Zijlstra 3908426
+B Reiter 8856948
+J Gehrcke 94783
+T Nakayama 63882
 Matthieu S
-TW Burton
-V Chugunov
-G Rees
-J Thomas
-J Fulton
-L Weber
-J Norton
-Y Dorfsman
-S Hoffmeister
-M Goderbauer
-O Benjamin
-J Taylor
-J Rackauckas
-G Dumpleton
-T Thelen
-M Vries
-R Oudkerk
-J Poler
-M Sapiro
-A Calmettes
-DM Mounce
-C Iacob
-T Herve
-T Crompton
-H Nguyen
-T Leeuwenburg
-H Takahashi
-N Estibals
-J Kuhn
-N Coghlan
-E Gershuni
-D Wolever
-Y Sionneau
-T Turocy
-G Sakkis
-TDD Monsyne
-L Luke
-Y Pan
-DM Cooke
-D Stromberg
-MR Bax
-CT Lesniewski-Laas
-D Jeanpierre
-J Fried
-D Kohler
-Y Lavi
-K Leschenko
-M Simcich
-LM Catucci
-CH Yen
-F Pinard
-T Ilsche
-AI MacIntyre
-D Brock
-P Mouzo
-C Gonnerman
-F Xicluna
-M Panter
-D Everly
-YV Zaytsev
-J Élie
-B Fogle
-M Wijaya
-T Filiba
-Ž Seilnacht
-D Cook
-I Wlizlo
-C Heimes
-C Evans
-RL Todd
-K Frazier
-B Tubbs
-F Stajano
-A Eland
-M Ligr
-P McA'Nulty
-B Bumgarner
-JDI Palomar
-D Baarda
-M Packman
-ML Hetland
-E Barry
-J Redford
-JP Riegel
-T Ziadé
-P Schneider-Kamp
-J Weston
-T Oppelstrup
-D Shahaf
-D Boswell
-K Wolf
-M Richard
-E Stevens
-U Petri
-F Gruszczyński
-B Weiner
-S Wehr
-E Berch
-Q Dunkan
-V Fiack
-R Bickers
-JW Shipman
-R Ames
-J Hallio
-Y Gingras
-H Wundram
-J Demeyer
-J Tishler
-A Brancotti
-B Yue
-P Virtanen
-GV Wilson
-R Allen
-Pv Oostrum
-R Upole
-Bv Melle
-Md Hoon
-K Jacobs
-B Halley
-CV Horsen
-T Brannon
-SL Bayer
-B Brazil
-J Hoehle
-B Kearns
-D Ramasamy
-H Saitou
-J Williams
-Y Zeng
-C AtLee
-FK Jensen
-H Pasanen
-J Roskind
-P Sabin
-J Hosang
-L Meertens
-R Yorke
-A Mikropoulos
-J Collins
-M Bayer
-JB Jorgensen
-R Friedrich
-Z Byrne
-V Skyttä
-M Ibanescu
-B Randel
-T Flanagan
-Mv Löwis
-T Pinckney
-A Faerber
-U Kumar
-R Smith-Roberts
-F Visser
-C Wells
-D Black
-J Honig
-D Mitchell
-C Clark
-M Bachmann
-A Pietri
-J Kerr
-A Sottile
-D Stokes
-F Preinstorfer
-K Sivaraam
-J Davis
-H Chang
-S Miale
-Z Piraeus
-F Bruynooghe
-DS Otkidach
-B Hoyt
-J Borgström
-M Terekhov
-S Sharma
-B Ippolito
-A Moura
-M Lutz
-RA Galli
-S Bakken
-L Matson
-D Maurer
-A Schaaf
-HH Gebel
-Y Ray
-M Dengler
-S Kimbrel
-E Bray
-C Somerville
-D Lannert
-H Nikšić
-S Ligocki
-D Harland
-J Ehresman
-S Johnston
-T Lekhonkhobe
-D Nagata
-A Langmead
-N Bareil
-P Quentel
-Avd Neut
-N Rath
-D Shaulov
-E Toder
-TJ Farrell
-J Feuerstein
-S Larsen
-J Sinkkonen
-M Zadka
-D Evers
-T Kuratomi
-D Malcolm
-S Norberg
-W Glenn
-MD Cowles
-BG Allie
-T Culliton
-M Balsera
-J Harper
-B Todd
-S Pedroni
-D Parisien
-M Bordese
-A Andersen
-R Cumplido
-D Barclay
-T Gonçalves
-K Zhu
-R Barran
-S Sperling
-G Humphreys
-J Stanley
-V Nebehaj
-J Robinson
-M Bednarski
-V Stinner
-H Annexstad
-D Stutzbach
-M Cepl
-B Herzog
-S Schram
-Mv Gagern
-R Owen
-LKC Leighton
-B Bell
-E Blossom
-A Iles
-F Mladitsch
-T Bellman
-C Wilcox
-R Coyner
-K Knapp
-A Prem
-S Montanaro
-M Jacob
-C Krier
-J Cugini
-LP Melo
-A Lee
-D Moen
-J Zijlstra
-R Chu
-C Citro
-LM Garshol
-B Fancher
-K Yoshida
-T Ingraldi
-G López-Anglada
-J Regehr
-A Barkovsky
-E Snow
-P Landry
-MM Mahon
-S Sapin
-P Jenvey
-K N
-S Barker
-B Hooper
-A Volkov
-J Hogg
-K Das
-M Romberg
-B Harring
-Constantina S
-D Fort
-M Abbott
-J Paalasmaa
-T Lownds
-J Gijsbers
-A Svetlov
-O Johansen
-S Willis
-M Boedicker
-I Polosukhin
-M Torchinsky
-N Vetoshkin
-RD Serwy
-J Hendry
-R Burnham
-E Abusalimov
-D Jacobs
-A Brown
-M Kremer
-A Chiriliuc
-E Oat
-R Schmitt
-I Levkivskyi
-J Seutter
-V Lambert
-A Eskilsson
-D Binger
-NP Siong
-T Lyapun
-Vvd Elzen
-S Bishop
-S Peresón
-C Lee
-R Xiao
-Pv Kampen
-H Suzuki
-R Hooft
-L Immisch
-D Riti
-D Worrall
-M Movsisyan
-AFT Arahesis
-N Sloan
-T Guettler
-M Cetrulo
-C Laws
-D Wang
-Y Aknin
-K Dykstra
-R Sumner
-Q Stafford-Fraser
-M Lyngvig
-J Fasarakis-Hilliard
-GS Williams
-S Hathaway
-R Moore
-S Keim
-T Graham
-S Chowdhury
-J Rimbault
-M Hand
-D Wozniak
-A Umer
-R Eckhardt
-S Scott
-Gv Rossum
-S Boving
-G Pratte
-M Szulik
-M Cicognini
-J Garver
-D Watson
-C Hogan
-D Csillag
-P Sijben
-J Gindi
-N Koep
-G McMillan
-S Mullender
-R Ruohonen
-W Walczak
-CE Barros
-B Impollonia
-Ł Langa
-C Lindblad
-I Beer
-S Erasmus
-S Anand
-B Donegan
-S Mullender
-MJ Barber
-R Bixler
-E Gorokhovsky
-C Rouault
-O Milman
-T Shumway
-A Koplyarov
-R Shapiro
-N Spies
-B Orivel
-C Theune
-S Ghosh
-B Collar
-L Tratt
-H Krekel
-R Krahl
-M Kiilerich
-O Plakhotnyuk
-N Seidenman
-J Hagen
-M Bandy
-B Hantman
-J Bradberry
-M Lenik
-D MacMillen
-I Frohne
-W Mallard
-B Leair
-J Wilk
-P Lehtinen
-M Franklin
-V Rantala
-M Guravage
-J Pickering
-L Lueg
-M Schneider
-M Boquien
-K Heydon
-M Gollahon
-C Deveraux
-Aahz
-D Bolen
-C McPheeters
-B Quinlan
-J Leitch
-D O'Reilly
-R Petrov
-B Frederiksen
-G Lingl
-K Rodgers
-JJ Lee
-J Fouhy
-C Cazabon
-Y Guo
-T Nakayama
-HM Foffani
-K Vile
-A Lee
-O Oshmyan
-E Braswell
-J Sheehy
-B Sherwood
-I Krstić
-FL Drake2
-Pt Hagen
-M Piotrowski
-G Wilson
-C Sabella
-A McIntyre
-J Wippler
-B Winton
-S Nicolary
-S Fedoseev
-TJ Reedy
-F Michea
-S Cotton
-M Singh
-D Bailey
-D Benjamin
-I Seyer
-D Kenigsberg
-R Lehmann
-J Allen
-K Stox
-J Cogliati
-AC Hall
-M Conway
-JR Coombs
-A Simpkins
-C McNamara
-G Niemeyer
-A Sweigart
-M Naruse
-P Moody
-J Bos
-E Groo
-J Tocknell
-G Ward
-G Couch
-T Christiansen
-B Kline
-J Bührman
-B Sterin
-P Galindo
-M Kessler
-J Miotte
-B Harel
-I Kurenkov
-C Su
-L Sbardella
+D Beazley 1408
+J Asbahr 63201
+HM Foffani 8312
+JC Davis 941545
+FM Brugué 48027
+H Yamamoto 983
+Q Stafford-Fraser 0250
+J Thomas 9111382
+B Hodgson 5766
+A Prem 353
+T Jarosch 8729
+R Hooft 8012323
+A Chrigström 777
+K Busch 33303539
+T Culliton 9425169
+S Nicolary 29553679
+G Copeland 62
+M Otteneder 97295
+A Babo 983
+E Melotti 4386968
+E Huss 29202
+T Wouters 4438497
+J Jorgensen 145301
+S Clift 89
+J Courteau 54485736
+M Henry 93
+C Lindblad 00753623
+S Barker 701
+V Kushnir 776142
+F Lundh 4623962
+B Tubbs 58049440
+D Marien 43
+T Lee 622
+I Wlizlo 522
+T Burnette 97
+P Sevander 33445594
+F Pinard 22631162
+A Espaze 904
+M Tripathi 01544403
+I Cheung 50662
+W Yoon 1423
+E Bouck 11
+J Kanis 26
+W Lewis 11
+J Wheeler 507
+P Szabó 89951
+M Inge 2948
+H Weber 188
+D Mårtensson 478
+T Epperly 16073
+B Watson 45638
+A Tuininga 8777
+T Bellman 903861
+M Roberts 1340
+A Cuni 568
+P Shinners 5436
+B Quinlan 356891
+P Wirtz 10737556
+W Scherer 081
+J Sipprell 290801
+D Binger 175792
+I Turner-Trauring 27663944
+M Seifert 5414
+S Reeves 880971
+E Yi 34120900
+K Howard 3189
+B Pettersen 1473
+R Kern 27815
+L Hähne 2753046
+M Joiner 08
+D Gruneau 80330
+D Schwertberger 402397
+J Ahlstrom 73559699
+B Merrell 151
+L Kneler 382
+T Campbell 54405
+R Hettinger 126311
+TB Gedai 5906173
+T Kluyver 18360
+S Willis 04438978
+KV Jónsson 67833
+P Cederqvist 2300
+J Garver 1460577
+A Ysmal 3303264
+P Haight 45750341
+A Filatova 16769
+J Nagle 054
+D Scherer 327532
+B Laurie 14887
+WT King 098
+A Qvist 3621753
+D Brock 61004186
+N Deily 953319
+M McLay 75
+G Duzan 56
+G Ball 404911
+J Williams 995260
+B Janssen 636
+V Haisman 46204224
+T Jollans 5565
+G Spear 402511
+V Skyttä 48
+K Wolf 7289824
+J Winston 43
+N Becker 873333
+D Ramasamy 766403
+S Cousins 87600603
+tmk
+D Cinege 021
+S Rushing 74764
+S Cross 0815097
+M Lazar 28543
+J Peterson 86203783
+H Hanche-Olsen 05229
+M Franklin 65
+S Hathaway 637965
+A Cucci 96
+S Peresón 11861
+D Binks 70183
+J Anglin 5204144
+G Philipson 27631144
+N Palumbo 6822814
+E Eisner 913256
+N Henrie 7497642
+M Bland 79027
+R Lamy 789444
+JJ Lee 1674
+L Sbardella 04273
+S Schwarzer 63
+G Khatri 24
+Id Jong 09801544
+C Schubert 5589285
+NM Thiéry 49
+C Wohlganger 3906
+J Yeo 2967
+D Pula 54217370
+R Li 18
+B Scott 4598
+J Tikhonov 64932626
+J Jevnik 5995
+M Farrell 1834084
+A Gaul 955732
+R Allen 886558
+M Smith 78
+D Marek 64281138
+S Larsen 425166
+R Coyner 5528945
+T Lownds 43553644
+B Sayer 6966
+J Miotte 3590
+G Gonçalves 199
+TJ Kim 75
+L Pefferkorn 64332
+J Bauer 342845
+D Severson 627
+A Koplyarov 124
+O Grisel 06
+J Bührman 03782
+B Dupuis 03665306
+S Ruby 723988
+GP Smith 46
+S Khurana 0770028
+J Vogel 1053349
+M Yoshikawa 37744
+G Kochanski 0121562
+J Cogliati 990527
+MVd Bergh 737716
+F Gansevles 3403978
+P Bleyer 848835
+E Welbourne 54730344
+R Kelly 939753
+L Matson 549794
+R Schmitt 754466
+P Bastida 406452
+M Hammond 51345556
+K Hightower 88015
+B Yodlowski 136687
+A Francis 82
+D Malcolm 627
+N Sullivan 18339
+N Fischbeck 10274
+R Kern 610
+B Feld 637
+G Neville-Neil 3473799
+evilzero 03186
+T Pinckney 09
+P Price 786
+A Zaprzala 22
+K Heydon 9199377
+W Maier 573439
+A Schawo 886
+S Taschuk 750
+D Brotsky 9018088
+D Potts 35
+M Kohtala 10613852
+D Kholia 3088
+D Wang 10
+S Brauch 20175
+R Eckhardt 54262446
+A Trevino 9893
+S Waterbury 9745652
+R Loyzaga 13451295
+C AtLee 36543981
+S Sapin 395915
+F Gruszczyński 5823
+R Pointel 929488
+V Legoll 9745
+A Horev 1434393
+T Dickenson 9323
+D Barclay 20
+OS Neto 62402
+C McDonough 21623
+L Maystre 35
+S Bevan 01
+J Craven 248325
+D Chambers 24383
+B Hayden 655266
+M Boedicker 410006
+F Visser 38540
+M Broghton 749576
+T Lekhonkhobe 71
+R Moore 724064
+S Bubrouski 3054668
+S Hoffmeister 501
+P Szczepaniak 15837
+M Levitt 89
+C White 44
+A Belopolsky 5120816
+M Sapiro 5701
+P Milani 616275
+A Schaaf 5619
+P Anderson 95302233
+S Fernandez 86950
+D Wagner-Hall 800699
+D Steele 4486403
+R Petrov 1320597
+D Goodger 838
+O Bernard 18
+D Jenkins 9712951
+M Panter 17115255
+B Tutt 511
+K Frazier 6478917
+B Winton 5978
+T Chia 5652
+DA Groppe 81425821
+M Gautier 340
+A Baxter 96577
+B Kahn 8306969
+A Palivoda 0145
+D Stokes 04
+M Kozyarchuk 448
+H Saitou 075
+Y Dionne 4163
+M Johnson 477
+J Ramnani 66
+Avd Neut 69
+T Brannon 63
+C Herborth 57090
+J Dolecek 08
+J Harper 808863
+N O'Brian 7265
+LM Catucci 843257
+N Bastin 3333
+V Khera 702
+J Tocknell 06490
+T Sarna 90
+G Chapelle 30
+T O'Malley 96645
+G Yoshida 81667559
+D Morr 97106
+N Aspinall 68610
+C Tismer 3805795
+I Cordasco 00
+A Reversat 36402137
+Z Halas 71827
+JW Shipman 17182
+P Connell 74
+S Harvey 1945021
+K Zhu 622
+A Gaedke 60162
+G Polo 08
+JT Miller 81
+SL Bayer 5027
+J Fasarakis-Hilliard 3632242
+S Anand 42835972
+S Kimbrel 29057
+C Tanzer 5929367
+A Vezza 702
+T Bridgman 4407
+T Lamb 066
+J Ollie 6656306
+J Karila 8869
+E Dvurechenski 366151
+M Abramowitz 692655
+B Donegan 88104809
+M Widjaja 1995541
+G Holl 14693841
+S Williams 80
+P Homburg 25794
+M Bachry 56612
+D Kuhlman 312
+S Ligocki 18
+M Pall 2066422
+F Tweedale 26329456
+D Wilson 32
+A Stührk 266680
+K Gräsman 808
+K Miller 8574998
+M Wichmann 997
+I Polosukhin 466051
+C Zhang 12502778
+YV Zaytsev 96966202
+PD Jimenez 205431
+I Becker 865
+JA Morrison 09683
+D Osipov 715400
+D Grisby 3620
+H Partanen 1684
+R Apte 967
+R Westman 161
+JB Jorgensen 30122
+CA Craig 33
+M Helmert 922
+SM Gava 7263
+K Holanda 494558
+R Jones 4318641
+K Knapp 28
+V Chugunov 584
+L Wirzenius 36344
+A Phillips 31
+GM Bravo 14933657
+A Leufroy 25
+V Čačić 10906843
+S Rodman 79293759
+J O'Connor 7147692
+P David 1319
+L Luke 33385
+E Furman 376
+M Papillon 002
+C Huang 6281489
+O Steele 49990063
+J Hugunin 32
+E Tukia 06013
+R Pausch 79006500
+A Rasinen 67146869
+P Meyer 1179095
+S Schram 792656
+T Turocy 78103
+G Furnish 27390
+S Erasmus 494103
+P Lovett 85445
+E Snow 083104
+R Kleckner 93334733
+FJ Tobin 596055
+W Ewert 728519
+M Shannon 83847015
+K Jacobs 080
+D Dale 24
+Z Byrne 1845763
+E Toder 63
+K Manheimer 008
+M Taylor 43897102
+J Calderone 3928060
+D Bolen 8544694
+R Shapiro 1889998
+K Sivaraam 228356
+C Georgiou 73
+B Rao 20
+Jonas H
+J Rosenberg 8791643
+A McNamara 27410264
+A Askar 531651
+HH Gebel 756
+M Schneider 98251364
+M Bozon 0185351
+T Maćkowiak 4040
+J DeGood 637
+L Hardman 8722073
+R Thomas 3932
+M Recht 685945
+A Roach 8689565
+J Dennis 51497
+J Seo 296961
+B Benson 4348
+A Fontaine 483180
+R Jayakrishnan 78854216
+E Beser 57727730
+B Rosner 91
+B Cauet 424
+JMB Rivas 4535
+G Ward 673
+S Kirsche 9802829
+K N 93851596
+V Fiack 891179
+CH Yen 829
+J Hosang 4327535
+D Watson 923
+K Stox 14072
+PØ Karlsen 71846
+AJJ Davis 137514
+G Lefkowitz 084329
+P Virtanen 55340
+J Demeyer 08
+Y Chou 2534219
+G Sipe 05
+A Starks 02872690
+M Bachmann 49
+A Riley 57
+A Brancotti 34985
+J Hauser 79004178
+M Dickinson 1196601
+D Kenigsberg 2864
+J Kołodziej 2369
+JV Goey 031
+S Rasic 694
+A Dustman 504039
+RD Serwy 26322
+W Park 884
+C Petrilli 23586541
+J Robinson 77148
+JJ Conti 650648
+Md Hoon 72687434
+L Dalcin 29314
+M Gedminas 093702
+J Almeida 58791774
+M Shiplett 8302
+J Diederich 45868
+T Leeuwenburg 439
+M Teichmann 848516
+D Shahaf 7194760
+D Jeanpierre 8711
+LM Garshol 94
+G Herron 06
+D Finnie 31824261
+G Wilson 04
+M Niemira 22
+J Berman 61861654
+R Hahn 28977
+B Janin 46634787
+P Dubois 449
+B Hantman 948670
+Z Li 64
+Ld Jonge 246
+E Kuusela 1685103
+S Bakken 962
+B Savage 68
+H Nguyen 0435
+R Friedrich 94
+M Vries 60313828
+J Lee 904303
+M Faassen 2726
+J Regehr 29
+E Rundstein 3229696
+O Palkovsky 581918
+C Sabella 03072928
+I Rossi 054096
+B Harring 13511530
+D Mitchell 70
+T Orsava 112
+J Hayek 2236
+M McFadden 382
+J Beck 96417
+J Taddei 91
+X Zhang 1747
+A Techtonik 6180
+M Gollahon 946404
+K Walzer 94390
+R Oudkerk 4099
+P Mouzo 440971
+G Limberg 5561101
+B Bedford 730105
+J Fried 31
+A Roiban 71506
+A Martin 4224762
+G Condra 379
+H Park 485082
+G Griffin 18104
+G Temple 0758849
+M Jehanzeb 3513
+L Ulmer 99
+P Kroger 004
+J McNeil 96
+C Brannon 5644
+C Clark 44687710
+B Orivel 942718
+G Genellina 17712942
+J Roskind 163765
+A Clegg 4460390
+R Light 6887
+R Roth 7710406
+BR Brenna 930
+F Couzo 778
+J Redford 505
+M Birtwell 2515
+MSZ Rizvi 7069451
+L Maximov 8394
+C Marc 5555900
+P Spilling 99
+C Lawrence 52431167
+J Añez 00
+A Hammarquist 24
+A Amoroso 2171
+A Schnell 49419
+Y Chaudhari 186288
+E Sun 4018
+N Trapuzzano 21049
+C Stoel 508
+Ł Langa 2763
+C Holmquist 0299646
+D Dorfman 85843194
+D Viehland 8368227
+F Höch 92853142
+N Srebro 764
+E Pérez 95907452
+Mv Gagern 11
+J Hartley 711
+A Pietri 35476112
+N Vetoshkin 8555595
+S Tonkin 793
+M Urman 742
+D Ellis 4973994
+D Evers 309
+W Rishel 70
+V Rantala 84342
+M Kiilerich 15
+R Kaplan 126
+E Sologubov 3931324
+H Diogenes 597
+G McFarlane 9024277
+A Chin-A-Young 6540
+M Romberg 40301582
+N Soffer 47299229
+W Tanksley 255990
+C Deveraux 963
+N Koep 96
+R Klatchko 2727456
+A Shkop 8267447
+G Talvola 63
+L Weber 83021525
+S Wijaya 546860
+D Cole 3970
+J Hosmer 2178
+S Schulenburg 1391792
+B Fogle 11405
+M Terekhov 07375
+Z Wilcox-O'Hearn
+M Cicognini 016
+O Johansen 53
+M Layzell 7685
+D Clarke 6978
+M McClure 562
+F Ricciardi 21226
+C Rouault 27
+JM Vandenberg 59
+M Oberkirch 81
+D Parisien 12
+A Vajda 49
+A Griffini 73034187
+D Dittmar 9016223
+J Seutter 96155587
+D Diniz 8647
+O Cerna 87467521
+A Martelli 53638
+M Pool 59
+L Lajeanne 9681
+P Sabin 80174
+D Everly 468719
+Pv Kampen 77
+A Tambe 61769421
+E Price 8405
+G Peristerakis 743
+Sarah K
+C Winter 581
+L Kesteloot 3834076
+F Sells 346
+C Douady 0897040
+L Mewburn 903
+L Kates 00
+J Rimbault 24
+JDI Palomar 68107
+JC Abela 519
+M Perrego 8161712
+S Majewski 24475
+R Pfannschmidt 74282
+C Hoffman 54458
+AC Hall 33
+R Smotrzyk 4226490
+ED Greef 68
+A LordThorsen 08165324
+J Hackman 01436
+R Salz 12720
+F Ribeiro 16493
+G Hoffleit 01017006
+D Maurer 179094
+K Altis 835060
+B Roberts 6089
+T Silk 50305204
+N Bogoychev 92925
+H Heimbuerger 42
+G Wiener 371202
+R Bickers 73729802
+D Phillips 04536
+B Leslie 6698
+A Ankan 9710
+G Bolton 17
+P Moore 63507
+A Moura 76080
+S Alexander 1823698
+Z Mithra 74977
+G Dumpleton 0712509
+G Pratte 887
+W Dörwald 376484
+Y Gingras 730
+H Shao 4943966
+J Williams 8393
+M Scataglini 907
+E Siegerman 6586
+A Dalke 3619283
+A Coventry 27716
+CE Barros 8726602
+R Holm 31
+S Saha 61
+G Webster 31553604
+J Henstridge 015256
+GK Johnson 65349612
+C Laird 62
+A Arlen 66884135
+F Pérez 943
+D Ascher 1810055
+T Naran 95931
+B Haddow 77458
+J Hendry 9812
+F Mladitsch 44300
+R Adam 91492862
+M Zadka 21
+JA Vidrine 445999
+RS Wanderley 46
+J Hillacre 95715489
+E Braswell 986030
+J Lehmann 0839
+M Meyer 50
+L Ballabio 8077147
+H Sasse 694783
+B Leair 66
+A Li 39
+T Ziadé 61
+J Rackauckas 21110866
+TB Hartwell 9703214
+A Kruis 1560
+M Bednarski 4826
+G Cooper 11
+P Oberndoerfer 81379
 Sunny K
-J Nicolai
-B Morgan
-R Adam
-D Gherman
-D Orr
+M Bless 6249
+E Gorokhovsky 500717
+C Paroz 61
+M Pomraning 3690087
+B Sherwood 623
+NJ Lovely 2673
+J Gijsbers 563293
+P Swartz 265
+C Gohlke 390
+D Coneybeare 447438
+J Edmonds 4391177
+D Sawyer 75492007
+M Russell 6617
+G Rees 40357105
+C Hsu 411
+S Ma 508
+B Kearns 44
+I Krstić 84
+D Winter 13882327
+R Cumplido 19881728
+P Lessard 89593982
+R Hopper 85
+B Morgan 6609
+B Berna 25
+R Srinivasan 46425838
+F Wierzbicki 20109
+A Diamant 71
+J Sanders 40
+J Jones 7790
+J Feuerstein 2491603
+F Bruynooghe 55
+Svd Veen 28
+P Webster 36
+P Schneider-Kamp 0810
+Q Dunkan 681992
+N Hussain 14114004
+F Johansson 9329
+T Landschoff 152
+M Foord 84490951
+B Peng 167
+L Rojas 150
+A Iles 450
+Hv Rossum 69935270
+V Shcherbina 346
+AF d'Arc 09462329
+M Hand 91105
+Bv Melle 7744
+T Graham 94
+PP Lefebvre 643733
+L Lefebvre 74881
+F Michea 62251299
+D Pierson 5172
+C Barton 754
+D Cave 8736
+D Merejkowsky 407454
+G Makarewicz 175
+A Raj 2013055
+A Chiriliuc 30
+S Boving 45339630
+D Shaulov 70346
+S Gooch 88
+C Stern 2007283
+CV Horsen 77
+P Winkler 8713960
+B Frederiksen 1064253
+W Glenn 3897
+N Rath 166965
+B McLoughlin 1898
+M Fuchs 40901
+Z Ware 63395
+O Martin 6003987
+M Abbott 54742
+T Tromey 4408
+K Sitaker 5826233
+E Rodriguez 38612
+M Ernst 363
+J Finkelstein 4870
+C Jerdonek 832019
+D Soede 95
+D Rumed 438
+M Lemburg 9352
+D Nagata 432
+T Oppelstrup 410255
+O Milman 5188720
+S Mihai 243
+U Zessin 2501552
+Av Bidder 8589956
+V Terrón 2650
+Z Effron 41722917
+K Vijayan 1238806
+R Milner 38
+M Anacker 13247
+D Gherman 1724
+J Armstrong 2284603
+G Langford 42482056
+R Hindle 6758585
+T Tisdall 54
+C Ryland 66
+J Hamano 2442
+S Reifschneider 7203
+J Balogh 6416
+J Vermeulen 2669
+J Lamy
+I Kurenkov 352120
+F Willison 9726
+P Viktorin 822433
+S Lockwood 4208145
+D Zongker 103
+E Morehouse 17
+M Gallagher 38260660
+TJ Reedy 4390364
+N Sloan 83
+S Franke 325
+E Bray 612
+S Bishop 53818
+D Preston 723
+Q Barnes 941609
+M Mäki 8946527
+C Fabricio 0382858
+B Bell 3144162
+J Rush 377
+N Vawda 868
+M Chaput 694798
+J Burgett 50
+J Michalski 23336226
+Sv Rossum 33593
+V Nebehaj 53461
+U Eckhardt 58690469
+A Schwab 564031
+C Laws 4817355
+D Brecht 88992800
+E Blossom 92
+H Coatanhay 054962
+J Hogg 1834879
+J Thurgood 0740542
+Y Guo 880
+M Pieters 3097823
+C Devlin 25516
+C Cazabon 4801561
+ML Hetland 5277
+K Johnson 398
+A Gupta 68
+MJ Barber 1827508
+M Chisholm 265
+K Wang 9930
+UA Lindgren 23185
+A Pelme 22
+J Lenton 30925858
+R Finn 185
+C Lowe 4185
+C Netzer 95002104
+S Pedroni 4512
+M Szulik 746
+D Drukker 52294162
+Jv Rossum 76
+A Willmer 219923
+N Agarwal 55
+I Herman 5370702
+KJ Qiu 195233
+M Troffaes 612
+E Stevens 7320
+O Tiram 2256
+B Bayles 5842387
+A Kasyanov 23
+M Ahrens 25426371
+R Williams 46194613
+P Åstrand 429006
+J Kozera 19475
+B Hooper 0303
+É Araujo 500
+T Wiedijk 08936
+A Khurana 27095931
+C Zeitouny 826
+K Kisiel 64
+H Pasanen 3386423
+J Weston 38326
+P Sokolovsky 88592
+T Filiba 625
+L Ellinghaus 955
+J Noller 47522614
+C Gonnerman 038711
+S Johnston 490314
+R Ames 8327759
+C Citro 72
+M Jeong 34
+M Zarnstorff 829
+T Nyberg 83657
+C Buckley 87193008
+U Petri 240
+R Coccioli 69760
+T Bousch 33580912
+J Viega 77302
+M May 802
+M Bandy 83016888
+K Lehman 800022
+N Chammas 397
+T Perl 78
+T Rachel 020
+T Tims 82276
+A Shende 9028825
+J Wiseman 887914
+R Townsend 859
+T Guettler 25
+J Shukla 0288
+J Sinkkonen 580
+JP Riegel 86215
+A Lee 07936
+T Thelen 005
+B Brazil 147
+D Bashford 1443
+D Wolfe 9777602
+L Creighton 526244
+P Lindqvist 38254
+G Civario 1983399
+D Wolever 86523684
+B Yue 807
+J King 54915901
+U Kumar 3105163
+T Kajiyama 5556
+O Andrich 77232055
+D Cournapeau 05
+A Lord 534065
+LD Buyst 16066
+J Brouwers 46
+N Coghlan 94
+H Nikšić 55677305
+D Barry 8314557
+C Su 0938817
+J Amenta 9685
+B Warsaw 33
+I Lee 79166
+R Galvin 285516
+C Somerville 237126
+J Fouhy 529
+S Hansen 3366
+R Irwin 8320
+E Burnett 0001122
+BG Allie 33
+T Wild 4527055
+B Darnell 08849044
+R Donohue 813246
+G Chapman 469957
+P Lauder 4399470
+A Kachayev 01102057
+D Benjamin 35417
+W Orr 60719047
+B Sterin 703
+T Loredo 50
+CT Lesniewski-Laas 00429504
+B Bumgarner 20683965
+T Nelson 82640812
+ES Raymond 357
+A Latteier 92582
+D Moen 443
+M Frank 5591329
+M Simcich 688
+Y Gale 2127
+P Quentel 7437608
+J Reese 9392
+E Fortuné 640
+S Blondon 04511745
+B Hoyt 71258040
+M Packman 9567
+MR Bax 8557814
+A Volkov 74
+G López-Anglada 71
+Ev Blokland 47968337
+J MacDonald 73749908
+AS Runde 8048495
+J Lowe 5532451
+J Chang 521
+D Na 01773
+D Fort 17
+B Collar 42
+D Bulterman 77545
+V Salgado 0136
+S Storchaka 245
+K Vile 99578
+Y Zeng 718548
+G Brandl 905
+D Beaudry 433789
+S Purcell 750508
+BK Jones 77
+B Kabrda 52703
+J Jehannet 37
+E Jones 93792454
+M Hudson 1347789
+C Waldman 5817
+E Dandrea 83437288
+R Clemons 274
+Y Liu 62291
+FK Jensen 5203750
+J Oberheide 02256320
+A Brown 705
+B Radons 844750
+Z Weinberg 439226
+D Turner 98492265
+CBAL Red 2071
+A Jung 593287
+G Kollerie 019514
+J Koshy 43068
+W Bolsterlee 06816
+V Sharma 69
+D Draayer 81
+G Rodola 65752
+V Dupras 391135
+P Lehtinen 233
+S Finer 65
+NW Waibel 3691968
+V Mukhamedzhanova 27
+A Holder 7933552
+C Barker 04
+S Joseph 11820
+C Stratakis 33763106
+D Abrahams 2893383
+N Barnes 262
+EH Smith 84224
+A Bogildea 843
+J Palus 98789306
+J Spoerri 69498
+B Weiner 631
+K O'Connor 0945407
+D Hobley 406343
+G Jones 092398
+T Nelson 9785
+M Novikov 953
+J Tittsler 687955
+AI MacIntyre 1311
+T Christiansen 37
+N Aides 4848
 DW Rouse2
-JJ Conti
-T Roscoe
-A Cortesi
-B Montagne
-A Hofkamp
-P Sokolovsky
-M Broghton
-S Gooch
-J Lee
-H Jansen
-M Muller
-C Brannon
-S Schwarzer
-C Withers
-S Marnach
-D Brueck
-SilentGhost
-F Johansson
-M Kohtala
-DJ Mitchell
-D Marien
-R Light
-D Sawyer
-LD Buyst
-B Leslie
-K O'Connor
-C Roole
-J Beck
-D Bulterman
-BR Brenna
-F Fix
-S Fernandez
-J Hackman
-D Potts
-B Feld
-MV Portela
-N Barnes
-O Bernard
-B Peterson
-D Lam
-A Trevino
-S Tosi
-Y Dionne
-G Bolton
-T Andersen
-G Pasgrimaud
-T Kajiyama
-L Busby
-H Coatanhay
-G Bond
-M Anacker
-K Oner
-T Kluyver
-N Cadou
-C Tismer
-T Holmes
-A Amoroso
-G Peristerakis
-A Pitrou
-M Bland
-WT King
-S Behnel
-N Vawda
-J Anderson
-A Reversat
-D Miller
-H Partanen
-S Esser
-A Yadav
-C Georgiou
-FJ Tobin
-R Coccioli
-B Hodgson
-SD Evans
-G Copeland
-D Hobley
-M Levitt
-NJ Smith
-M Lemburg
-P Bastida
-L Creighton
-A Li
-C Netzer
-K Wang
-B Kleineidam
-J Michalski
-J Peterson
-N Deily
-A Latteier
-AF d'Arc
-P Ingebretson
-S Weber
-NM Thiéry
-B Chapman
-K Johnson
-D Ellis
-M Tamura
-J McKellar
-M Haubenwallner
-G Brandl
-P Funk
-T Mick
-M Dickinson
-DA Groppe
-A Schawo
-D Rocco
-J Karila
-M Jeong
-CBAL Red
-Wv Heyst
-R Hahn
-A Afshar
-Sv Rossum
-P Shinners
-E Sologubov
-S Pemberton
-C Combelles
-P Colomiets
-S Lockwood
-M Bless
-B Rao
-S Ratnakumar
-C Willing
-C Gohlke
-L Rupprecht
-G Vranken
-E Eisner
-W Martínez
-C Cerecke
-H Schlawack
-B Benson
-T Wild
-P Lessard
-H Yamamoto
-M Johnson
-K Lehman
-J Yeo
-AN Patil
-P Åstrand
-A Schwab
-PD Jimenez
-O Steele
-C Paroz
-I Serna
-T Dickenson
-M Brandenberg
-L Dalcin
-E Schouten
-R Galvin
-K Herath
-A Hamelin
-P Oberndoerfer
-J Shprentz
-M Giuca
-O Andrich
-S Holloway
-M Lazar
-C Popa
-W Park
-I Bruntlett
-Hv Rossum
-H Hanche-Olsen
-J Müller
-K Samborn
-O Tirosh
-L Maximov
-T Landschoff
-S Bubrouski
-M McClure
-GK Johnson
-S Bobrov
-R Jones
-N Agarwal
-C Smith
-A Parenteau
-P David
-HB Furuseth
-M Clarkson
-M Shannon
-J Hildebrand
-J Lenton
-W Orr
-D Goodger
-D Edelsohn
-S Rodman
-E Dvurechenski
-D Mårtensson
-R Behrends
-E Bouck
-C Zhang
-FF Castaño
-J Amenta
-C Avery
-D Chaum
-L Lefebvre
-M Fleming
-J Thurgood
-G Khatri
-T Bridgman
-A Saha
-R Pausch
-T Golden
-M Lawrence
-J Viega
-J Lehmann
-B Warsaw
-E Sun
-GP Smith
-F Höch
-L Wall
-A LordThorsen
-N Gray
-R Pointel
-P Hagemeister
-T Maćkowiak
-P Cederqvist
-A Vajda
-X Li
-L Hudson
-G Hoffleit
-GS Brown
-N Ganatra
-J Love
-P Elson
-E Pérez
+Mv Deen 6389283
+T Ilsche 738005
+L Gaifax 82
+O Krasnikov 875286
+U Bartelt 4573
+B Olson 603045
+Y Ray 30
+A Olsen 35
+H Takahashi 703304
+S Bethard 40466151
+A Oakley 357
+H Kawai 3057
+M Clarkson 408762
+B Kline 0212
+I Bruntlett 6712
+A Eskilsson 7131
+J Djolonga 448
+B Curtin 95754
+B Chapman 75996095
+SilentGhost 42869
+F Håård 4166979
+S Keim 7966594
+I Sandler 36
+T Hochberg 38101
+J Trowbridge 06548
+K Samborn 046181
+V Stinner 46768
+M Matusiak 25
+H Krosing 72820
+G Malcolm 8386
+K Herath 31
+J Jansen 95991322
+M Majkowski 88626762
+T Andersen 8730267
+D Chaum 74
+A Liu 2303670
+F Preinstorfer 8558
+E Oat 2497222
+D Csillag 4105189
+Ed Bueger 838987
+TR Palmer 34374
+D Shachnev 3279
+T Beadle 94
+E Hershey 51530
+F Stajano 9128960
+T Arihiro 2874
+G Schmid 69322331
+P Jackson 72278460
+CJ Schroeder 8737241
+N Ferguson 9659
+J Poler 35692
+B Fancher 425
+P Boddie 1270464
+R Donnelly 2679053
+M Neunhöffer 8943979
+N Cadou 726
+B Lindqvist 859119
+M Cosbuc 06789
+J Kaplan-Moss 48762
+Z Spytz 5447
+T Mitchell 81868418
+M Leduc-Hamel 4688429
+J Killen 9113658
+C Heimes 90
+M Tamura 92
+A Burt 4290593
+D Cook 90827250
+N Gray 8344
+T Everett 054929
+A Cortesi 28899
+T Funaba 65298
+M Yamamoto 37452102
+A Barkovsky 3910
+T Brown 38
+A Afanasyev 2671
+E Groo 4309262
+S Mullender 41
+N Zeldovich 6661056
+C Shepherd 6750371
+S Reiz 698
+M Roseman 7975
+I Serna 506
+J Machin 2476536
+C Withers 78670
+M Stone 6678
+J Oakley 031962
+R Collins 20887
+R Boerdijk 070778
+F Vercruesse 58753
+R Upole 285414
+G Jansen 08388
+EK Ream 5776
+J Palard 37831
+E Gershuni 2215691
+LKC Leighton 35748
+B Ippolito 64100869
+M Liss 4970044
+DJ Mitchell 35
+D Barnett 1419
+Pv Oostrum 1623
+R Barran 30809
+S Koshiba 54443
+W Hale4
+A Shah 8552
+RA Galli 7502548
+D Harland 77
+K Dykstra 8044671
+A Robinson 346878
+M Bryant 56633
+J Müller 54
+P Moody 777
+D Ely 901831
+E Daniel 265129
+J Kuhn 97324634
+M Levinson 2173182
+S Krah 89251
+J Hagen 107
+C Robben 0403822
+J Alakuijala 857
+JD Pettit 16
+U Upadhyay 600
+T Hoger 65
+R Burnham 09
+J Hallio 0941790
+S Kirsch 536
+A Langmead 1654536
+W Wu 667467
+J Jauhiainen 6997
+G Bond 9259
+T Carroll 37083439
+C Meyer 611134
+M Conway 831
+O Benjamin 00145038
+B Howes 13619
+P Ingebretson 203
+A Hamelin 54
+P Parente 6210130
+F Allen 022
+F Thibault 27
+L Busby 4849062
+M Dzumanenko 252970
+L Takeuchi 7786127
+C Hudon 37445
+K Lu 0661349
+A Jackson 382317
+U Furquim 4837
+G Pasgrimaud 9415985
+J Hylton 3437
+R Sumner 80747
 P Penteado
-M Klose
-S Gala
-C Petrilli
-G Condra
-M Matusiak
-J Spoerri
-P Kippes
-M Majkowski
-M Neunhöffer
-E Melotti
-Mv Deen
-F Bond
-N Nguyen
-E Spadolini
-A Métaireau
-RM Tew
-N Srebro
-R Kelly
-R Brodie
-S Mihai
-NW Waibel
-B Peng
-J Hosmer
-M Abramowitz
-G Chapelle
-D Brotsky
-N Lockwood
-M Stone
-A Clegg
-T Brown
-S Dower
-T Brink
-T Nelson
-ML Hankins
-TB Gedai
-S Taschuk
-M Smith
-G Zlobin
-L Kesteloot
-G Genellina
-C Tanzer
-M Helmert
-D Winter
-D White
+D Costanzo 256
+C Foster 7471493
+A Rigo 380894
+M Piotrowski 11
+A Krpic 95601
+D O'Reilly 42080032
+FF Castaño 8556787
+J Bronson 95323
+M Richard 0070919
+B Herzog 25081
+F Reghenzani 56837666
+AV Mishkovskyi 2238085
+T Becker 5043
+V Michel 9652
+A Andersen 18386857
+T Rovito 2330711
+R Xiao 90618
+B Noon 58
+R Abraham 6008
+F Bock 976
+L Wang 68303510
+C Wilcox 0856
+P Sijben 841
+Z Luo 5587390
+D Urban 473
+M Wijaya 166
+M Favas 5231627
+Vvd Elzen 56
+F Groffen 61
+A Babenhauserheide 3725631
+R Chu 0357
+M Dorman 531255
+R Rampin 1639749
+J Leitch 371
+P Galindo 108553
+B Jackson 722
+C Rowland 84
+D White 183
+Y Selivanov 09860
+A Nester 631309
+J Radix 71
+B Froehle 9651
+M Torchinsky 4678
+R Russell 39433
+P Everitt 41513264
+L Thiderman 428
+T Einat 4225095
+TDD Monsyne 1186421
+J Orendorff 31
+R Smith-Roberts 00009
+B Gertzfield 76426884
+F Aneche 62
+R Wolff 64
+J Ducasse 7571
+M Haubenwallner 78972
+S Scott 3175
+R Lagerwall 225019
+K Delong 6530278
+Y Robla 125
+S Witzel 5420
+F Nehr 2815064
+F Ahmad 6029
+N Schnider 30259529
+L Munro 66
+P Stoehr 359
+S Thorne 632
+E Türkay 1103262
+L Damerow 190080
+M Orrù 757031
+A Saha 838522
+S Behnel 26028
+L Vacek 952
+A Brohi 6560
+E Schouten 89
+AD Moore 3441
+E Bendersky 6901
+V Šmilauer 62705096
+D Bailey 4049536
+S Berg 65
+K Leschenko 6648749
+J Bradberry 1117690
+T Gonçalves 819982
+S Sperling 61
+N Ganatra 2541112
+J Sernbrant 6523
+D Worrall 4985
+R Devarakonda 2387
+O Broytmann 0323318
+M Selik 64
+S Raj 206257
+A Pitrou 4595128
+A Szekely 007
+A Ikinci 3166738
+S Esser 1361178
+K Yee 6670010
+G Zlobin 99
+MM Mahon 4258219
+ML Hankins 61260947
+M Summerfield 64
+L Lueg 303
+I Levkivskyi 4061
+T Carel 747
+F Festi 58
+T Mick 265
+T Güttler 54
+P Hagemeister 82
+E Berch 2398
+G Philbrick 009253
+O Nierstrasz 1525
+B Peterson 070960
+T Crompton 5532938
+B Escoto 66486
+R Dev 0011
+N Mathewson 5129
+M Giuca 552661
+MD Cowles 865
+S Piercy 030829
+C Cerecke 49467590
+T Roscoe 74987
+T Cole 365
+M Nowikowski 6852
+AW Smith 8378
+G Ewing 984416
+R Bixler 705
+J Lynch 9079
+A Grynenko 65408
+B Cannon 674
+N Ghaznavi 18447967
+R Rachum 43926897
+NB Bidart 39647061
+L Dunstan 129
+S Wirtel 606
+C Popa 4963014
+P Bosch 49
+S Sablé 911
+D Vasiliev 3454
+J Allen 582
+A Hill 768
+LP Deutsch 166
+P Devalkeneer 4962
+B Clements 88745679
+P Prescod 991
+J Gindi 275131
+J Interrante 00099
+M Chapman 85875
+P Biondi 623
+D Baarda 877
+O Oshmyan 7639
+R Blanch 97294
+R Schreiber 6035500
+W Langner 8546992
+A Fokin 1878258
+C Evans 769587
+CR Lees 710048
+ENV Weele 699
+S Tosi 485585
+S Cufre 3416
+SO Vasquez 26
+C Webster 23986242
+C Krier 94
+L Regebro 2982746
+P Otten 388242
+mattip 837
+NJ Smith 86
+S Velankar 2245621
+G Funch 66428
+A Poliak 3536
+S Bobrov 413881
+T Lyapun 07601
+E Barry 520684
+D Griffin 63
+T Flanagan 998140
+GS Brown 5401039
+A Sweigart 20033357
+P Colomiets 183288
+J Stanley 60467
+C Roy 5872
+A Bennetts 824595
+G Stein 239
+J Wippler 87464
+P McA'Nulty 6812935
+G Grzywacz 11664782
+S Martini 231
+M Gilfix 56595218
+RD Murray 118302
+N Nguyen 4722
+J Piéronne 9995
+P Kippes 97267417
+B Todd 40666448
+M Bordese 7628559
+J Taylor 9084
+Q Gallet-Gilles 68
+P Subbiah 9397
+A Varma 8743
+F Bond 47805
+S Pemberton 87
+T Ballinger 097480
+HB Furuseth 2476756
+H Krekel 123
+H Annexstad 8502311
+J Tromp 1427
+C Rebert 54495457
+M Kremer 216
+N Spies 3980155
+C Smith 2851
+L Tratt 3149806
+R Masse 091
+J Rutherford 72695321
+J Niehof 082183
+B Randel 08801429
+A Shigin 75457
+LH Fresh 63031438
+S Mullender 2190685
+D Rocco 563
+L Immisch 780402
+S Wehr 47
+R Voicilas 76
+E Catmur 32891
+A Mazin 6188408
+A Sottile 07995639
+M Panzenböck 14
+I Donmez 283716
+H Shang 9912
+J Bos 356
+N Joly 93
+Z Piraeus 94346571
+K Jacobsen 126328
+J McKellar 5511
+L Wall 906474
+Mv Löwis 28007073
+E Spadolini 25906338
+M Lyngvig 8586863
+N Seidenman 2495389
+D Gass 08038
+Gd Perthuis 647233
+D Kazakov 640
+T Shumway 06580354
+J Popplewell 47775854
+G Matthews 9359
+M Fleming 8335
+M Perreault 7679
+H Fürstenau 6629
+M Šuppa 79283007
+P Elson 80702
+M Lutz 27
+M Verdone 9007520
+K Svensson 6660849
+M Lawrence 04334945
+C Natali 48
+P Jenvey 249
+C Lee 58225
+K Oner 291
+SD Daniels 15832876
+SL Amador 671627
+R Becker 64
+D Brennan 47
+R Sinha 01583
+H Jansen 945
+L Hastings 76
+E Lindvall 426
+Constantina S
+S Turner 34737
+D Wozniak 87
+S Weber 76045837
+J Wagner 9796588
+CJ Phoenix 609
+H Eckardt 55
+N Pickett 686869
+A Woodbeck 94624
+D Baranov 269786
+J Shprentz 47730
+C Hogan 63975
+F Schwindt 691798
+J Collins 50097796
+V Vainio 3426
+TJ Farrell 133436
+M Lundy 9535
+P Chambon 492346
+S Norberg 094
+J Konieczny 080
+T Sylvain 36
+G Liktaras 2266
+B Thorne 6407054
+J Sheehy 76094652
+RL Todd 845
+N Girdhar 469468
+M Cepl 642032
+A Augustin 5239879
+AFT Arahesis 287554
+A Patrascu 54897
+N Honda 27068
+J Epler 7580
+SD Nurpmeso 078
+F Patel 61
+NP Simons 54089
+M Paolini 8669343
+D Harrigan 25710
+M Kodali 80720
+A Kitada 4546
+J Eunice 15124
+V Marangozov 87210163
+A Hofkamp 431
+E Elizondo 3898888
+K Briggs 310928
+T Miedema 6836
+J Tishler 44021
+A Stewart 94362
+D Mennella 87
+G Vranken 9809
+E Tiedemann 33106281
+J Jewett 22378012
+V Lambert 1893976
+S Dower 5855
+W Mallard 54156504
+G Lingl 3676670
+A Eland 894
+Z O'Whielacronx 646
+J DuBois 1645
+A Faerber 0301720
+D Lannert 5290400
+D Rizzo 330
+J Kim 87479
+G Edwards 427959
+J Hoehle 672
+M Goderbauer 7619
+A Hourihane 705
+T Heaney 26887437
+B Montagne 67
+DR Tzeck 077571
+J Black 0244744
+A Yadav 65
+G Häring 901
+FL Drake2
+M Zamazal 7376
+J Peel 020
+GS Williams 01157413
+D Orr 3330288
+J Élie 38
+T Gellekum 139
+J Honig 645
+T MacKenzie 3606
+G Nofi 1122
+NP Siong 6586
+C McNamara 72972
+V Korolev 05
+B Schmertz 11
+M Cetrulo 27653
+A Vassalotti 70602
+Y Dorfsman 13454843
+H Urtubia 310612
+JC Avión 0915
+M Movsisyan 07122226
+D Brueck 545885
+TW Burton 918
+G McMillan 060264
+C Spence 99703
+D Townshend 10889
+M Naruse 3164067
+S Mathieu 147240
+E Andersén 52266
+R Dunn 730155
+G Chappell 7808
+М Коренберг 1743880
+R Krahl 536646
+A Ronacher 75247384
+B Harel 706
+R Lehmann 679979
+D May 77
+Svd Zee 40
+A Parenteau 75885
+N Spurrier 077222
+N Lockwood 48580579
+A Briggs 739
+C Bradbury 591
+L Rupprecht 21685723
+B Impollonia 72828
+S Cotton 113700
+M Kessler 7144
+M Hrončok 289
+T Northover 94
+SS Martín 578
+S Gala 90199
+M Balsera 497629
+A Simpkins 3520
+D MacMillen 8802049
+T Herve 90207
+J Chen 68
+P Funk 290696
+G Simões 808132
+J Giddy 22834
+C Avery 3029
+O Tirosh 601124
+M Bayer 32420275
+T Holenstein 86166813
+DS Otkidach 56908707
+J Aycock 2853754
+M Ibanescu 4743937
+K Das 57
+P Landry 6710846
+J Nicolai 142800

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from sys import stdin
+from random import choice, randrange
+from string import digits
 
 special = {
     'Fred L. Drake, Jr.':            'FL Drake2',
@@ -24,7 +26,8 @@ if __name__ == '__main__':
             print(special[line])
             continue
 
+        number = "".join(choice(digits) for _ in range(randrange(2, 9)))
         *forenames, surname = line.split()
         initials = [f[0] for f in forenames if f[0].isalpha()]
-        name = f'{"".join(initials)} {surname}'.strip()
+        name = f'{"".join(initials)} {surname} {number}'.strip()
         print(name)
