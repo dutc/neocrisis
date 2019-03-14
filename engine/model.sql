@@ -285,8 +285,8 @@ do $funcs$ begin
                 rock_pos := game.pos(rock_fired, rock, t);
                 slug_pos := game.pos(slug_fired, slug, t);
 
-                rock_pos := game.round(game.normalize(rock_pos), 4);
-                slug_pos := game.round(game.normalize(slug_pos), 4);
+                rock_pos := game.round(game.normalize(rock_pos), 2);
+                slug_pos := game.round(game.normalize(slug_pos), 2);
 
                 if (rock_pos).theta <> (slug_pos).theta then
                     m := m || 'theta'::game.mtype;
@@ -310,6 +310,30 @@ do $funcs$ begin
             )::game.pos
             , m
         );
+    end;
+    $func$ immutable language plpgsql; -- }}}
+
+    create or replace function miss( -- {{{
+        fired  timestamp with time zone
+        , rock rock_params
+        )
+    returns collision as $func$
+    declare
+        pos game.pos;
+        t timestamp with time zone;
+        m game.mtype[];
+    begin
+        if (rock).v <> 0 then
+            t := fired + interval '1 second' * ((rock).r_0 / -(rock).v);
+            if t >= fired then
+                pos := game.pos(fired, rock, t);
+            else
+                m := m || 'r'::game.mtype;
+            end if;
+        else
+            m := m || 'r'::game.mtype;
+        end if;
+        return (t, pos, (pos.r, 0, 0)::pos, m);
     end;
     $func$ immutable language plpgsql; -- }}}
 
@@ -791,17 +815,11 @@ begin
         select
             r.name as rock
             , r.fired as fired
-            , (
-                r.fired + interval '1 second' * ((r).params.r_0 / -(r).params.v)
-                , normalize(game.pos(r.fired, r.params,
-                    r.fired + interval '1 second' * ((r).params.r_0 / -(r).params.v)))
-                , (0, 0, 0)::pos
-                , null
-            )::collision as collision
+            , game.miss(r.fired, r.params) as collision
             , r.target
         from game.rocks as r
         inner join misses as m on (m.id = r.id)
-        where r.fired + interval '1 second' * ((r).params.r_0 / -(r).params.v) < now()
+        where (game.miss(r.fired, r.params)).t <= now()
     ); -- }}}
 
 end $views$; -- }}}
