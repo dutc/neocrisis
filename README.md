@@ -37,12 +37,21 @@ down the ‘rocks.’
       the rock and slug immediately
     - if the rock has a mass greater than 1, then collision with a slug vaporizes the slug and rock but a rock fragment with smaller mass will be created
 
-## JSON API
-
 The orbital defense platforms can be controlled via JSON REST APIs. There are
 two endpoints.
 
 The server can be found at: http://neocrisis.xyz
+
+## SELF-HELP QUICK START ##
+
+```
+# install https://httpie.org/
+$ http get http://neocrisis.xyz/help/
+$ http get http://neocrisis.xyz/telescope/help/
+$ http get http://neocrisis.xyz/railgun/help/
+```
+
+## JSON API
 
 Instructions for how to request or send info to the server is below. 
 
@@ -50,7 +59,7 @@ Verb | endpoint URL | params | description
 -----|--------------|--------|-------------
 GET | `/info` || gives information about the orbital weapon station
 GET | `/telescope/<int:octant>` | `octant` from [1, 8] | images the specified `octant` (Ⅰ-Ⅷ) of the night sky and returns NEOs it sees
-POST | `/railgun` |  `name`, string<br>`target`, string <br>`phi`, number<br>`theta`, number<br>`fired`, string (optional) | fires a slug named `name` intending to hit `target` at the specified angles `theta` and `phi`, optionally specifying the future `fired` time at which to fire the slug (for precise timing purposes)
+POST | `/railgun` |  `name`, string<br>`target`, string <br>`phi`, number<br>`theta`, number<br>`fired`, string (optional) | fires a slug named `name` intending to hit `target` at the specified angles `theta` and `phi`, optionally specifying the future `fired` time at which to fire the slug as HH:MM:SS (for precise timing purposes)
 
 The `/telescope` endpoint returns a JSON structure that looks like:
 `{ "objects": [ obj, … ] }`
@@ -360,6 +369,7 @@ You can find some sample scripts in [examples/](examples/).
 Python! It has been played at the following events:
 
 - ["Collaborative Code Night: NEO Crisis" (Aug 2, 2018)](https://www.meetup.com/nycpython/events/252249497/)
+- ["Collaborative Code Night: NEO Crisis" (Mar 14, 2019)](https://www.meetup.com/nycpython/events/259002451/)
 
 *Submit a PR to list any events where you've played NEO Crisis.*
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 curdir="$(dirname "$(readlink -f "$(which $0)")")"
-basedir="${1:-$curdir}"
+basedir="${1:-$curdir}/.."
 
 shutdown() {
 	pg_ctl -D "$basedir/db" stop

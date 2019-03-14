@@ -33,9 +33,14 @@ help:
 	@echo '   `make test-bitemporal`  activate bitemporality'
 	@echo '   `make test-checks`      runs checks'
 	@echo '   `make test-queries`     runs spot-check queries'
+	@echo ''
+	@echo '`make setup`               runs...'
+	@echo '   `make test-model`       populate model information'
+	@echo '   `make test-bitemporal`  activate bitemporality'
 
-.PHONY: test test-model test-bitemporal test-data test-queries
+.PHONY: test setup test-model test-bitemporal test-data test-queries
 test: | test-cli test-model test-bitemporal test-data test-checks test-queries
+setup: | test-cli test-model test-bitemporal
 test-cli:
 	@which psql jinja2 python bash zsh >/dev/null || exit 1
 test-model: $(curdir)/model.sql
