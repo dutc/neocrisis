@@ -333,7 +333,7 @@ do $funcs$ begin
         else
             m := m || 'r'::game.mtype;
         end if;
-        return (t, pos, (pos.r, 0, 0)::pos, m);
+        return (t, pos, (pos.r, 0, 0)::game.pos, m);
     end;
     $func$ immutable language plpgsql; -- }}}
 

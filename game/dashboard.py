@@ -58,7 +58,7 @@ if __name__ == '__main__':
                 print(f'{"Name":<20} {"Distance":>10} {"Time To Impact (s)":>20} {"Age (s)":>10} {"Target":>15}')
                 cur.execute(rocks_query)
                 for rock in cur:
-                    print(f'{rock.name:<20} {rock.pos_r:>10.2f} {rock.pos_r / -rock.params_v:>20.2f} {rock.age.seconds:>10.0f} {rock.target[:20]:>15}')
+                    print(f'{rock.name:<20} {rock.pos_r:>10.2f} {rock.pos_r / -rock.params_v if rock.params_v < 0 else float("inf"):>20.2f} {rock.age.seconds:>10.0f} {rock.target[:20]:>15}')
 
                 print()
                 print(f'  Slugs  '.center(WIDTH, '-'))
