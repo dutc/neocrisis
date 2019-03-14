@@ -189,6 +189,7 @@ def railgun_help():
         'inputs': {
             '/railgun/help/': {},
             '/railgun': ['the following are all passed as JSON POST data', {
+                'name':   '(OPTIONAL) the name of the slug (so you can identify it easily later) (string)',
                 'theta':  '(also: θ or azimuth) the angle at which to fire, measured east-to-west (longitudinally) from the 0° Prime Meridian (Greenwich, UK) toward the 90° meridian (Memphis, TN) (number, in radians, [0, 2π])',
                 'phi':    '(also: φ or inclination) the angle at which to fore, measured north-to-south (latitudinally) from the North Pole to the South Pole (number, in radians, [0, π]])',
                 'target': "the name of the rock you're trying to hit (for display purposes only) (string)",
@@ -239,9 +240,12 @@ def railgun():
         msg = {'error': 'malformed request'}
         return make_response(jsonify(msg), 400)
 
-    with counter.get_lock():
-        counter.value += 1
-        name = data.get('name', f'shot #{counter.value * 10}')
+    if 'name' in data:
+        name = data['name']
+    else:
+        with counter.get_lock():
+            counter.value += 1
+            name = data.get('name', f'shot #{counter.value * 10}')
 
     try:
         theta = float(data.get('theta'))
