@@ -34,7 +34,7 @@ help:
 	@echo '   `make test-checks`      runs checks'
 	@echo '   `make test-queries`     runs spot-check queries'
 	@echo ''
-	@echo '`make setup`               runs...'
+	@echo '`make setup-tables`        runs...'
 	@echo '   `make test-model`       populate model information'
 	@echo '   `make test-bitemporal`  activate bitemporality'
 
