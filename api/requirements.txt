@@ -7,7 +7,7 @@ gunicorn==19.9.0
 httpie==0.9.9
 idna==2.7
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 jinja2-cli==0.6.0
 limits==1.3
 MarkupSafe==1.0
