@@ -6,6 +6,6 @@ Jinja2==2.10
 jinja2-cli==0.6.0
 MarkupSafe==1.0
 Pygments==2.2.0
-PyYAML==3.13
+PyYAML==5.4
 requests==2.19.1
 urllib3==1.23
