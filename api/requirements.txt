@@ -15,7 +15,7 @@ psycopg2==2.7.5
 Pygments==2.2.0
 python-dateutil==2.8.0
 pytz==2018.9
-PyYAML==3.13
+PyYAML==5.4
 requests==2.19.1
 six==1.11.0
 tzlocal==1.5.1
