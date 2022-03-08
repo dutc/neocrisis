@@ -1,6 +1,6 @@
 certifi==2018.4.16
 chardet==3.0.4
-httpie==0.9.9
+httpie==3.1.0
 idna==2.7
 Jinja2==2.10
 jinja2-cli==0.6.0
